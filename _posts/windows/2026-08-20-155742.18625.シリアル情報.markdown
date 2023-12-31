@@ -1,0 +1,19 @@
+---
+layout: post
+category: windows
+title: "Windows シリアル情報"
+---
+
+## powershell
+
+1. Windowsキー＋R
+1. powershellと入力してエンター
+
+```ps1
+Get-WmiObject Win32_BIOS
+```
+
+```ps1
+Get-CimInstance Win32_ComputerSystem
+```
+

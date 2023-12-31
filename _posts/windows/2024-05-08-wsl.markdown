@@ -1,0 +1,37 @@
+---
+layout: post
+category: windows
+title: wsl
+---
+
+## インストール
+
+```
+wsl --install
+```
+
+## 起動
+
+指定したディストリビューションを起動する。
+
+```
+wsl -d Ubuntu
+```
+
+## 停止(全停止)
+
+全ディストリビューションを停止する。
+
+```
+wsl --shutdown
+```
+
+## 更新
+```
+wsl --update
+```
+
+## アンインストール
+```
+wsl --uninstall
+```

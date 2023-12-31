@@ -1,0 +1,191 @@
+---
+layout: post
+category: virtualmachine
+title: Vagrant
+---
+
+## Vagrantfile
+
+### Template
+
+```sh
+cat <<'EOF' > Vagrantfile
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  #config.vm.box = "rockylinux/9"
+  config.vm.box = "almalinux/9"
+
+  config.vm.provider "virtualbox" do |vb|
+  #config.vm.provider 'libvirt' do |vb|
+  #config.vm.provider "hyperv" do |vb|
+  #config.vm.provider "vmware_desktop" do |vb|
+    vb.memory = "768"
+    vb.cpus = 2
+  end
+
+  config.vm.define "machine"
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+end
+EOF
+```
+
+### ネットワーク
+
+#### ホスト名
+
+```ruby
+  config.vm.hostname = "hostname"
+```
+
+#### ブリッジ接続
+
+```ruby
+  config.vm.define "machine" do |machine|
+    machine.vm.network "public_network", bridge: "en0: Wi-Fi"
+  end
+```
+
+#### ホストオンリーネットワーク
+
+```ruby
+  config.vm.define "machine" do |machine|
+    machine.vm.network :private_network, ip:"192.168.255.2"
+  end
+```
+
+#### ポートフォワーディング
+
+```ruby
+    machine.vm.network :forwarded_port, guest:22, host:1234, id:"ssh"
+```
+
+### ヒント
+
+#### Vagrant provision時ansibleの実行
+
+```ruby
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "site.yml"
+  end
+```
+
+#### /vagrantにマウントしない方法
+
+イメージによって、エラー有無がある。
+
+```ruby
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+```
+
+#### プラグインvagrant-vbguest
+
+- チェック、アップデートに時間がかかる
+- 必要がない限り導入しない
+- 分岐等あるが、コストに見合わない
+
+### コマンド
+
+```sh
+# Vagrantfile作成
+vagrant init
+```
+
+## vm起動
+
+```sh
+vagrant up
+vagrant up --provision
+vagrant up --no-provision
+```
+
+## provisionのみ
+
+```sh
+vagrant provision
+```
+
+## 状態確認
+```sh
+vagrant status
+```
+
+## ssh接続
+```sh
+vagrant ssh
+```
+
+## 保存停止
+```sh
+vagrant suspend
+```
+
+## halt
+```sh
+vagrant halt
+```
+
+## 状態確認(全VM)
+```sh
+vagrant global-status
+```
+
+## VM破壊
+```sh
+vagrant destroy -f [id]
+```
+
+```sh
+vagrant global-status --prune
+```
+
+## パラレル実行(xargsのコマンドでパラレル実行する)
+
+```sh
+seq 2 | xargs -P2 -I@ vagrant up vm@
+```
+
+#### vagrantとSCP
+
+```sh
+vagrant ssh-config > ssh.config
+scp -P 2222 -F ssh.config vagrant@localhost:/etc/redhat-release .
+```
+
+## 共有フォルダマウントできない時
+
+```sh
+# プラグインのインストール
+vagrant plugin install vagrant-vbguest
+# 実行
+vagrant vbguest
+```
+
+
+
+#### Mac環境のクリーンアップ
+
+```sh
+vagrant global-status
+vagrant global-status --prune
+
+for f in `vagrant global-status --prune | grep /Users/ | awk '{print $1}'`
+do
+  vagrant destroy $f -f &
+done
+wait
+# box
+vagrant box list | awk '{print $1}' | xargs -I@ vagrant box remove @ --all
+
+# VirtualBox
+VBoxManage list vms | awk '{print $1}' | xargs -I@ VBoxManage unregistervm @
+rm -rf "${HOME}/VirtualBox VMs"/*
+```
+
+### インストール
+
+```sh
+brew install vagrant
+# その他、VirtualBoxが必要
+```

@@ -1,0 +1,103 @@
+---
+layout: post
+category: llm
+title: "OPENCODE"
+---
+
+## opencode
+
+@ AlmaLinux
+
+```sh
+mkdir -p work; podman run -it --rm -v ./work:/work:Z -w /work almalinux:latest /bin/bash
+```
+
+
+```sh
+dnf -y update
+dnf install nodejs npm -y
+npm install -g opencode-ai
+npm install -g @modelcontextprotocol/server-filesystem
+
+mkdir -p ~/.config/opencode && cat <<'EOF' > ~/.config/opencode/opencode.json
+{
+  "mcp": {
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/work"
+      ],
+      "enabled": true
+    }
+  }
+}
+EOF
+
+opencode
+```
+
+モデルを選択する。
+
+## サンプルプロンプト
+
+```
+install cargo fmt clippy make git by dnf.
+```
+
+## for mac
+
+@ Apple Silicon Mac
+
+```sh
+docker run -ti --platform linux/arm64/v8 -v ./work:/work -w /work almalinux:9 /bin/bash
+```
+
+---
+
+```sh
+cat <<'DOCKEREOF' > Dockerfile
+FROM almalinux:9
+
+RUN dnf -y update \
+    && dnf -y install nodejs npm rust cargo rustfmt clippy make git \
+    && dnf clean all
+
+RUN npm install -g opencode-ai \
+    && npm install -g @modelcontextprotocol/server-filesystem
+
+RUN mkdir -p ~/.config/opencode \
+    && cat <<'EOF' > ~/.config/opencode/opencode.json
+{
+  "mcp": {
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/work"
+      ],
+      "enabled": true
+    }
+  }
+}
+EOF
+
+WORKDIR /work
+CMD ["opencode"]
+DOCKEREOF
+```
+
+```sh
+# 1. イメージをbuild
+docker build -t myapp .
+
+# 2. コンテナをrun
+docker run -it --rm --platform linux/arm64/v8 -v ./work:/work -w /work --name myapp-container myapp
+
+# 3. コンテナを削除
+# docker rm myapp-container
+```

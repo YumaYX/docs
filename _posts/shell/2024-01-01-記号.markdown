@@ -1,0 +1,45 @@
+---
+layout: post
+category: shell
+title: 記号
+---
+
+```sh
+$ sh app.sh argv1 argv2
+```
+
+| Option | Desc. | Example |
+| --- | --- | --- |
+| $$    |  PID | n |
+| ${PPID} |  PPID | n |
+| ${#}    |  Num of Arg | 2 |
+| ${1}    |  ARG 1 | arg1 |
+| ${@}    |  All ARG | argv1 argv2 |
+
+## 直前にバックグラウンド実行したコマンドのPID
+
+`${!}` は直前にバックグラウンド起動したジョブのPIDを返す。
+
+```
+~  sleep 10 &
+echo ${!}
+[1] 66889
+66889
+~  
+```
+
+```sh
+sleep 10 &
+echo ${!}
+```
+
+## 演算子
+
+| 比較演算子 | 意味 |
+| --- | --- |
+| -eq | a == b |
+| -ge | a >= b |
+| -gt | a > b |
+| -le | a <= b |
+| -lt | a < b |
+| -ne | a != b |

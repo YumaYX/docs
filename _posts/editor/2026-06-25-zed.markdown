@@ -1,0 +1,12 @@
+---
+layout: post
+category: editor
+title: "zed"
+---
+
+## disable auto format
+
+1. Cmd + ,（Mac）または Ctrl + ,（Windows/Linux）で設定を開く
+1. Formatting
+1. Format On Save -> Off
+

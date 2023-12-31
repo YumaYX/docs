@@ -1,0 +1,81 @@
+---
+layout: post
+category: ruby
+title: プロジェクト初期準備
+---
+
+Rubyプロジェクトに必要な準備
+
+このスクリプトはRubyのプロジェクトの初期セットアップを行い、Rakeを使用してテスト、Yardドキュメントの生成、RuboCopによるコードの静的解析を実行する環境を整えます。
+
+```sh
+mkdir lib test testdata
+
+bundle init
+for g in rake yard rubocop minitest
+do
+  grep $g Gemfile || echo 'gem "'${g}'"' >> Gemfile
+done
+bundle install
+
+cat <<'TESTSCRIPTEOF' > test/test_template.rb
+# frozen_string_literal: true
+
+require 'minitest/autorun'
+require 'fileutils'
+
+class TestTemplate < Minitest::Test
+  def setup; end
+
+  def teardown; end
+
+  def test_compare_files
+    assert(FileUtils.cmp(__FILE__, __FILE__))
+  end
+end
+TESTSCRIPTEOF
+
+cat <<'RAKEFILEEOF' > Rakefile
+# frozen_string_literal: true
+
+require 'rake/clean'
+
+require 'rake/testtask'
+task :test
+Rake::TestTask.new do |t|
+  t.test_files = FileList['test/test_*.rb']
+  t.warning = true
+end
+
+require 'yard'
+YARD::Rake::YardocTask.new do |t|
+  t.files = FileList.new %w[lib/*.rb lib/**/*.rb]
+end
+
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new(:rubocop) do |t|
+  t.patterns = %w[lib test Rakefile]
+end
+
+CLOBBER << 'doc'
+task default: %i[clobber test yard]
+RAKEFILEEOF
+
+rake test
+```
+
+このスクリプトは、Rubyのプロジェクト用の初期化とテスト実行のための設定を行っています。具体的な手順は以下の通り。
+
+1. `mkdir lib test testdata`: `lib`、`test`、`testdata`ディレクトリを作成します。
+
+2. `bundle init`: Bundlerを使用して `Gemfile` を初期化します。
+
+3. `for g in rake yard rubocop minitest`: `rake`、`yard`、`rubocop`、`minitest` の4つのGemが`Gemfile`内に記述されているかを確認し、記述されていない場合はGemを`Gemfile`に追加します。
+
+4. `bundle install`: `Gemfile`に記述されているGemをインストールします。
+
+5. `cat <<'TESTSCRIPTEOF' > test/test_template.rb ... TESTSCRIPTEOF`: ヒアドキュメントを使用して、`test/test_template.rb`に単純なMinitestのテストスクリプトを作成します。このテストは、同じファイルを比較して真であることを確認するものです。
+
+6. `cat <<'RAKEFILEEOF' > Rakefile ... RAKEFILEEOF`: 同様にヒアドキュメントを使用して、`Rakefile`にRakeタスクの設定を追加します。このRakefileには、テストの実行、Yardドキュメントの生成、RuboCopの実行などが定義されています。
+
+7. `rake test`: 最後に、Rakeタスクを使用してテストを実行します。これにより、`Rakefile`内で指定されたテストが実行されます。

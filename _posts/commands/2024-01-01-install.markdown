@@ -1,0 +1,20 @@
+---
+layout: post
+category: commands
+title: install
+---
+
+## ディレクトリの作成
+
+| option | value |
+| --- | --- |
+| owner | user |
+| group | group |
+| permission | 755 |
+| path | /tmp/dir |
+
+`install -d` は所有者・グループ・パーミッションを指定してディレクトリを作成できる。
+
+```sh
+install -o user -g group -m 0755 -d /tmp/dir
+```

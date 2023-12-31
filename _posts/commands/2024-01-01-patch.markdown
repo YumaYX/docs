@@ -1,0 +1,42 @@
+---
+layout: post
+category: commands
+title: patch
+---
+
+## patchコマンド
+
+### 例
+
+`diff` で差分パッチを生成し、`patch` でオリジナルファイルに適用する。
+
+```sh
+cat <<'EOF1'> original
+abcd
+original
+efgh
+original
+ijkl
+EOF1
+
+cp original pattern
+sed -i 's/original/new/g' pattern
+
+diff original pattern > diffpattern
+
+patch original < diffpattern
+
+cat original
+```
+
+#### 実行結果
+
+```sh
+$ cat original
+abcd
+new
+efgh
+new
+ijkl
+$
+```

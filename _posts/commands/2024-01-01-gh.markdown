@@ -1,0 +1,69 @@
+---
+layout: post
+category: commands
+title: "gh"
+---
+
+## dnfでインストール(Red Hat系)
+
+```sh
+sudo dnf install 'dnf-command(config-manager)'
+sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+sudo dnf -y install gh
+```
+
+## 認証
+
+```sh
+gh auth login
+```
+
+## リポジトリ一覧
+
+```sh
+gh repo list --json name --jq '.[].name'
+```
+
+### リポジトリのクローン
+
+```sh
+gh repo list --json name --jq '.[].name' | while read line
+do
+    echo ${line}
+    ys-gclone "${line}" > /dev/null 2>&1
+    sleep 3
+done
+```
+
+note: `ys-gclone` = `git clone git@github.com:YumaYX/`
+
+## 参考リンク
+
+- [コマンドでGitHubリポジトリ一覧を取得する #Git - Qiita](https://qiita.com/inayuky/items/a127e99d81a9fe3fdea7)
+- [GitHub CLI（gh）を使ってみよう #開発環境 - Qiita](https://qiita.com/Yuya146552/items/3fc87f9eecc86c605373)
+
+
+## GitHub Actionsの履歴を削除
+
+### brewでインストール
+
+```sh
+brew install gh
+
+gh auth login
+```
+
+### GitHub Actionsの履歴を削除
+
+repoの指定は、cloneしたディレクトリでやれば良い。
+
+```sh
+wname="Deploy Docs to GitHub Pages"
+
+for id in $(gh run list --workflow "${wname}" --json databaseId --jq '.[].databaseId' --limit 100); do
+  echo $id
+  gh run delete $id
+  sleep 3
+done
+```
+

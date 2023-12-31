@@ -1,0 +1,16 @@
+---
+layout: default
+---
+
+<article>
+
+<small>
+  CATEGORY:
+  <a href="{{ '/' | append: page.category | slugify | append: '/' | relative_url }}">
+    {{ page.category | upcase }}
+  </a>
+</small>
+
+<h1>{{ page.title }}</h1>
+{{ content }}
+</article>

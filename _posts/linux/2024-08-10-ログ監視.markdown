@@ -1,0 +1,46 @@
+---
+layout: post
+category: linux
+title: ログ監視
+---
+
+下の例では、`/var/log/messages`の監視を行う。grepの条件で、以降の処理を行うかどうかを分岐する。合致するログをトリガーにして、処理を実行できる。
+
+時刻の秒が 0 または 5 で終わるログのみ標準出力に出力する(5秒ごと・10秒ごとの行を拾う)。
+
+```sh
+function onebyone () {
+    line="${@}"
+    echo "${line}" | grep -E ":.[0|5] " > /dev/null || return
+
+    echo "${line}"
+}
+
+
+target_log="/var/log/messages"
+tail -F -n0 ${target_log} | while read line
+do
+    onebyone "${line}"
+done
+```
+
+### 動作チェック
+
+`watch -n 1 logger hello` は1秒ごとに syslog へ hello を書き込む動作チェック用コマンド。`tail -F -n0` は新規に追記されたログのみ監視する。
+
+```sh
+watch -n 1 logger hello
+```
+
+```
+Aug 10 08:39:30 y yuma[46902]: hello
+Aug 10 08:39:35 y yuma[46922]: hello
+Aug 10 08:39:40 y yuma[46942]: hello
+Aug 10 08:39:45 y yuma[46962]: hello
+Aug 10 08:39:50 y yuma[46992]: hello
+Aug 10 08:39:55 y yuma[47012]: hello
+Aug 10 08:40:00 y yuma[47028]: hello
+Aug 10 08:40:05 y yuma[47048]: hello
+Aug 10 08:40:10 y yuma[47068]: hello
+Aug 10 08:40:15 y yuma[47088]: hello
+```

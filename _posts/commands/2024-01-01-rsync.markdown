@@ -1,0 +1,23 @@
+---
+layout: post
+category: commands
+title: rsync
+---
+
+## 基本形
+
+```sh
+rsync -auvzP src(file/dir) dst(dir)
+```
+
+| option| description |
+| --- | --- |
+| -a | archive mode: -rlptgoD (no -H,-A,-X)|
+| -u | skip files that are newer on the receiver |
+| -v | increase verbosity |
+| -z | compress |
+| -P | keep partially transferred files(`--partial --progress` の略) |
+| --delete | delete extraneous files from dest dirs |
+| -r | recurse into directories |
+| --progress | show progress during transfer |
+| --bwlimit=RATE | 転送速度を制限(例: --bwlimit=1.5m で1.5MB/s) |

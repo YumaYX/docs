@@ -1,0 +1,15 @@
+---
+layout: post
+category: shell
+title: コメントアウト
+---
+
+```sh
+<< COMMENTOUT
+
+COMMENTOUT
+```
+
+`<< COMMENTOUT` と対応する `COMMENTOUT`（`<<`を含まない）の間にあるすべての内容は、コメントと見なされ、解釈されません。
+
+※`<< COMMENTOUT` では変数展開・コマンド置換が実行されるため注意。展開を防ぐには `<<'COMMENTOUT'` のようにクォートする。

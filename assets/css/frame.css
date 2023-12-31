@@ -1,0 +1,54 @@
+html {
+  font-size: 75%;
+}
+
+.container {
+  min-height: 100vh;
+  display: block;
+  padding: 0 1rem;
+}
+
+code, caption, figcaption, a {
+  font-family: "Share Tech Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+  user-select: none;
+}
+
+pre {
+  margin: 20vh auto 2em;
+  padding: 2em;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  border: 1.2px solid black;
+}
+
+code {
+  border-radius: 2px;
+  background-color: transparent;
+  border: none;
+}
+
+a {
+  color: black;  
+}
+a:hover {
+    color: black;  
+
+}
+
+.page, a {
+  text-align: center;
+  color: #efeff4;
+}
+
+figure {
+  margin-bottom: 20em;
+}
+
+figcaption {
+  font-size: 1.8rem;
+  margin: 1rem;
+  margin-top: 0;
+}

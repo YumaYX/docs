@@ -1,0 +1,15 @@
+---
+layout: post
+category: commands
+title: tee
+---
+
+sudo では直接 `>` でファイルに書き込めないため、`tee` を sudo で実行して書き込む。
+
+```sh
+cat << EOF | sudo tee output.txt
+content
+EOF
+```
+
+追記する場合はオプション`-a`を使う。

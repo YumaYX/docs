@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>{{ page.title | default: '' }}{% if page.title %} | {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="https://yumayx.github.io/assets/css/skeleton.css">
+    <link rel="stylesheet" href="https://yumayx.github.io/assets/css/extends.css">
+    <link rel="icon" href="https://yumayx.github.io/favicon.png" type="image/png">
+  </head>
+
+  <body>
+    <nav class="navbar container">
+        <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
+    </nav>
+
+    <div class="container">
+      <div class="main">
+        {{ content }}
+      </div>
+    </div>
+
+    <hr>
+
+    <footer class="container credit">
+      <h1><a href="https://yumayx.github.io/">Yuma</a></h1>
+      <p>✎ <a href="https://github.com/YumaYX{{ site.baseurl }}">{{ site.title }}</a> CREATED AND MAINTAINED BY Yuma</p>
+    </footer>
+
+  </body>
+</html>

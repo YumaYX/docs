@@ -1,19 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 if [ "$#" -ne 1 ] ; then
   echo "Usage: $0 \"<title>\"" >&2
   exit 1
 fi
 
-filename="_posts/`date +%Y-%m-%d-"${1}".markdown`"
-filename=${filename//" "/"_"}
+title="$1"
+filename_title="${title//・/-}"
+filename_title="${filename_title// /_}"
 
-cat > $filename <<PTEMPLATE
+filename="_posts/$(date +%Y-%m-%d)-$(date +%H%M%S).${$}.${filename_title}.markdown"
+
+cat > "$filename" <<PTEMPLATE
 ---
 layout: post
-category: 
+category: uncategorized
+title: "${title}"
 ---
-
 PTEMPLATE
 
-vim ${filename}
+#vim "$filename"
+
+echo "$filename"
+

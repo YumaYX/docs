@@ -1,14 +1,66 @@
 ---
 layout: default
+links:
+  - name: YS0
+    url: https://github.com/YumaYX/YS0
+  - name: YS1
+    url: https://yumayx.github.io/YS1/
+  - name: YS124
+    url: https://yumayx.github.io/YS124/
+  - name: YS910
+    url: https://yumayx.github.io/YS910/
+  - name: YS1XL
+    url: https://github.com/YumaYX/YS1XL/
+  - name: lllmd
+    url: /lllmd/
+playground:
+  - name: Date
+    url: /docs/date.html
 ---
 
-{% assign sorted_site_categories = site.categories | sort %}
-{% for category in sorted_site_categories %}
-<h2 class="post-list-heading"> {{ category[0] }} </h2>
-{% assign sorted_site_posts = site.posts | sort %}
-{% for post in sorted_site_posts %}
-{% if post.category == category[0] %}
-<a class="post-link" href="{{ post.url }}">{{ post.title }}</a>
-{% endif %}
+{% assign sorted_categories = site.categories | sort %}
+
+<section>
+
+
+<div class="row">
+
+
+<div class="one-half column">
+<h2>INDEX</h2>
+<ul>
+  {% for category in sorted_categories %}
+    <li>
+      <a href="{{ site.baseurl }}/{{ category[0] | slugify }}">
+        {{ category[0] | upcase }}
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+<ul><li><a href="/docs/all/">All Posts</a></li></ul>
+</div>
+
+<div class="one-half column">
+
+<h2>LINKS</h2>
+<ul>
+<li><a href="https://github.com/YumaYX?tab=repositories">GITHUB REPOSITORIES</a></li>
+
+{% for item in page.links %}
+<li><a href="{{ item.url }}">{{ item.name }}</a></li>
 {% endfor %}
+
+</ul>
+
+<h2>PLAYGROUND</h2>
+<ul>
+{% for item in page.playground %}
+<li><a href="{{ item.url }}">{{ item.name }}</a></li>
 {% endfor %}
+</ul>
+
+</div>
+
+</div>
+
+</section>

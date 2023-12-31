@@ -1,0 +1,11 @@
+---
+layout: post
+category: commands
+title: act
+---
+
+# on Apple Silicon
+
+```sh
+act --container-architecture linux/amd64
+```

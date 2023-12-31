@@ -1,0 +1,36 @@
+---
+layout: post
+category: shell
+title: テキスト抽出
+---
+
+## 先頭から
+
+### 正規表現にて
+
+```sh
+sed -n '1,/C/p' target.txt
+```
+
+```sh
+awk '{print $0; if ($0 ~ /C/)exit}' target.txt
+```
+
+### 文字列にて
+
+```sh
+awk '{if ($0 == "C")exit; print $0}' target.txt
+```
+awkは、exitの位置で、該当行を含むか含まないかを選択できる
+
+## 中間(範囲)
+
+```sh
+awk '/B/,/D/' target.txt
+```
+
+## 末尾まで
+
+```sh
+sed -n '/C/,$p' target.txt
+```

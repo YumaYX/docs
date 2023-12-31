@@ -1,0 +1,64 @@
+---
+layout: post
+category: commands
+title: awk
+---
+
+## AからBまで行を取得
+
+```sh
+awk '/A/,/B/' sample.txt
+```
+
+- 開始行：上から最初に合致したもの
+- 終了行：開始行から、最初に合致したもの
+
+## ファイル一行目から特定の行まで出力
+
+### 文字列で指定する場合
+
+```sh
+awk '{if ($0 == "B") exit;print $0;}' sample.txt
+```
+
+### 正規表現で指定する場合
+
+```sh
+awk '{if ($0 ~ /B/) exit;print $0;}' sample.txt
+```
+
+終了行に到達した行(B)は出力されない。
+
+## 列の条件指定
+
+2番目のフィールドが "keyword1" または "keyword2" であり、かつ3番目のフィールドが "target" である行を sample.txt ファイルから抽出し、それを出力
+
+`$2` / `$3` はそれぞれ 2番目 / 3番目のフィールドを指す。
+
+```sh
+awk '($2 == "keyword1" || $2 == "keyword2") && $3 == "target" {print}' sample.txt
+```
+
+
+## テキストの初回出現
+
+重複行を除き、各行の初回出現のみを出力する方法
+
+```
+$ cat text 
+apple
+apple
+banana
+apple
+orange
+banana
+$ 
+```
+
+```
+$ cat text | awk '!a[$1]++'
+apple
+banana
+orange
+$ 
+```

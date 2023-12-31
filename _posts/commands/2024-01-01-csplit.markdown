@@ -1,0 +1,34 @@
+---
+layout: post
+category: commands
+title: csplit
+---
+
+見出しごとに分割する
+例：# で始まる行を見出しとして分割
+入力ファイル input.txt
+
+```
+# A
+aaa
+bbb
+# B
+ccc
+ddd
+# C
+eee
+```
+
+```sh
+mkdir -p xx
+csplit -f xx/xx -n 9 -q input.txt /^# / '{*}'
+```
+
+- `-f xx/xx`: 出力ファイルのプレフィックス
+- `-n 9`: 出力ファイル名の数字の桁数
+- `-q`: 分割数の表示を抑制
+- `/^# /`: 分割位置のパターン(`# ` で始まる行)
+- `'{*}'`: パターンに一致する回数だけ繰り返し分割
+
+- gnuとfreebsdでオプションが異なるので注意
+- 削除/処理する場合は、`find xx -type f -name "xx*" | xargs`に`rm`など。

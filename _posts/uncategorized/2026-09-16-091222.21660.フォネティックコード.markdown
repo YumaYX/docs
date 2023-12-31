@@ -1,0 +1,38 @@
+---
+layout: post
+category: uncategorized
+title: "フォネティックコード"
+---
+
+| Letter | Country  |
+| --- | --- |
+| A      | America  |
+| B      | Brazil   |
+| C      | Canada   |
+| D      | Denmark  |
+| E      | Egypt    |
+| F      | France   |
+| G      | Germany  |
+| H      | Hungary  |
+| I      | India    |
+| J      | Japan    |
+| K      | Kenya    |
+| L      | Laos     |
+| M      | Mexico   |
+| N      | Norway   |
+| O      | Oman     |
+| P      | Portugal |
+| Q      | Qatar    |
+| R      | Romania  |
+| S      | Spain    |
+| T      | Thailand |
+| U      | Uganda   |
+| V      | Vietnam  |
+| W      | Washington * |
+| X      | X-ray * |
+| Y      | Yemen    |
+| Z      | Zambia   |
+
+| 記号 | 読み方 |
+| --- | --- |
+| ^ | キャレット、ハット |

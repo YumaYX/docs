@@ -1,0 +1,36 @@
+---
+layout: post
+category: commands
+---
+
+# options
+
+- -r
+    - 再起ダウンロード
+- -l1
+    - リンクを辿る回数
+- -H
+    - 他のドメインもクロール
+- -w
+    - NダウンロードごとにN秒待つ
+- -random-wait
+    - -wで指定した数の0.5〜1.5倍の時間待つ
+- -e robots=off
+    - robots.txtの無視
+- -A
+    - 拡張子で指定したファイルのみを取得 jpg,gif,png
+- -p
+    - HTMLを表示するのに必要な画像・音声やCSSなどもダウンロード
+- --user-agent
+```sh
+user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.2 Safari/605.1.15"
+```
+```
+--user-agent="${user_agent}"
+```
+
+# 使用例コマンド
+
+```sh
+wget -r -l1 -w5 --random-wait -A jpg,png,gif -p https://
+```

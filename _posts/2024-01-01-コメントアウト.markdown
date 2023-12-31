@@ -1,0 +1,12 @@
+---
+layout: post
+category: commands
+---
+
+```sh
+<< COMMENTOUT
+
+COMMENTOUT
+```
+
+※変数、コマンドの評価に注意

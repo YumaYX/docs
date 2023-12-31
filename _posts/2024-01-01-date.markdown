@@ -1,0 +1,38 @@
+---
+layout: post
+category: commands
+---
+
+# Format
+
+## YYYY-MM-DD
+
+```sh
+$(date +%F)
+```
+
+## YYYYMMDD
+
+```sh
+$(date +%Y%m%d)
+```
+
+## YYYYMMDDhhmmss
+
+```sh
+$(date +%Y%m%d%H%M%S)
+```
+
+# Before / After
+
+## Before
+
+```sh
+date --date "3 days ago" +%F
+```
+
+## After
+
+```sh
+date --date "3 days" +%F
+```

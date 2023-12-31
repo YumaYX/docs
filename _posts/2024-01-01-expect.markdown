@@ -1,0 +1,64 @@
+---
+layout: post
+category: commands
+---
+
+# expect
+
+```sh
+#!/usr/bin/expect
+
+set timeout 5
+
+spawn sudo dnf install vim
+expect "Is this ok"
+send "y\n"
+expect "\\\$"
+```
+
+- spawn コマンドでプロセス起動
+    - spawnのコマンドは囲わない
+- expect プロセスに対して待機
+- send expectがマッチする時入力
+- interact 制御をユーザーへ渡す
+
+## 実行
+
+```sh
+expect file.tcl
+```
+
+# 多段の場合
+
+```sh
+#!/usr/bin/expect -f
+
+set prompt "(%|#|\\$) $" 
+spawn passwd
+expect {
+  "Current password:" {
+    send "CURRENT PASSWORD\n"
+    exp_continue
+  }
+  "ew password:" {
+    send "NEW PASSWORD\n"
+    exp_continue 
+  }
+  eof{
+    exit
+  }-re $prompt
+}
+```
+
+# 変数
+
+```sh
+set v "value"
+puts ${v}
+```
+
+# expectのインストール方法
+
+```sh
+dnf -y install expect
+```

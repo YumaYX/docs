@@ -1,0 +1,13 @@
+---
+layout: post
+category: commands
+---
+
+```sh
+target='f'
+cat $target | csplit - -z /^$/ '{*}' > /dev/null
+ls -1 xx* | xargs -I@ sed -i '/^$/d' @
+find . -name "xx*" -type f -size 0 | xargs rm
+```
+
+※ GNUのコマンドで実行すること。

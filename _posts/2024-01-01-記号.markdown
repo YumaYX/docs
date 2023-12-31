@@ -1,0 +1,24 @@
+---
+layout: post
+category: commands
+---
+
+```sh
+$ sh app.sh argv1 argv2
+```
+
+| Option | Desc. | Example |
+| --- | --- | --- |
+| \$\{\$\}    |  PID | n |
+| ${PPID} |  PPID | n |
+| ${#}    |  Num of Arg | 2 |
+| ${1}    |  ARG 1 | arg1 |
+| ${@}    |  All ARG | argv1 argv2 |
+
+| 比較演算子 | 意味 |
+| -eq | a == b |
+| -ge | a >= b |
+| -gt | a > b |
+| -le | a <= b |
+| -lt | a < b |
+| -ne | a != b |

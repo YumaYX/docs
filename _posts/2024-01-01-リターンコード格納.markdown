@@ -1,0 +1,26 @@
+---
+layout: post
+category: commands
+---
+
+# 宣言
+
+```sh
+RC=()
+```
+
+# 格納
+
+```sh
+for c in `seq 5`
+do
+  echo "hello"
+  RC+=(${?})
+done
+```
+
+# 結果表示
+
+```
+echo ${RC[@]}
+```

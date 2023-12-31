@@ -1,0 +1,64 @@
+---
+layout: post
+category: commands
+---
+
+# grepのor
+
+## eオプションにて
+
+```sh
+grep -e <PATTERN1> -e <PATTERN2>
+```
+
+## 正規表現にて
+
+```sh
+grep -E "X|Y|Z"
+```
+
+-E（検索正規表現）が必要
+
+### 時間抽出例
+
+```sh
+$ seq -w 59 | grep -E '^(1[8-9]|[2-4][0-9]|5[0-2])' > a
+$ seq 18 52 > b
+$ cksum a b
+1715181562 105 a
+1715181562 105 b
+$ 
+```
+
+# コメントアウトの削除
+
+```sh
+grep -vE ^(\s)*#.*
+```
+
+# 特定文字列が含まれるファイル一覧
+
+```sh
+grep -rin pattern .
+```
+
+- -r
+    - ディレクトリを再帰
+- -i
+    - 大文字・小文字を区別しない
+- -n
+    - 検索結果に行番号
+
+# 合致前後取得
+
+## 前9行 Before (10行出力)
+
+```sh
+grep -B 9 pattern
+```
+
+## 後ろ9行 After (10行出力)
+
+```sh
+grep -A 9 pattern
+```

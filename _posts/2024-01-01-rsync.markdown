@@ -1,0 +1,27 @@
+---
+layout: post
+category: commands
+---
+
+# rsync
+
+```sh
+rsync -auvzP src(file/dir) dst(dir)
+```
+
+| option| description |
+| --- | --- |
+| -a | archive mode: -rlptgoD (no -H,-A,-X)|
+| -u | skip files that are newer on the receiver |
+| -v | increase verbosity |
+| -z | compress |
+| -P | keep partially transferred files |
+| --delete | delete extraneous files from dest dirs |
+| -r | recurse into directories |
+
+
+## rsync + ssh
+
+```
+rsync -rauv -e ssh a vagrant@192.168.255.100:/rsync
+```

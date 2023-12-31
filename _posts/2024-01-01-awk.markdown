@@ -1,0 +1,35 @@
+---
+layout: post
+category: commands
+---
+
+# AからBまで行を取得
+
+```sh
+awk '/A/,/B/' sample.txt
+```
+
+- 開始行：上から最初に合致したもの
+- 終了行：開始行から、最初に合致したもの
+
+# ファイル一行目から特定の行まで出力
+
+## 文字列で指定する場合
+
+```sh
+awk '{if ($0 == "B") exit;print $0;}' sample.txt
+```
+
+## 正規表現で指定する場合
+
+```
+awk '{if ($0 ~ /B/) exit;print $0;}' sample.txt
+```
+
+# 列の条件指定
+
+2番目のフィールドが "keyword1" または "keyword2" であり、かつ3番目のフィールドが "target" である行を sample.txt ファイルから抽出し、それを出力
+
+```sh
+awk '($2 == "keyword1" || $2 == "keyword2") && $3 == "target" {print}' sample.txt
+```

@@ -1,0 +1,35 @@
+---
+layout: post
+category: commands
+---
+
+# Top
+
+## 正規表現にて
+
+```sh
+sed -n '1,/C/p' target.txt
+```
+
+```sh
+awk '{print $0; if ($0 ~ /C/)exit}' target.txt
+```
+
+## 文字列にて
+
+```sh
+awk '{if ($0 == "C")exit; print $0}' target.txt
+```
+awkは、exitの位置で、末行を含むか含まないかを選択可能
+
+# Middle
+
+```sh
+awk '/B/,/D/' target.txt
+```
+
+# Bottom
+
+```sh
+sed -n '/C/,$p' target.txt
+```

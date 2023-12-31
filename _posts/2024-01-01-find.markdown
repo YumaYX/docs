@@ -1,0 +1,20 @@
+---
+layout: post
+category: commands
+---
+
+# 半年前のディレクトリ
+
+```sh
+find /backup/* -daystart -maxdepth 0 -mtime +180 -type d
+```
+
+- -mtime -3
+    - 現在（基準）からn x 24時間前
+    - n x 24時間前 <= TARGET
+- -mtime 3
+    - 現在（基準）からn x 24前、(n+1) x 24時間前の間
+    - (n+1) x 24時間前 <= TARGET < n x 24時間前
+- -mtime +2
+    - 現在（基準）から(n+1) x 24時間より前
+    - TARGET < (n+1) x 24時間前

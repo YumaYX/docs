@@ -1,0 +1,31 @@
+---
+layout: post
+category: commands
+---
+
+# 無期限設定
+
+```sh
+username='user'
+
+passwd -n 0 ${username}
+passwd -x 99999 ${username}
+passwd -w -1 ${username}
+chage -l ${username}
+```
+
+# パスワードの設定確認
+
+```sh
+chage -l ${username}
+```
+
+オプションはL(エル)の小文字
+
+# 引数表 passwd / chage
+
+| desc | passwd arg | chage arg | 設定なしvalue |
+| --- | --- | --- | ---|
+| MIN寿命 | -n | -m | 0 |
+| MAX寿命 | -x | -M | 99999 |
+| ワーニング(期限のn日前) | -w | -W | - |

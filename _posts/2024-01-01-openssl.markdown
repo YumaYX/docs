@@ -1,0 +1,44 @@
+---
+layout: post
+category: commands
+---
+
+# 鍵ペア
+
+## 秘密鍵
+
+```sh
+openssl genrsa -out private_key 8192
+openssl genrsa -aes256 -out private_key 8192 # with passphrase
+chmod 400 private_key
+```
+
+## 公開鍵
+
+```sh
+openssl rsa -in private_key -pubout -out public_key
+```
+
+## ファイル暗号化
+
+```sh
+openssl rsautl -encrypt -pubin -inkey public_key -in plain.txt -out encrypted
+```
+
+## 復号
+
+```sh
+openssl rsautl -decrypt -inkey private_key -in encrypted -out decrypted.txt
+```
+
+# 鍵なし
+
+```sh
+openssl aes-256-cbc -e -in file -out encrypted
+openssl aes-256-cbc -d -in encrypted -out decrypted
+```
+
+```sh
+openssl aes-256-cbc -e -pbkdf2 -iter 10 -in makefile  -out encrypted
+openssl aes-256-cbc -d -pbkdf2 -iter 10 -in encrypted -out decrypted.txt
+```

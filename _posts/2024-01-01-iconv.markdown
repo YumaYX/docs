@@ -1,0 +1,12 @@
+---
+layout: post
+category: commands
+---
+
+# SJIS　-> UTF-8
+
+```sh
+iconv -f sjis -t utf8 sjis_file | sed 's/\r//g'
+```
+
+sedをパイプで繋いでいるのは、CRLFの場合が、多いと考えられるため。

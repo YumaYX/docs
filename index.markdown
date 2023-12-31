@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: default
 ---
 
 {% assign sorted_site_categories = site.categories | sort %}

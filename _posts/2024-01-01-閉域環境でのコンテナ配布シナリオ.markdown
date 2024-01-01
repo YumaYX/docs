@@ -1,0 +1,213 @@
+---
+layout: post
+category: container
+---
+
+閉域環境でのコンテナ配布シナリオを考える。
+
+# 何ができるか？
+
+- 実行環境を含む、アプリケーションを配布することができる
+- 環境構築なしで、アプリケーションを実行することができる（受信者）
+- インターネットに接続していなくても、コンテナイメージを作成することができる
+
+配布者は、アプリケーションに必要なパッケージや、ライブラリ等の実行環境をコンテナイメージに含める。それにより、コンテナイメージの受信者は、アプリケーションをすぐに使用することができる。アプリケーションに必要な環境は、イメージ内に含まれているため、アプリケーションに合わせて、環境構築をする必要がない。
+
+# 配布者
+
+1. プレーンのコンテナイメージを作成
+1. コンテナイメージに色付け
+1. コンテナをイメージとして使用できるようにファイルエクスポート
+1. ファイルの配布
+
+# 受信者
+
+1. ファイルの受信
+1. 受信したファイルをイメージとして取り込み
+1. コンテナ起動
+
+---
+
+# 配布者：プレーンなコンテナイメージの作成
+
+閉域環境を想定し、パッケージレポジトリは、自前または、ISO/DVDを使用する。事前に準備が必要である。
+
+```sh
+dnf -y install podman podman-docker
+```
+
+```sh
+ctrt=podman
+contdir=/tmp/root
+imagename=alma9
+
+mkdir ${contdir}
+dnf --installroot=${contdir} --exclude=*-firmware --releasever=9 install -y @core
+
+cd ${contdir}/dev
+#mknod -m 666 null c 1 3
+mkdir -m 1777 shm
+mkdir -m 755 pts
+mknod -m 600 console c 5 1
+mknod -m 600 initctl p
+mknod -m 666 full c 1 7
+mknod -m 666 ptmx c 5 2
+mknod -m 666 random c 1 8
+mknod -m 666 tty c 5 0
+mknod -m 666 tty0 c 4 0
+mknod -m 666 tty1 c 4 1
+mknod -m 666 tty2 c 4 2
+mknod -m 666 tty3 c 4 3
+mknod -m 666 tty4 c 4 4
+mknod -m 666 urandom c 1 9
+mknod -m 666 zero c 1 5
+
+tar -C ${contdir} -c . | ${ctrt} import - ${imagename}
+cid=$(${ctrt} run -d --privileged ${imagename} /sbin/init)
+
+# dbus.service、systemd-journald.service以外全て落とす
+cat << 'SYSCOM' | xargs -I@ ${ctrt} exec -it $cid /bin/bash -c @
+systemctl stop systemd-logind.service
+systemctl disable systemd-logind.service
+
+systemctl stop system-getty.slice
+
+systemctl stop firewalld.service
+systemctl disable firewalld.service
+
+systemctl stop rsyslog.service
+systemctl disable rsyslog.service
+
+systemctl stop systemd-hostnamed.service
+systemctl disable systemd-hostnamed.service
+
+systemctl stop NetworkManager.service
+systemctl disable NetworkManager.service
+
+systemctl stop crond.service
+systemctl disable crond.service
+
+systemctl stop sshd.service
+systemctl disable sshd.service
+
+systemctl stop systemd-udevd-control.socket
+systemctl stop systemd-udevd-kernel.socket
+systemctl stop systemd-udevd.service
+
+systemctl disable systemd-udevd-control.socket
+systemctl disable systemd-udevd-kernel.socket
+systemctl disable systemd-udevd.service
+SYSCOM
+
+${ctrt} commit $cid ${imagename}
+```
+
+## イメージへ色付け
+
+### コマンド単発実行
+
+```sh
+cmd='dnf -y install ruby'
+${ctrt} exec -it ${cid} /bin/bash -c "${cmd}"
+```
+
+実際、コマンド単発実行でのイメージ構築は考えにくい。
+
+### インタラクティブに打鍵する場合
+
+```sh
+${ctrt} exec -it ${cid} /bin/bash
+```
+
+閉域環境と考え、レポジトリには直接繋がらないため、パッケージインストールを行う場合は、ネットワーク内にレポジトリまたは、メディアが必要となる。
+
+#### ISOファイルがある場合やホストでマウントしている場合
+
+現在、起動しているコンテナを停止し、ISO/DVDをマウントした状態で、コンテナを起動する。dnf/yumの参照レポジトリをISO/DVDに変更して、パッケージインストールを実施する。
+
+```sh
+${ctrt} stop $cid
+
+mount -o loop *.iso /media # ISOファイルの場合
+mount /dev/dvd /media # DVDマウントの場合
+
+# マウントのマウントを避けるためコピーする
+cp -pr /media/* /media2
+
+cid=$(${ctrt} run -d -v /media2:/media:Z ${imagename})
+# 他に、ファイルが必要な場合は、ボリュームを追加して、起動する
+
+${ctrt} exec -it ${cid} /bin/bash
+```
+
+```sh
+mkdir ~/repos
+mv /etc/yum.repos.d/* ~/repos
+
+# 必要なパッケージのディレクトリに合わせる(Minimalの例)
+cat <<DVDREPO >/etc/yum.repos.d/dvd.repo
+[DVD-REPO]
+name=DVD
+baseurl=file:///media/Minimal/
+enabled=1
+gpgcheck=1
+gpgkey=file:///media/RPM-GPG-KEY-AlmaLinux-9
+DVDREPO
+
+# コンテナへの色付け作業
+# dnf -y install ruby
+
+exit
+```
+
+デーモンを扱うコンテナイメージ作成は割愛する。
+
+## コンテナをイメージとして使用できるようにファイルへエクスポート
+
+```sh
+${ctrt} export ${cid} > ~/${imagename}.tar
+ls ~
+${ctrt} stop ${cid}
+```
+
+## イメージファイルの配布
+
+エクスポートで出力したファイルを配布する。
+
+# 受信者：エクスポートされたファイルを使用したコンテナイメージの使用
+
+```sh
+dnf -y install podman podman-docker
+```
+
+```sh
+ctrtcmd=podman # podman
+reponame=myalma:latest # 好きな名前
+imagenamefile=alma9.tar # 受信したファイル名を指定
+
+# ファイルをイメージとして取り込み
+cat ${imagenamefile} | ${ctrtcmd} import - ${reponame}
+```
+
+## イメージチェック/イメージの使用
+
+```sh
+## test
+${ctrtcmd} run --rm ${reponame} /bin/bash -c 'ruby -v'
+# => ruby 3.0.4p208
+
+## test 2
+${ctrtcmd} run -it --rm ${reponame} /bin/bash
+```
+
+# Environment
+
+```
+[root@localhost ~]# cat /etc/redhat-release 
+AlmaLinux release 9.3 (Shamrock Pampas Cat)
+[root@localhost ~]# 
+```
+
+# Reference
+
+- <https://knowledge.sakura.ad.jp/2226/>

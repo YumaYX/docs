@@ -1,0 +1,20 @@
+---
+layout: post
+category: make
+---
+
+# Makefileで引数をとる方法
+
+```makefile
+all:
+	echo $(argv)
+```
+
+# 実行結果
+
+```sh
+[root@3887c9e925f4 ~]# make all argv=Hello
+echo Hello
+Hello
+[root@3887c9e925f4 ~]#
+```

@@ -1,7 +1,5 @@
 ---
 layout: post
-title: "Sambaサーバ構築"
-date: 2023-12-09 02:15:04 JST
 category: linux
 ---
 

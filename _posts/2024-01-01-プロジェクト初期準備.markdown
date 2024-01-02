@@ -5,6 +5,8 @@ category: ruby
 
 Rubyプロジェクトに必要な準備
 
+このスクリプトはRubyのプロジェクトの初期セットアップを行い、Rakeを使用してテスト、Yardドキュメントの生成、RuboCopによるコードの静的解析を実行する環境を整えます。
+
 ```sh
 mkdir lib test testdata
 
@@ -60,3 +62,19 @@ RAKEFILEEOF
 
 rake test
 ```
+
+このスクリプトは、Rubyのプロジェクト用の初期化とテスト実行のための設定を行っています。具体的な手順は以下の通りです。
+
+1. `mkdir lib test testdata`: `lib`、`test`、`testdata`ディレクトリを作成します。
+
+2. `bundle init`: Bundlerを使用して `Gemfile` を初期化します。
+
+3. `for g in rake yard rubocop minitest`: `rake`、`yard`、`rubocop`、`minitest` の4つのGemが`Gemfile`内に記述されているかを確認し、記述されていない場合はGemを`Gemfile`に追加します。
+
+4. `bundle install`: `Gemfile`に記述されているGemをインストールします。
+
+5. `cat <<'TESTSCRIPTEOF' > test/test_template.rb ... TESTSCRIPTEOF`: ヒアドキュメントを使用して、`test/test_template.rb`に単純なMinitestのテストスクリプトを作成します。このテストは、同じファイルを比較して真であることを確認するものです。
+
+6. `cat <<'RAKEFILEEOF' > Rakefile ... RAKEFILEEOF`: 同様にヒアドキュメントを使用して、`Rakefile`にRakeタスクの設定を追加します。このRakefileには、テストの実行、Yardドキュメントの生成、RuboCopの実行などが定義されています。
+
+7. `rake test`: 最後に、Rakeタスクを使用してテストを実行します。これにより、`Rakefile`内で指定されたテストが実行されます。

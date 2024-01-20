@@ -1,5 +1,6 @@
 ---
-permalink: /links/
+layout: page
+permalink: /links
 ---
 
 # Links

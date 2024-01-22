@@ -9,5 +9,5 @@ permalink: /links/
 | Link| Description| 
 | --- | --- |
 | [docs](/docs/)| Documents for Development |
-| [Essential](/Essential/)| Ruby Module Doc |
+| [Essential](/Essential/_index.html)| Ruby Module Doc |
 | [Ruby Quick Reference](/RubyQuickReference/)| Ruby Cheat-Sheet |

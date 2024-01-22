@@ -1,0 +1,152 @@
+---
+layout: post
+title: "RHELシステム設定"
+category: linux
+---
+
+# sudoers
+
+```sh
+user_name="user"
+echo "${user_name} ALL=(ALL) ALL" > /etc/sudoers.d/${user_name}
+```
+
+```sh
+# パスワードなし
+echo "${user_name} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${user_name}
+```
+
+# DVD(ISO)のレポジトリを登録
+
+## Rocky Linux
+
+```sh
+mkdir /root/repos
+mv /etc/yum.repos.d/* /root/repos
+
+cat <<DVDREPO >/etc/yum.repos.d/dvd.repo
+[DVD-REPO]
+name=DVD-BaseOS
+baseurl=file:///media/BaseOS/
+enabled=1
+gpgcheck=1
+gpgkey=file:///media/RPM-GPG-KEY-Rocky-9
+
+[DVD-REPO2]
+name=DVD-AppStream
+baseurl=file:///media/AppStream/
+enabled=1
+gpgcheck=1
+gpgkey=file:///media/RPM-GPG-KEY-Rocky-9
+DVDREPO
+
+cat <<DVDMOUNT >dvd_mount.sh
+mount /dev/cdrom /media
+DVDMOUNT
+sh dvd_mount.sh
+```
+
+# EPELリポジトリの有効化
+
+## Rocky Linux 9
+
+```sh
+dnf config-manager --set-enabled crb
+dnf install epel-release epel-next-release
+```
+
+## インストール時に有効にする場合
+
+```sh
+dnf -y install --enablerepo=crb 
+```
+
+# Networking
+
+## Dynamic
+
+```sh
+nmcli networking on
+nmcli device
+c=enp0s
+nmcli c add con-name $c ifname $c type ethernet
+nmcli c mod $c ipv4.method auto
+nmcli c mod $c ipv6.method disabled
+nmcli c mod $c connection.autoconnect yes
+nmcli c up $c
+```
+
+## STATIC
+
+```sh
+nmcli networking on
+nmcli device
+c=enp0s
+nmcli c add con-name $c ifname $c type ethernet
+nmcli c mod $c ipv4.addresses 192.168.0.1/24
+nmcli c mod $c ipv4.gateway 192.168.0.254
+nmcli c mod $c ipv4.dns 192.168.0.254
+nmcli c mod $c ipv4.method manual
+nmcli c mod $c ipv6.method disabled
+nmcli c mod $c connection.autoconnect yes
+nmcli c up $c
+```
+
+# Firewalld
+
+## Check
+
+```sh
+firewall-cmd --list-all
+```
+
+## Service: HTTP
+
+```sh
+firewall-cmd --permanent --zone=public --add-service=http
+```
+
+## Port Number: 80
+
+```sh
+firewall-cmd --permanent --zone=public --add-port=80/tcp
+```
+
+## Delete
+
+```sh
+firewall-cmd --permanent --zone=public --remove-service=http
+firewall-cmd --permanent --zone=public --remove-port=80/tcp
+```
+
+## Reload
+
+```sh
+firewall-cmd --reload
+```
+
+# GUI環境
+
+```sh
+dnf -y update
+dnf -y group install "Server with GUI"
+startx
+```
+
+## 日本語ディレクトリ名を英語表記にする
+
+```sh
+LANG=C xdg-user-dirs-gtk-update
+```
+
+## GUI設定
+
+```sh
+sudo systemctl set-default graphical.target
+```
+
+## CUI設定
+
+```sh
+sudo systemctl set-default multi-user.target
+```

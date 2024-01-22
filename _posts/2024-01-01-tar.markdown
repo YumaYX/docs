@@ -1,0 +1,18 @@
+---
+layout: post
+category: commands
+---
+
+# tar -C option
+
+`tar` コマンドの `-C` オプションを使用してアーカイブを作成する際の要点をまとめます：
+
+```sh
+tar -cvf archive.tar -C /path/to/directory/ files
+```
+
+- `-C` オプション: 指定したディレクトリに移動してからアーカイブを作成する。
+- `/path/to/directory/`: 移動したいディレクトリのパス。
+- `files`: アーカイブに含めるファイルやディレクトリ。
+- アーカイブファイル (`archive.tar`) は現在の作業ディレクトリに作成される。
+

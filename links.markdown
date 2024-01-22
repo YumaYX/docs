@@ -1,8 +1,10 @@
 ---
-layout: page
+layout: default
 title: Links
 permalink: /links/
 ---
+
+# Links
 
 | Link| Description| 
 | --- | --- |

@@ -1,0 +1,31 @@
+---
+layout: post
+title: "GUI設定"
+category: linux
+---
+
+# GUI環境
+
+```sh
+dnf -y update
+dnf -y group install "Server with GUI"
+startx
+```
+
+## 日本語ディレクトリ名を英語表記にする
+
+```sh
+LANG=C xdg-user-dirs-gtk-update
+```
+
+## GUI設定
+
+```sh
+sudo systemctl set-default graphical.target
+```
+
+## CUI設定
+
+```sh
+sudo systemctl set-default multi-user.target
+```

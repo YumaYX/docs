@@ -1,0 +1,50 @@
+---
+layout: post
+title: "パッケージレポジトリ設定"
+category: linux
+---
+
+# DVD(ISO)のレポジトリを登録
+
+## Rocky Linux
+
+```sh
+mkdir /root/repos
+mv /etc/yum.repos.d/* /root/repos
+
+cat <<DVDREPO >/etc/yum.repos.d/dvd.repo
+[DVD-REPO]
+name=DVD-BaseOS
+baseurl=file:///media/BaseOS/
+enabled=1
+gpgcheck=1
+gpgkey=file:///media/RPM-GPG-KEY-Rocky-9
+
+[DVD-REPO2]
+name=DVD-AppStream
+baseurl=file:///media/AppStream/
+enabled=1
+gpgcheck=1
+gpgkey=file:///media/RPM-GPG-KEY-Rocky-9
+DVDREPO
+
+cat <<DVDMOUNT >dvd_mount.sh
+mount /dev/cdrom /media
+DVDMOUNT
+sh dvd_mount.sh
+```
+
+# EPELリポジトリの有効化
+
+## Rocky Linux 9
+
+```sh
+dnf config-manager --set-enabled crb
+dnf install epel-release epel-next-release
+```
+
+## インストール時に有効にする場合
+
+```sh
+dnf -y install --enablerepo=crb 
+```

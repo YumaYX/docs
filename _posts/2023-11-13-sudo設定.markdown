@@ -1,0 +1,17 @@
+---
+layout: post
+title: "sudo設定"
+category: linux
+---
+
+# sudoers
+
+```sh
+user_name="user"
+echo "${user_name} ALL=(ALL) ALL" > /etc/sudoers.d/${user_name}
+```
+
+```sh
+# パスワードなし
+echo "${user_name} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/${user_name}
+```

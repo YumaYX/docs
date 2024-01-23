@@ -1,0 +1,36 @@
+---
+layout: post
+title: "ネットワーク設定"
+category: linux
+---
+
+# Networking
+
+## Dynamic
+
+```sh
+nmcli networking on
+nmcli device
+c=enp0s
+nmcli c add con-name $c ifname $c type ethernet
+nmcli c mod $c ipv4.method auto
+nmcli c mod $c ipv6.method disabled
+nmcli c mod $c connection.autoconnect yes
+nmcli c up $c
+```
+
+## STATIC
+
+```sh
+nmcli networking on
+nmcli device
+c=enp0s
+nmcli c add con-name $c ifname $c type ethernet
+nmcli c mod $c ipv4.addresses 192.168.0.1/24
+nmcli c mod $c ipv4.gateway 192.168.0.254
+nmcli c mod $c ipv4.dns 192.168.0.254
+nmcli c mod $c ipv4.method manual
+nmcli c mod $c ipv6.method disabled
+nmcli c mod $c connection.autoconnect yes
+nmcli c up $c
+```

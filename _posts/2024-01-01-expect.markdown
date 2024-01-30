@@ -3,8 +3,6 @@ layout: post
 category: commands
 ---
 
-# expect
-
 ```sh
 #!/usr/bin/expect
 

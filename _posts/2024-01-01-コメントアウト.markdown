@@ -9,4 +9,6 @@ category: shell
 COMMENTOUT
 ```
 
+`<< COMMENTOUT` は、通常、シェルスクリプティングで使用されます。`<< COMMENTOUT` と対応する `COMMENTOUT`（`<<`を含まない）の間にあるすべての内容は、コメントと見なされ、解釈されません。
+
 ※変数、コマンドの評価に注意

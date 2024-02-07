@@ -1,0 +1,13 @@
+---
+layout: post
+category: make
+---
+
+for loop
+
+```makefile
+default:
+	for i in $$(seq 3); do echo $$i; done
+```
+
+$は$$で書く。

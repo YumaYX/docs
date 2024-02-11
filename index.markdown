@@ -4,11 +4,8 @@ layout: default
 
 # Links
 
-| Link| Description| 
-| --- | --- |
-| [docs](/docs/)| Documents for Development |
-| [Essential](/Essential/_index.html)| Ruby Module Doc |
-| [Ruby Quick Reference](/RubyQuickReference/)| Ruby Cheat-Sheet |
+- [Essential](/Essential/_index.html)
+- [Ruby Quick Reference](/RubyQuickReference/)
 
 # Articles
 

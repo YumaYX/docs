@@ -7,6 +7,10 @@ layout: default
 - [Essential](/Essential/_index.html)
 - [Ruby Quick Reference](/RubyQuickReference/)
 
+## References/Tools
+
+- [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/index.html)
+
 # Articles
 
 {% assign sorted_site_categories = site.categories | sort %}
@@ -21,4 +25,5 @@ layout: default
 {% endfor %}
 </ul>
 {% endfor %}
+
 

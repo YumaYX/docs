@@ -1,0 +1,58 @@
+---
+layout: post
+category: Editor
+---
+
+# Replace
+
+In Vim editor, you can replace strings using the `:s` command, which stands for substitute. Here's a basic overview:
+
+1. **Replace First Occurrence in a Line:**
+   - To replace the first occurrence of a string in the current line, use the following command:
+     ```
+     :s/old_string/new_string/
+     ```
+     Example:
+     ```
+     :s/foo/bar/
+     ```
+
+2. **Replace All Occurrences in a Line:**
+   - To replace all occurrences of a string in the current line, add the `g` flag to the command:
+     ```
+     :s/old_string/new_string/g
+     ```
+     Example:
+     ```
+     :s/foo/bar/g
+     ```
+
+3. **Replace Only Whole Words:**
+   - To replace only whole words (not substrings), use the `\b` word boundary marker:
+     ```
+     :s/\bold_string\b/new_string/g
+     ```
+     Example:
+     ```
+     :s/\bfoo\b/bar/g
+     ```
+
+4. **Replace in a Range of Lines:**
+   - To replace in a range of lines, specify the range before the `s` command:
+     ```
+     :1,10s/old_string/new_string/g
+     ```
+     This example replaces in lines 1 to 10.
+
+5. **Replace and Confirm Each Change:**
+   - To confirm each change interactively, add the `c` flag:
+     ```
+     :%s/old_string/new_string/gc
+     ```
+     This example replaces globally in the entire file (`%` represents the whole file) and prompts for confirmation.
+
+6. **Replace and Save Changes in a File:**
+   - To replace and save changes in the file, use the `:w` command after the substitution command:
+     ```
+     :%s/old_string/new_string/g | w
+     ```

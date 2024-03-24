@@ -6,6 +6,7 @@ layout: default
 
 - [Essential](/Essential/_index.html)
 - [Ruby Quick Reference](/RubyQuickReference/)
+- [GitHub - YumaYX](https://github.com/YumaYX)
 
 ## References/Tools
 

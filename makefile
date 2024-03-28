@@ -1,5 +1,6 @@
 s:	install
-	bundle exec jekyll server -H 0.0.0.0 -P 4001
+	#bundle exec jekyll server -H 0.0.0.0 -P 4001
+	bundle exec jekyll server -H localhost -P 4001
 
 install:
 	bundle install

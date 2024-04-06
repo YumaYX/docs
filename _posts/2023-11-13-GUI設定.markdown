@@ -1,6 +1,5 @@
 ---
 layout: post
-title: "GUI設定"
 category: linux
 ---
 

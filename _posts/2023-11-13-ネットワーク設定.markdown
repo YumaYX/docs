@@ -1,6 +1,5 @@
 ---
 layout: post
-title: "ネットワーク設定"
 category: linux
 ---
 

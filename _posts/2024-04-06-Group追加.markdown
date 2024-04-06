@@ -1,0 +1,38 @@
+---
+layout: post
+category: linux
+---
+
+1. 新規グループ追加
+1. ユーザ1を新規グループに追加
+1. ユーザ2を新規グループに追加
+1. ファイルグループを新規グループに設定
+1. ファイル権限070に設定
+
+# commands
+
+```sh
+groupadd newgroup
+useradd -m newuser1
+echo 'from root' > /newfile
+
+usermod -aG newgroup root
+usermod -aG newgroup newuser1
+chown root:newgroup /newfile
+chmod 070 /newfile
+
+su - newuser1
+echo 'from newuser1' >> /newfile
+
+cat /newfile
+ls -l /newfile 
+```
+
+```sh
+[newuser1@891efd869d1e ~]$ cat /newfile
+from root
+from newuser1
+[newuser1@891efd869d1e ~]$ ls -l /newfile 
+----rwx--- 1 root newgroup 24 Apr  6 15:30 /newfile
+[newuser1@891efd869d1e ~]$ 
+```

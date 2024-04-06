@@ -1,0 +1,45 @@
+---
+layout: post
+category: ruby
+---
+
+# Rubyのワンライナー
+
+## 置換
+
+```sh
+$ cat a
+2
+$ ruby -nle 'puts $_.gsub(/2/,"two")' a
+two
+$ 
+```
+
+## 計算
+
+```sh
+seq 10 | ruby -ne 'sum||=0;sum+=$_.to_i;END{puts sum}'
+# => 55
+```
+
+## 抽出
+
+```sh
+ruby -nle 'puts $_ if $_ =~ /^abc/' file
+```
+
+### 引数
+
+| Option | Desc. |
+| --- | --- |
+| -e command | exec command as string |
+| -l | $_ + chomp |
+| -n | each line (with -e) |
+| -r lib | require |
+| $_ | value |
+
+#### アルファベットの利用する場合
+
+```sh
+ruby -e "puts ('a'..'z').to_a" | while read line; do echo ${line}; done
+```

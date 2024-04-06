@@ -1,0 +1,172 @@
+---
+layout: post
+category: virtualmachine
+---
+
+# Vagrantfile
+
+## Template
+
+```sh
+cat <<'EOF' > Vagrantfile
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "rockylinux/9"
+  #config.vm.box = "almalinux/9"
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.memory = "768"
+    vb.cpus = 2
+  end
+
+  config.vm.define "machine"
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+end
+EOF
+```
+
+## network
+
+### hostname
+
+```ruby
+  config.vm.hostname = "hostname"
+```
+
+### bridge
+
+```ruby
+  config.vm.define "machine" do |machine|
+    machine.vm.network "public_network" , bridge: "en0: Wi-Fi"
+  end
+```
+
+### host-only network
+
+```ruby
+  config.vm.define "machine" do |machine|
+    machine.vm.network :private_network, ip:"192.168.255.2"
+  end
+```
+
+### port-forwarding
+
+```ruby
+    machine.vm.network :forwarded_port, guest:22, host:1234, id:"ssh"
+```
+
+## tips
+
+### Vagrant provision時ansibleの実行
+
+```ruby
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "site.yml"
+  end
+```
+
+### /vagrantにマウントしない方法
+
+イメージによって、エラー有無がある。
+
+```ruby
+  config.vm.synced_folder '.', '/vagrant', disabled: true
+```
+
+### プラグインvagrant-vbguest
+
+- チェック、アップデートに時間がかかる
+- 必要がない限り導入しない
+- 分岐等あるが、コストに見合わない
+
+## commands
+
+```sh
+# Vagrantfile作成
+vagrant init
+```
+
+# vm起動
+
+```sh
+vagrant up
+vagrant up --provision
+vagrant up --no-provision
+```
+
+# provisionのみ
+
+```sh
+vagrant provision
+```
+
+# Status取得
+```sh
+vagrant status
+```
+
+# ssh接続
+```sh
+vagrant ssh
+```
+
+# 保存停止
+```sh
+vagrant suspend
+```
+
+# halt
+```sh
+vagrant halt
+```
+
+# Status取得(all)
+```sh
+vagrant global-status
+```
+
+# VM破壊
+```sh
+vagrant destroy -f [id]
+```
+
+# パラレル実行(xargsのコマンドでパラレル実行する)
+
+```sh
+seq 2 | xargs -P2 -I@ vagrant up vm@
+```
+
+### vagrantとSCP
+
+```sh
+vagrant ssh-config > ssh.config
+scp -P 2222 -F ssh.config vagrant@localhost:/etc/redhat-release .
+```
+
+### Clean for mac command
+
+```sh
+vagrant global-status
+vagrant global-status —-prune
+
+for f in `vagrant global-status --prune | grep /Users/ | awk '{print $1}'`
+do
+  vagrant destroy $f -f &
+done
+wait
+# box
+vagrant box list | awk '{print $1}' | xargs -I@ vagrant box remove @ --all
+
+# VirtualBox
+VBoxManage list vms | awk '{print $1}' | xargs -I@ VBoxManage unregistervm @
+rm -rf "${HOME}/VirtualBox VMs"/*
+```
+
+## Install
+
+```sh
+brew install vagrant
+# その他、VirtualBoxが必要
+```

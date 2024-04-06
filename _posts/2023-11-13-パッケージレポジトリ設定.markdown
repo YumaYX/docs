@@ -1,6 +1,5 @@
 ---
 layout: post
-title: "パッケージレポジトリ設定"
 category: linux
 ---
 

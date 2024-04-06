@@ -1,0 +1,66 @@
+---
+layout: post
+category: ruby
+---
+
+# install ruby on mac
+
+```sh
+brew update
+brew install rbenv ruby-build
+rubyver=3.3.0
+time CONFIGURE_OPTS="--disable-install-doc" rbenv install ${rubyver} && rbenv global ${rubyver}
+gem update --system; gem update
+```
+
+# install ruby on rhel with homebrew
+
+brewを使う時、opensslをbrewでインストールする。dnfからインストールすると失敗する。
+
+```sh
+brew install rbenv ruby-build openssl
+
+rubyver=3.3.0
+time CONFIGURE_OPTS="--disable-install-doc" rbenv install ${rubyver} && rbenv global ${rubyver}
+gem update --system; gem update
+```
+
+# rbenv PATH通し
+
+- $HOME/.rbenv/binにパスを通した上で、initする。
+- .zshrc注意
+
+```sh
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
+echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.zshrc 
+```
+
+# install ruby on linux without brew
+
+```sh
+dnf -y install sudo
+sudo dnf -y update
+sudo dnf -y install --enablerepo=crb bzip2 gcc openssl-devel readline-devel zlib-devel libyaml-devel git
+
+git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+
+# rbenv PATH通し
+if [ $(grep '^# rbenv$' ~/.bash_profile > /dev/null; echo ${?}) -ne 0 ] ; then
+    echo '# rbenv' >> ~/.bash_profile
+    echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+    echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+    source ~/.bash_profile
+    cat <<'GEMRC' > ~/.gemrc
+install: --no-document
+update: --no-document
+GEMRC
+fi
+
+rubyver=3.3.0
+time CONFIGURE_OPTS="--disable-install-doc" rbenv install ${rubyver}
+rbenv global ${rubyver}
+source ~/.bash_profile
+ruby -v
+gem update --system;gem update
+```

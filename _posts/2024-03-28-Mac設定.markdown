@@ -1,0 +1,10 @@
+---
+layout: post
+category: mac
+---
+
+# 毎日1時にスリープ設定
+
+```sh
+sudo pmset repeat sleep MTWRFSU "01:00:00"
+```

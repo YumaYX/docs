@@ -1,0 +1,24 @@
+---
+layout: post
+category: rust
+---
+
+# Install Rust on RHEL
+
+```sh
+dnf -y install gcc
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+# Install Rust on Mac(Homebrew)
+
+```sh
+brew install rustup-init
+rustup-init
+```
+
+# PATH
+
+```sh
+source $HOME/.cargo/env
+```

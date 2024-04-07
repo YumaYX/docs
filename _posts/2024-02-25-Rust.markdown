@@ -14,7 +14,8 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 ```sh
 brew install rustup-init
-rustup-init
+rustup-init -y --profile default --no-modify-path
+#rustup-init
 ```
 
 # PATH

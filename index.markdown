@@ -5,8 +5,9 @@ layout: default
 # Links
 
 - [Essential](/Essential/_index.html)
-- [Ruby Quick Reference](/RubyQuickReference/)
 - [GitHub - YumaYX](https://github.com/YumaYX)
+- [Ruby Quick Reference](/RubyQuickReference/)
+- [YS1 - Ruby Gem](https://github.com/users/YumaYX/packages/rubygems/package/ys1)
 
 ## References/Tools
 

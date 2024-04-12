@@ -6,7 +6,3 @@ category: commands
 ```sh
 irb --prompt simple ${1}
 ```
-
-```ruby
-
-```

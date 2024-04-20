@@ -8,6 +8,7 @@ layout: default
 - [GitHub - YumaYX](https://github.com/YumaYX)
 - [Ruby Quick Reference](/RubyQuickReference/)
 - [YS1 - Ruby Gem](https://github.com/users/YumaYX/packages/rubygems/package/ys1)
+- [Hateblo](https://yumayxx.hateblo.jp/archive/author/yumayxx)
 
 ## References/Tools
 

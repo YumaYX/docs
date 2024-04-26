@@ -63,3 +63,9 @@ sed 's/$/\r/g'
 ```sh
 sed 's/a/b/; s/b/c/'
 ```
+
+## BOM削除
+
+```sh
+sed '1s/^\xEF\xBB\xBF//'
+```

@@ -1,0 +1,14 @@
+---
+layout: post
+category: commands
+---
+
+```sh
+iso='/path/to/iso'
+disk='/dev/diskX'
+
+diskutil list
+diskutil eraseDisk MS-DOS UNTITLED ${disk}
+diskutil unmountDisk ${disk}
+sudo dd if=${iso} of=${disk} status=progress
+```

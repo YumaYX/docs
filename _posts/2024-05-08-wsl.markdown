@@ -1,0 +1,32 @@
+---
+layout: post
+category: windows
+---
+
+# install
+
+```pwsh
+wsl --install
+```
+
+# up
+
+```pwsh
+wsl -d Ubuntu
+```
+
+# stop
+
+```pwsh
+wsl --shutdown
+```
+
+# update
+```
+wsl --update
+```
+
+# uninstall
+```
+wsl --uninstall
+```

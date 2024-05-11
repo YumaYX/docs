@@ -9,6 +9,11 @@ layout: default
 - [Hateblo](https://yumayxx.hateblo.jp/archive/author/yumayxx)
 - [YS1 - Ruby Gem](https://github.com/users/YumaYX/packages/rubygems/package/ys1)
 
+## [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
+
+- [init](https://github.com/YumaYX/init)
+- [YS1](https://github.com/YumaYX/YS1)
+
 ## References/Tools
 
 - [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/index.html)

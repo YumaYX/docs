@@ -33,6 +33,35 @@ DVDMOUNT
 sh dvd_mount.sh
 ```
 
+## AlmaLinux
+
+```sh
+mkdir /root/repos
+mv /etc/yum.repos.d/* /root/repos
+
+cat <<DVDREPO >/etc/yum.repos.d/dvd.repo
+[DVD-REPO]
+name=DVD-BaseOS
+baseurl=file:///media/BaseOS/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9
+
+[DVD-REPO2]
+name=DVD-AppStream
+baseurl=file:///media/AppStream/
+enabled=1
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-AlmaLinux-9
+DVDREPO
+
+cat <<DVDMOUNT >dvd_mount.sh
+mount /dev/cdrom /media
+DVDMOUNT
+sh dvd_mount.sh
+```
+
+
 # EPELリポジトリの有効化
 
 ## Rocky Linux 9

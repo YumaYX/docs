@@ -7,16 +7,22 @@ layout: default
 - [GitHub - YumaYX](https://github.com/YumaYX)
 - [Ruby Quick Reference](/RubyQuickReference/)
 - [Hateblo](https://yumayxx.hateblo.jp/archive/author/yumayxx)
-- [YS1 - Ruby Gem](https://github.com/users/YumaYX/packages/rubygems/package/ys1)
 
 ## [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
 
 - [init](https://github.com/YumaYX/init)
 - [YS1](https://github.com/YumaYX/YS1)
+  - [YS1 - Ruby Gem](https://github.com/users/YumaYX/packages/rubygems/package/ys1)
 
 ## References/Tools
 
 - [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/index.html)
+
+### Ansible
+
+- [Ansible Modules](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-builtin)
+- [Ansible Core Modules](https://docs.ansible.com/ansible-core/devel/collections/index_module.html)
+
 
 # Articles
 

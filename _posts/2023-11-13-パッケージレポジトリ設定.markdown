@@ -64,7 +64,7 @@ sh dvd_mount.sh
 # 元に戻す
 
 ```sh
-cp -fpv /root/repos/* /etc/yum.repos.d/
+\cp -fpv /root/repos/* /etc/yum.repos.d/
 rm -f /etc/yum.repos.d/dvd.repo
 ```
 

@@ -61,6 +61,13 @@ DVDMOUNT
 sh dvd_mount.sh
 ```
 
+# 元に戻す
+
+```sh
+cp -pv /root/repos/* /etc/yum.repos.d/
+rm -rf /etc/yum.repos.d/dvd.repo
+```
+
 
 # EPELリポジトリの有効化
 

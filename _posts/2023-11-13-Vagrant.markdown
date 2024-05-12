@@ -145,6 +145,17 @@ vagrant ssh-config > ssh.config
 scp -P 2222 -F ssh.config vagrant@localhost:/etc/redhat-release .
 ```
 
+# 共有フォルダマウントできない時
+
+```sh
+# プラグインのインストール
+vagrant plugin install vagrant-vbguest
+# 実行
+vagrant vbguest
+```
+
+
+
 ### Clean for mac command
 
 ```sh

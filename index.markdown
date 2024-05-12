@@ -12,7 +12,8 @@ layout: default
 
 - [init](https://github.com/YumaYX/init)
 - [YS1](https://github.com/YumaYX/YS1)
-  - [YS1 - Ruby Gem](https://github.com/users/YumaYX/packages/rubygems/package/ys1)
+  - [Docs](https://yumayx.github.io/YS1/)
+  - [Ruby Gem](https://github.com/users/YumaYX/packages/rubygems/package/ys1)
 
 ## References/Tools
 

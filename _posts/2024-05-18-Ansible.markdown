@@ -1,0 +1,274 @@
+---
+layout: post
+category: ansible
+---
+
+# ホストの書き方
+
+```sh
+cat <<HOST > hosts
+sv1 ansible_host=192.168.121.121 ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/server1/libvirt/private_key
+sv2 ansible_host=192.168.121.41  ansible_user=vagrant ansible_ssh_private_key_file=.vagrant/machines/server2/libvirt/private_key
+
+[two]
+sv1
+sv2
+
+[mygroup:children]
+two
+
+HOST
+```
+
+- all, sv1, sv2, all, twoを指定できる
+- childrenは、グループをネストするために使用
+
+# Ansibleコンフィグの書き方
+
+```sh
+cat <<CFG > ansible.cfg
+[defaults]
+host_key_checking = False
+[ssh_connection]
+pipelining = True
+CFG
+```
+
+# ロールの作り方
+
+```sh
+ansible-galaxy init roles/init
+```
+
+```sh
+cat << EOF > r.yml
+- hosts: all
+  become: true
+  roles:
+    - init
+EOF
+```
+
+# 実行の仕方
+
+## dry run
+
+```sh
+ansible-playbook -i hosts site.yml --syntax-check
+ansible-playbook -i hosts site.yml --check --diff
+```
+
+## 簡単なモジュール
+
+```sh
+ansible -i hosts all -m ping
+```
+
+```sh
+ansible localhost -m ping
+```
+
+## ローカル実行する方法
+
+```sh
+ansible-playbook -i localhost, -c local r.yml
+```
+
+# 指定ホストのみ実行する方法
+
+`--limit [hostname | group]`
+
+```sh
+ansible-playbook -i hosts r.yml --limit sv1
+```
+
+# レシピ
+
+## ホスト指定でタスクの実行の書き方
+
+```yaml
+- name: Git Clone Repos with https
+  ansible.builtin.git:
+    repo: "{{ 'https://github.com/YumaYX/' + (item) + '.git' }}"
+    dest: "{{ '/tmp/' + (item) }}"
+  with_items:
+    - dotfiles
+  when: inventory_hostname in groups['two']
+```
+
+- whenがポイント
+- groupsには、hostsの定義から指定
+
+## 実行表示させる
+
+```yaml
+- name: Check Ruby Install
+  shell: bash -lc "ruby -v"
+  register: result
+  ignore_errors: true
+- name: debug
+  debug:
+    msg: "{{ result.stdout }}"
+```
+
+- registerがポイント：変数に保存される
+
+## 実行をログ取る
+
+```yanl
+- name: comm
+  shell: "date"
+  register: reg_val
+  ignore_errors: yes
+
+- name: create dir
+  local_action: file path=log state=directory
+
+- name: output file
+  local_action: copy content={{ reg_val.stdout }}
+```
+
+- registerに登録した内容をlocal_actionでファイル出力
+
+## アイテムループ
+
+```yaml
+- name: Install necessary gems
+  gem:
+    name: "{{ item }}"
+    executable: "/home/{{ prime_user}}/.rbenv/shims/gem"
+  with_items:
+    - rake
+    - minitest
+    - serverspec
+```
+
+- with_itemsにはitemを使う
+
+## dnfパッケージインストール
+
+```yaml
+- name: install tools
+  ansible.builtin.dnf:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - vim
+    - make
+    - "@development"
+    - "@Server with GUI"
+```
+
+- dnfの場合は一度に投げる
+
+## コマンド実行
+
+```yaml
+- name: Update Gems system
+  shell: bash -lc "gem update --system"
+```
+
+## 配列辞書ループ
+
+```yaml
+- name: user
+  ansible.builtin.user:
+    name: "{{ item.name }}"
+    uid: "{{ item.uid }}"
+    password: "{{ item.pass }}"
+  with_items: "{{ users }}"
+  vars:
+    users:
+      - { name: 'user1', uid: 1234, pass: '$6$8k...' }
+```
+
+## テンプレートの使い方、Jinja
+
+テンプレートのファイルを作っておく。
+
+```sh
+mkdir roles/init/templates
+touch roles/init/templates/file.txt.j2
+```
+
+```yaml
+- name: file upload
+  ansible.builtin.template:
+    src: templates/file.txt.j2
+    dest: /etc/file.txt
+```
+
+- ロール実行する場合、srcのパスは上の記載で問題なし
+
+# インストールの仕方、環境構築
+
+## pip
+
+```sh
+echo 'ansible-core' > requirements.txt #ansibleをインストールする場合
+
+echo 'ansible-core' >> requirements.txt
+python3 -m venv venv
+source venv/bin/activate
+```
+
+```sh
+pip3 install -r requirements.txt
+```
+
+## dnf
+
+```sh
+# ansible-coreのみ
+dnf -y install ansible-core # as root
+```
+
+dnfでのAnsibleのインストールは、省略する。
+
+---
+
+```sh
+# as root
+## kvm
+dnf -y install qemu-kvm libvirt virt-install
+systemctl enable --now libvirtd
+
+## vagrant
+yum install -y yum-utils
+yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+yum -y install vagrant
+
+dnf -y install libvirt-devel
+usermod -aG libvirt yuma
+
+su - yuma
+```
+
+```sh
+# as user
+vagrant plugin install vagrant-libvirt
+
+cat <<'VEOF' > Vagrantfile
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'almalinux/9'
+  config.vm.provider 'libvirt' do |vb|
+    vb.memory = 768
+    vb.cpus = 1
+  end
+  config.vm.define "server1" do |server|
+    server.vm.network "public_network", :dev => 'wlp2s0'
+  end
+
+  config.vm.define "server2" do |server|
+    server.vm.network "public_network", :dev => 'wlp2s0'
+  end
+end
+VEOF
+
+vagrant up
+```
+

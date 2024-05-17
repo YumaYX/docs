@@ -1,0 +1,15 @@
+---
+layout: post
+category: shell
+---
+
+```sh
+# linux
+python3 -c 'import crypt; print(crypt.crypt("mypassword", crypt.METHOD_SHA512))'
+```
+
+```sh
+openssl passwd -6 -salt $(openssl rand -base64 6) password
+```
+
+- <https://qiita.com/yumenomatayume/items/2c77ec52e7b2257f6800>

@@ -17,13 +17,11 @@ layout: default
 
 ## References/Tools
 
+- [RubyGem - roo](https://rubygems.org/gems/roo)
+  - [roo docs](https://www.rubydoc.info/gems/roo/2.10.1)
 - [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/index.html)
-
-### Ansible
-
 - [Ansible Modules](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-builtin)
-- [Ansible Core Modules](https://docs.ansible.com/ansible-core/devel/collections/index_module.html)
-
+  - [Ansible Core Modules](https://docs.ansible.com/ansible-core/devel/collections/index_module.html)
 
 # Articles
 
@@ -39,4 +37,3 @@ layout: default
 {% endfor %}
 </ul>
 {% endfor %}
-

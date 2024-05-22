@@ -3,6 +3,9 @@ layout: post
 category: ansible
 ---
 
+- [Ansible Modules](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-builtin)
+- [Ansible Core Modules](https://docs.ansible.com/ansible-core/devel/collections/index_module.html)
+
 # ホストの書き方
 
 ```sh

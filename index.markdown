@@ -15,12 +15,6 @@ layout: default
   - [Docs](https://yumayx.github.io/YS1/)
   - [Ruby Gem](https://github.com/users/YumaYX/packages/rubygems/package/ys1)
 
-## References/Tools
-
-- [RubyGem - roo](https://rubygems.org/gems/roo)
-  - [roo docs](https://www.rubydoc.info/gems/roo/2.10.1)
-- [PyAutoGUI](https://pyautogui.readthedocs.io/en/latest/index.html)
-
 # Articles
 
 {% assign sorted_site_categories = site.categories | sort %}

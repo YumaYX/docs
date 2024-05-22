@@ -5,15 +5,9 @@ layout: default
 # Links
 
 - [GitHub - YumaYX](https://github.com/YumaYX)
+- [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
 - [Ruby Quick Reference](/RubyQuickReference/)
 - [Hateblo](https://yumayxx.hateblo.jp/archive/author/yumayxx)
-
-## [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
-
-- [init](https://github.com/YumaYX/init)
-- [YS1](https://github.com/YumaYX/YS1)
-  - [Docs](https://yumayx.github.io/YS1/)
-  - [Ruby Gem](https://github.com/users/YumaYX/packages/rubygems/package/ys1)
 
 # Articles
 

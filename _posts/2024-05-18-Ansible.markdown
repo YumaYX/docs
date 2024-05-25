@@ -3,6 +3,14 @@ layout: post
 category: ansible
 ---
 
+# 注意：
+
+JekyllのLiquidとAnsibleのjinjaの文法がぶつかって、一部コンフィグがうまく表示されない(\{\{\}\}が衝突)。以下参照。
+
+[GitHub - YumaYX docs ansible](https://github.com/YumaYX/docs/blob/main/_posts/2024-05-18-Ansible.markdown)
+
+---
+
 - [Ansible Modules](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-builtin)
 - [Ansible Core Modules](https://docs.ansible.com/ansible-core/devel/collections/index_module.html)
 

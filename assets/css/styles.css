@@ -91,7 +91,7 @@ body {
     width: 18%;
     margin-left: 78%;
     overflow-y: scroll;
-    height: max-content;
+    height: 100vh;
     position: fixed;
     padding: 1%;
     font-size: small;

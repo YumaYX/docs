@@ -5,19 +5,19 @@ category: windows
 
 # install
 
-```pwsh
+```
 wsl --install
 ```
 
 # up
 
-```pwsh
+```
 wsl -d Ubuntu
 ```
 
 # stop
 
-```pwsh
+```
 wsl --shutdown
 ```
 

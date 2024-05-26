@@ -2,13 +2,6 @@
 layout: default
 ---
 
-# Links
-
-- [GitHub - YumaYX](https://github.com/YumaYX)
-- [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
-- [Ruby Quick Reference](/RubyQuickReference/)
-- [Hateblo](https://yumayxx.hateblo.jp/archive/author/yumayxx)
-
 # Articles
 
 {% assign sorted_site_categories = site.categories | sort %}

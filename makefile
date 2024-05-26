@@ -5,6 +5,7 @@ install:
 	bundle install
 
 pub:
+	ruby app.rb
 	git status
 	sleep 5
 	git add .

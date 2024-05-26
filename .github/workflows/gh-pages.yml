@@ -36,7 +36,9 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Build with jekyll
         # Outputs to the './_site' directory by default
-        run: bundle exec jekyll build
+        run: |
+          ruby app.rb
+          bundle exec jekyll build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 

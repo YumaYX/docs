@@ -2,6 +2,7 @@
 h1, h2, h3, h4, h5 {
     margin-top: 0px;
     margin-bottom: 0px;
+    color: #3d3d3d;
 }
 
 ul {
@@ -10,7 +11,7 @@ ul {
 
 a {
     text-decoration: none;
-    color: black;
+    color: #585858;
 }
 
 a:hover {
@@ -47,6 +48,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 350;
     font-style: normal;
+    color: #3d3d3d;
 }
 
 /* container */

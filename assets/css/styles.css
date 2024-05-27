@@ -18,6 +18,29 @@ a:hover {
     cursor : pointer;
 }
 
+th,td {
+    padding: 10px;
+}
+
+th {
+    border:solid;
+    border-width: 0px 0px 1px 0px;
+    border-color: #02066F;
+}
+
+hr {
+    border-color: #4169e1;
+    border-width: 1px 0px 0px 0px;
+}
+
+table {
+    border-collapse: collapse;
+    border:double;
+    border-width: 3px 0px 1px 0px;
+    margin-top: 1em;
+    border-color: #02066F;
+}
+
 body {
     background-color: #f6f9ff;
     font-family: "Comme", sans-serif;
@@ -84,7 +107,6 @@ body {
 .navi li {
     padding-bottom: 10px;
 }
-
 
 /* side */
 .side {

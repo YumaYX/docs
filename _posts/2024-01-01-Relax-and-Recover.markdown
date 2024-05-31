@@ -135,7 +135,22 @@ echo '0 4 * * * root rear mkbackup' >> /etc/crontab
 
 #### NFSを使わないローカルバックアップ
 
-レスキューシステムにバックアップファイルを含める場合：出力ISOファイルが、4GBを超えるとブートできない可能性があるため、使用しない。
+注意として、リストア時`/backup`などのデバイスがリストアされないようにする必要がある。詳細（マウント関連が、バックアップ、リストア対象になるかどうか）は未検証。
+
+```sh
+cat <<'EOF' > /etc/rear/local.conf
+OUTPUT=ISO
+OUTPUT_URL=file:///backup
+BACKUP=NETFS
+BACKUP_URL=file:///backup
+
+BACKUP_PROG_EXCLUDE=("${BACKUP_PROG_EXCLUDE[@]}" '/media' '/vat/tmp' '/var/crash' '/kdump' '/backup')
+LOGFILE="$LOG_DIR/rear-$HOSTNAME.log"
+GRUB_RESCUE=1
+EOF
+```
+
+レスキューシステムにバックアップファイルを含める場合：出力ISOファイルが、4GBを超えるとブートできない可能性があるため、以下の方法は、使用しない。
 
 ```sh
 cat <<'EOF' > /etc/rear/local.conf

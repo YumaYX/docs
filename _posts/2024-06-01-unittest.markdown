@@ -1,0 +1,28 @@
+---
+layout: post
+category: python
+---
+
+```sh
+mkdir project && cd project
+
+mkdir src tests
+touch src/modules.py
+
+cat <<'EOF'> tests/test_sample.py
+import unittest
+
+from src import modules
+
+class TestSample(unittest.TestCase):
+    def setUp(self):
+        print("setUp()")
+
+    def tearDown(self):
+        print("tearDown()")
+
+    def test_mypackages(self):
+        print("test1")
+        self.assertEqual(True, True)
+EOF
+```

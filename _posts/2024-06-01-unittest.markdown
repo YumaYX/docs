@@ -25,4 +25,11 @@ class TestSample(unittest.TestCase):
         print("test1")
         self.assertEqual(True, True)
 EOF
+
+cat <<'EOFM'> makefile
+test:
+	python3 -m unittest discover tests/ "test_*.py"
+EOFM
+
+make test
 ```

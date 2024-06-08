@@ -55,7 +55,6 @@ pvs
 
 `lvresize`で、LVを拡張する。
 
-
 ```sh
 lvs
 lvresize -r -l+100%FREE /dev/almalinux/var
@@ -79,6 +78,15 @@ lvs
 
 ```sh
 df -h
+```
+
+### 書き込みチェック
+
+```sh
+cd /var
+# /varに15GB書き込み
+for f in $(seq 15); do dd if=/dev/random of=1G.dummy.$f bs=1M count=1000; df -h; done
+rm -i 1G.dummy.*
 ```
 
 # Env.

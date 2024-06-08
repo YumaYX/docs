@@ -1,0 +1,42 @@
+---
+layout: post
+category: linux
+---
+
+Logical Volume(マウントポイント)の領域を新規に追加したディスクを使って拡張
+
+# Disk追加
+
+物理的なディスク(sdb)を追加（接続）する。
+
+```sh
+df -h
+pvcreate /dev/sdb
+vgextend almalinux /dev/sdb
+vgdisplay -v
+lvextend -l +100%FREE /dev/almalinux/var
+xfs_growfs /dev/almalinux/var
+df -h
+```
+
+# 書き込みチェック
+
+```sh
+cd /var
+# /varに15GB書き込み
+for f in $(seq 15); do dd if=/dev/random of=1G.dummy.$f bs=1M count=1000; df -h; done
+rm -i 1G.dummy.*
+```
+
+rebootしても、拡張されている状態(/etc/fstab -> /dev/mapper/vg-lv -> sda + sdb)。
+
+# env.
+
+```
+AlmaLinux release 9.4 (Seafoam Ocelot)
+```
+
+# Ref.
+
+- <https://qiita.com/tomozo6/items/cdfb3ebc4be8bd19a2c9>
+

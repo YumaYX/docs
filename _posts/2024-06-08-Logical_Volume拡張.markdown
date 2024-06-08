@@ -33,6 +33,8 @@ lsblk
 parted /dev/sda print free
 ```
 
+未定義領域の大きさ(free  space)をこの時点で確認する。
+
 ## Physical Volumeの拡張
 
 1. `parted`で、Physical Deviceを選択する。
@@ -44,6 +46,8 @@ parted /dev/sda print free
 parted /dev/sda
 resizepart 2
 ```
+
+パーティションを拡張する。大きさを指定しない場合、デフォルトで物理ボリューム (PV) のサイズをディスク全体のサイズに合わせて自動的に変更される。
 
 ```sh
 pvs
@@ -75,6 +79,8 @@ lvs
 - <https://atmarkit.itmedia.co.jp/ait/articles/1910/31/news025.html>
 
 ## 拡張結果
+
+拡張後の状態を確認する。
 
 ```sh
 df -h

@@ -3,21 +3,37 @@ layout: post
 category: linux
 ---
 
-Logical Volume(マウントポイント)の領域を新規に追加したディスクを使って拡張
+Logical Volume(マウントポイント)の領域を新規に追加したディスクを使って拡張する。
 
-# Disk追加
+# 何ができるか？
+
+- より大きな、多くのファイルの保存
+- Logical Volume(マウントポイント)の領域拡張
+- Volume Groupを新規追加ディスクへ拡張、共用
+
+# 拡張手順
+
+## Disk追加
 
 物理的なディスク(sdb)を追加（接続）する。
 
+## 拡張コマンド
+
+新規追加デバイスに、Volume Groupを見せてやり、Logical Volume、ファイルシステムを順に、拡張する。
+
 ```sh
 df -h
+
 pvcreate /dev/sdb
 vgextend almalinux /dev/sdb
 vgdisplay -v
 lvextend -l +100%FREE /dev/almalinux/var
 xfs_growfs /dev/almalinux/var
+
 df -h
 ```
+
+パーティションを切った場合の検証は実施していない。
 
 # 書き込みチェック
 
@@ -28,7 +44,7 @@ for f in $(seq 15); do dd if=/dev/random of=1G.dummy.$f bs=1M count=1000; df -h;
 rm -i 1G.dummy.*
 ```
 
-rebootしても、拡張されている状態(/etc/fstab -> /dev/mapper/vg-lv -> sda + sdb)。
+rebootしても、拡張されている状態である(/etc/fstab -> /dev/mapper/vg-lv -> sda + sdb)。
 
 # env.
 

@@ -30,7 +30,7 @@ github_username: YumaYX
 timezone: Asia/Tokyo
 
 # Build settings
-theme: jekyll-theme-minimal
+theme: minima
 plugins:
   - jekyll-feed
 

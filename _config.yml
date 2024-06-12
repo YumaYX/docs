@@ -48,6 +48,7 @@ exclude:
   - Gemfile.lock
   - mkpost
   - README.md
+  - app.rb
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/

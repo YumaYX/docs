@@ -13,6 +13,15 @@ An indispensable toolkit and concept designed to be a convenient, useful tool I 
 
 ---
 
+# [Workshop](https://yumayx.github.io/Workshop/)
+
+Configuration examples and command references for AlmaLinux, essential documentation for system administration
+
+- Language: Jp
+- Type: **Documents**
+
+---
+
 # [RubyIconMenuBar](https://github.com/YumaYX/RubyIconMenuBar)
 
 A macOS application that displays the current Ruby version in the system menu bar

@@ -17,7 +17,7 @@ An indispensable toolkit and concept designed to be a convenient, useful tool I 
 Configuration examples and command references for AlmaLinux, essential documentation for system administration
 
 - Language: Jp
-- Type: **Documents**
+- Type: **HTML**
 - Category: **Reference**
 # [RubyIconMenuBar](https://github.com/YumaYX/RubyIconMenuBar)
 
@@ -44,7 +44,7 @@ A macOS application that displays Currently Playing Song Information on Menubar
 
 A tool for setting up RHEL-derived Linux environments
 
-- Language: **Python(Ansible)**
+- Language: **YAML**
 - Type: **Ansible Recipe**
 - Category: **Utilities**
 
@@ -53,6 +53,6 @@ A tool for setting up RHEL-derived Linux environments
 Docs for development
 
 - Language: Jp/En
-- Type: **Documents**
+- Type: **HTML**
 - Category: **Reference**
 

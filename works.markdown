@@ -10,6 +10,7 @@ An indispensable toolkit and concept designed to be a convenient, useful tool I 
 
 - Language: **Ruby**
 - Type: **RubyGem**
+- Category: **Productivity**
 
 # [Workshop](https://yumayx.github.io/Workshop/)
 
@@ -17,7 +18,7 @@ Configuration examples and command references for AlmaLinux, essential documenta
 
 - Language: Jp
 - Type: **Documents**
-
+- Category: **Reference**
 # [RubyIconMenuBar](https://github.com/YumaYX/RubyIconMenuBar)
 
 A macOS application that displays the current Ruby version in the system menu bar
@@ -26,6 +27,8 @@ A macOS application that displays the current Ruby version in the system menu ba
 
 - Language: **Swift**
 - Type: **macOS App**
+- Category: **Utilities**
+
 
 # [Y803](https://github.com/YumaYX/Y803)
 
@@ -35,6 +38,7 @@ A macOS application that displays Currently Playing Song Information on Menubar
 
 - Language: **Swift**
 - Type: **macOS App**
+- Category: **Utilities**
 
 # [init](https://github.com/YumaYX/init)
 
@@ -42,6 +46,7 @@ A tool for setting up RHEL-derived Linux environments
 
 - Language: **Python(Ansible)**
 - Type: **Ansible Recipe**
+- Category: **Utilities**
 
 # [docs](https://yumayx.github.io/docs/)
 
@@ -49,3 +54,5 @@ Docs for development
 
 - Language: Jp/En
 - Type: **Documents**
+- Category: **Reference**
+

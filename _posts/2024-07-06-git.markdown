@@ -1,0 +1,65 @@
+---
+layout: post
+category: Git
+---
+
+gitを使って、バージョン管理をする。
+
+# 初期化
+
+バージョン管理していない場合、初期設定が必要となる。
+
+![gitinit](/docs/images/gitinit.svg)
+
+### コマンド
+
+```sh
+cd <project dir>
+git init
+# .gitディレクトリが生成される
+```
+
+# 運用時
+
+バージョン管理は、以下のフローで行う。
+
+1. ファイルを編集する
+1. 編集したファイルをステージング(追跡)する
+1. メッセージをつけて、コミットする
+
+![gitroutine](/docs/images/gitroutine.svg)
+
+### コマンド
+
+#### 状態確認
+
+```sh
+git status
+```
+
+#### ファイル編集
+
+```sh
+vim <file name>
+git status
+```
+
+#### ステージング
+
+```sh
+git add <file name>
+git status
+```
+
+#### コミット
+
+```sh
+git commit -am "<commit message>"
+git status
+```
+
+編集したファイルを最新のコミット時点に戻す場合
+
+```sh
+git checkout -f
+```

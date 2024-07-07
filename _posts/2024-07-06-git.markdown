@@ -65,3 +65,12 @@ git status
 ```sh
 git checkout -f
 ```
+
+## 追跡対象外設定
+
+`.gitignore`ファイルを作成する。バージョン管理外のファイル、ディレクトリを列挙する。
+
+```sh
+touch .gitignore
+echo '*.swp' >> .gitignore
+```

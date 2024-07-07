@@ -42,6 +42,8 @@ git status
 ```sh
 vim <file name>
 git status
+
+git diff
 ```
 
 #### ステージング

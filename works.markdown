@@ -19,6 +19,7 @@ Configuration examples and command references for AlmaLinux, essential documenta
 - Language: Jp
 - Type: **HTML**
 - Category: **Reference**
+
 # [RubyIconMenuBar](https://github.com/YumaYX/RubyIconMenuBar)
 
 A macOS application that displays the current Ruby version in the system menu bar

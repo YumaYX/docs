@@ -8,6 +8,12 @@ layout: default
 
 An indispensable toolkit and concept designed to be a convenient, useful tool I won't want to forget
 
+```ruby
+irb(main):001> require 'ys1'
+=> true
+irb(main):002> 
+```
+
 - Language: **Ruby**
 - Type: **RubyGem**
 - Category: **Productivity**
@@ -15,6 +21,8 @@ An indispensable toolkit and concept designed to be a convenient, useful tool I 
 # [Workshop](https://yumayx.github.io/Workshop/)
 
 Configuration examples and command references for AlmaLinux, essential documentation for system administration
+
+<https://yumayx.github.io/Workshop/>
 
 - Language: Jp
 - Type: **HTML**
@@ -53,7 +61,8 @@ A tool for setting up RHEL-derived Linux environments
 
 Docs for development
 
+<https://yumayx.github.io/docs/>
+
 - Language: Jp/En
 - Type: **HTML**
 - Category: **Reference**
-

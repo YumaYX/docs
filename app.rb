@@ -2,7 +2,7 @@ require 'net/http'
 require 'json'
 
 def get_github_repos(username)
-  uri = URI("https://api.github.com/users/#{username}/repos")
+  uri = URI("https://api.github.com/users/#{username}/repos?per_page=100")
   response = Net::HTTP.get_response(uri)
 
   if response.code == '200'

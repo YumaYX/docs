@@ -16,6 +16,6 @@ end
 puts "\n\n# GitHub Repos\n\n"
 repos = get_github_repos("YumaYX")
 repos.sort_by { |repo| repo["name"].downcase }.each do |repo|
-  puts "- [#{repo["name"]}](#{repo["html_url"]})"
+  puts "1. [#{repo["name"]}](#{repo["html_url"]})"
 end
 

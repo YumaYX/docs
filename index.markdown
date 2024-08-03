@@ -7,7 +7,7 @@ layout: default
 - [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
 - [Ruby Quick Reference](/RubyQuickReference/)
 - [Zzz...](/zzz/)
-- [py-note](py-note)
+- [py-note](/py-note/)
 - [Workshop](/Workshop/)
 
 

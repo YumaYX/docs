@@ -4,17 +4,15 @@ layout: default
 
 # Links
 
-- [GitHub - YumaYX](https://github.com/YumaYX)
 - [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
 - [Ruby Quick Reference](/RubyQuickReference/)
-- [Works](/docs/works)
 - [Workshop](/Workshop/)
 
 # Articles
 
 {% assign sorted_site_categories = site.categories | sort %}
 {% for category in sorted_site_categories %}
-<h2> {{ category[0] | capitalize }} </h2>
+<h3> {{ category[0] | capitalize }} </h3>
 <ul>
 {% assign sorted_site_posts = site.posts | sort %}
 {% for post in sorted_site_posts %}

@@ -65,7 +65,7 @@ ruby -v
 gem update --system;gem update
 ```
 
-makeのoption -j 1じゃないと失敗した。
+makeのoption -j 1じゃないと失敗した(mem?)。
 
 - [RubyGem - roo](https://rubygems.org/gems/roo)
 - [roo docs](https://www.rubydoc.info/gems/roo/2.10.1)

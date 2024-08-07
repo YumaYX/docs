@@ -57,13 +57,15 @@ update: --no-document
 GEMRC
 fi
 
-rubyver=3.3.0
-time CONFIGURE_OPTS="--disable-install-doc" rbenv install ${rubyver}
+rubyver=3.3.4
+time CONFIGURE_OPTS="--disable-install-doc" MAKE_OPTS="-j 1" rbenv install ${rubyver}
 rbenv global ${rubyver}
 source ~/.bash_profile
 ruby -v
 gem update --system;gem update
 ```
+
+makeのoption -j 1じゃないと失敗した。
 
 - [RubyGem - roo](https://rubygems.org/gems/roo)
 - [roo docs](https://www.rubydoc.info/gems/roo/2.10.1)

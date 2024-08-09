@@ -1,0 +1,31 @@
+---
+layout: post
+category: linux
+---
+
+下の例では、`/var/log/messages`の監視を行う。grepの条件で、以降の処理を行うかどうかを分岐する。合致するログをトリガーにして、処理を実行できる。
+
+ログの時間が、5秒または10秒のログのみ標準出力に出力する。
+
+```sh
+function onebyone () {
+    line="${@}"
+    echo "${line}" | grep -E ":.[0|5] " > /dev/null || return
+
+    echo "${line}"
+}
+
+
+target_log="/var/log/messages"
+tail -F -n0 ${target_log} | while read line
+do
+    onebyone "${line}"
+done
+```
+
+## 動作チェック
+
+```sh
+watch -n 1 logger hello
+```
+

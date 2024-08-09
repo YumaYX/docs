@@ -29,3 +29,15 @@ done
 watch -n 1 logger hello
 ```
 
+```
+Aug 10 08:39:30 y yuma[46902]: hello
+Aug 10 08:39:35 y yuma[46922]: hello
+Aug 10 08:39:40 y yuma[46942]: hello
+Aug 10 08:39:45 y yuma[46962]: hello
+Aug 10 08:39:50 y yuma[46992]: hello
+Aug 10 08:39:55 y yuma[47012]: hello
+Aug 10 08:40:00 y yuma[47028]: hello
+Aug 10 08:40:05 y yuma[47048]: hello
+Aug 10 08:40:10 y yuma[47068]: hello
+Aug 10 08:40:15 y yuma[47088]: hello
+```

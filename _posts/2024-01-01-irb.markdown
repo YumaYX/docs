@@ -3,6 +3,8 @@ layout: post
 category: commands
 ---
 
+irbを使って、Rubyのスクリプトを実行過程を出力する。
+
 ```sh
 irb --prompt simple ${1}
 ```

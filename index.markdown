@@ -5,6 +5,7 @@ layout: default
 # Links
 
 - [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
+- [GitHub Gist](https://gist.github.com/YumaYX)
 - [Ruby Quick Reference](/RubyQuickReference/)
 - [Workshop](/Workshop/)
 

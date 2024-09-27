@@ -132,6 +132,10 @@ vagrant global-status
 vagrant destroy -f [id]
 ```
 
+```sh
+vagrant global-status --prune
+```
+
 # パラレル実行(xargsのコマンドでパラレル実行する)
 
 ```sh

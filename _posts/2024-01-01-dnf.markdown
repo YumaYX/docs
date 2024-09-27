@@ -1,0 +1,10 @@
+---
+layout: post
+category: commands
+---
+
+コマンド名から、パッケージを引く方法
+
+```sh
+dnf provides ifconfig
+```

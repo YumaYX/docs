@@ -1,0 +1,32 @@
+---
+layout: post
+category: windows
+---
+
+無心で設定する。
+
+1. ウィンドウをスナップしたときに、横に配置できるものを表示しないようにする。
+- <https://www.724685.com/weekly/qa180404.htm>
+1. タスクバーの天気を表示 / 非表示にする方法
+- <https://www.fmworld.net/cs/azbyclub/qanavi/jsp/qacontents.jsp?PID=2611-3229#case1>
+1. タスク バーの検索ボックスを非表示にする
+- <https://support.microsoft.com/ja-jp/windows/windowsで検索ボックスを非表示または再表示する-6d8252b7-864f-c1b6-6a56-3eea0cda08dc>
+1. EdgeのURLバーの検索エンジンを変更する
+- <https://support.microsoft.com/ja-jp/microsoft-edge/microsoft-edge-で既定の検索エンジンを変更する-cccaf51c-a4df-a43e-8036-d4d2c527a791>
+1. スタートボタンを左寄せにする方法
+- <https://solutions.vaio.com/4349>
+
+# tips
+
+1. ネットワーク接続の表示
+- <https://www.aryeh.co.jp/2023/11/22/おだんご日記01-ネットワーク接続画面を秒速で出/>
+```cmd
+echo ncpa.cpl > ncpa.cpl.bat
+```
+
+# extra
+
+1. Hyper-V有効化
+- <https://learn.microsoft.com/ja-jp/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v#enable-hyper-v-using-powershell>
+1. WinGet
+- <https://www.microsoft.com/p/app-installer/9nblggh4nns1#activetab=pivot:overviewtab>

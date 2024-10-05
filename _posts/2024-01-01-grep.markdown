@@ -14,10 +14,16 @@ grep -e <PATTERN1> -e <PATTERN2>
 ## 正規表現にて
 
 ```sh
-grep -E "X|Y|Z"
-```
+# -E（検索正規表現）が必要
+# []リテラル一文字単位でOR検索可能
 
--E（検索正規表現）が必要
+grep -E "^X|Y|Z"
+# 文字列対応
+grep -E "^(X|Y|Z)"
+
+grep "^[XYZ]"
+grep "^[X-Z]"
+```
 
 ### 時間抽出例
 

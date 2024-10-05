@@ -3,6 +3,8 @@ layout: post
 category: commands
 ---
 
+# @macOS
+
 ```sh
 iso='/path/to/iso'
 disk='/dev/diskX'

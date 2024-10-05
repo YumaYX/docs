@@ -1,0 +1,12 @@
+---
+layout: post
+category: commands
+---
+
+sudoを使って、リダイレクト相当をする場合
+
+```sh
+cat << EOF | sudo tee output.txt
+content
+EOF
+```

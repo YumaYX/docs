@@ -1,0 +1,16 @@
+---
+layout: post
+category: commands
+---
+
+# make dir
+
+| --- | --- |
+| owner | user |
+| group | group |
+| permision | 755 |
+| path | /tmp/dir |
+
+```sh
+install -o user -g group -m 0755 -d /tmp/dir
+```

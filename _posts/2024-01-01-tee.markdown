@@ -10,3 +10,5 @@ cat << EOF | sudo tee output.txt
 content
 EOF
 ```
+
+追記する場合はオプション`-a`を使う。

@@ -217,7 +217,7 @@ touch roles/init/templates/file.txt.j2
 ## pip
 
 ```sh
-echo 'ansible-core' > requirements.txt #ansibleをインストールする場合
+echo 'ansible' > requirements.txt #ansibleをインストールする場合
 
 echo 'ansible-core' >> requirements.txt
 python3 -m venv venv

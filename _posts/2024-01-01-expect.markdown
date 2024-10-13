@@ -60,3 +60,59 @@ puts ${v}
 ```sh
 dnf -y install expect
 ```
+
+
+
+---
+
+# おまけ
+
+一般ユーザーで、好きなだけパスワードを変更するシェル
+
+```sh
+#!/usr/bin/env bash
+
+# 変更回数
+change_count=40
+
+# 現在のパスワードを設定
+current_password=""
+
+# 新しいパスワードをランダムに生成する関数
+generate_password() {
+    local chars="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+    local length=12
+    local password=""
+    for (( i = 0; i < length; i++ )); do
+        password+="${chars:RANDOM%${#chars}:1}"
+    done
+    echo "$password"
+}
+
+# パスワード変更処理
+for (( i = 1; i <= change_count; i++ )); do
+    # 新しいパスワードを生成
+    new_password=$(generate_password)
+
+    # expectスクリプトでパスワードを変更
+    expect <<EOF
+spawn passwd
+expect "Current password:"
+send "$current_password\r"
+expect "New password:"
+send "$new_password\r"
+expect "Retype new password:"
+send "$new_password\r"
+expect eof
+EOF
+
+    # パスワード変更の結果を表示
+    if [ $? -eq 0 ]; then
+        echo "Password change #$i: Success - New password is $new_password"
+        # 次の変更に備えて現在のパスワードを更新
+        current_password="$new_password"
+    else
+        echo "Password change #$i: Failed"
+    fi
+done
+```

@@ -3,8 +3,21 @@ layout: post
 category: commands
 ---
 
-コマンド名から、パッケージを引く方法
+# コマンド名から、パッケージを引く方法
 
 ```sh
 dnf provides <command>
+```
+
+# 過去バージョンを表示
+
+```sh
+dnf --showduplicates search vagrant
+```
+
+
+# バージョンアップ除外
+
+```sh
+dnf update --exclude=vagrant*
 ```

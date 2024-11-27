@@ -1,0 +1,22 @@
+---
+layout: post
+category: linux
+---
+
+AlmaLinux 9.5が出たので、ISOを焼く。
+
+
+```sh
+url='https://ftp.riken.jp/Linux/almalinux/9.5/isos/x86_64/AlmaLinux-9.5-x86_64-dvd.iso'
+
+curl -O $url
+name=$(basename ${url})
+sudo fdisk -l
+```
+
+```sh
+device='/dev/sdb'
+
+sudo dd if=./${name} of=${device} bs=1048576 status=progress
+```
+

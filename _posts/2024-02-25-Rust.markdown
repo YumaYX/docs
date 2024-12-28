@@ -23,3 +23,9 @@ rustup-init -y --profile default --no-modify-path
 ```sh
 source $HOME/.cargo/env
 ```
+
+```sh
+rustup self update
+rustup update
+rustup component add clippy
+```

@@ -29,3 +29,30 @@ rustup self update
 rustup update
 rustup component add clippy
 ```
+
+---
+
+with docker
+
+# new
+
+```sh
+docker run --rm -v $(pwd):/m -w /m rust:latest cargo init . 
+```
+
+# build
+
+```sh
+docker run --rm -v $(pwd):/m -w /m rust:latest cargo build
+```
+
+# run
+
+```sh
+docker run --rm -v $(pwd):/m -w /m rust:latest cargo run
+```
+
+
+```sh
+alias ccargo='docker run --rm -v $(pwd):/m -w /m rust:latest cargo'
+```

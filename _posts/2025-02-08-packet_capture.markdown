@@ -3,8 +3,7 @@ layout: post
 category: linux
 ---
 
-
-`tcpdump` および `wireshark` をインストールするコマンドです。
+`tcpdump` および `wireshark` をインストールするコマンド
 
 ```sh
 dnf -y install tcpdump
@@ -27,6 +26,8 @@ tcpdump -i wlp2s0 -w dump.pcap -Z root -C 1
 ```
 
 # ファイルサイズ指定分割
+
+指定したサイズ(KB)でファイルを分割
 
 ```sh
 tshark \

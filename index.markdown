@@ -8,9 +8,11 @@ layout: default
 - [Ruby Quick Reference](/RubyQuickReference/)
 - [Workshop](/Workshop/)
 
+## Works
+
+- [Works](/works)
 
 # Articles
-
 
 {% assign sorted_site_categories = site.categories | sort %}
 {% for category in sorted_site_categories %}

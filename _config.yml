@@ -49,6 +49,7 @@ exclude:
   - mkpost
   - README.md
   - app.rb
+  - mod.sh
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/

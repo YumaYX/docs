@@ -13,8 +13,24 @@ $ sh app.sh argv1 argv2
 | ${PPID} |  PPID | n |
 | ${#}    |  Num of Arg | 2 |
 | ${1}    |  ARG 1 | arg1 |
-| ${!}    |  Process ID of the most recently executed background command | n |
 | ${@}    |  All ARG | argv1 argv2 |
+
+# PID of the most recently executed background command
+
+```
+~  sleep 10 &
+echo ${!}
+[1] 66889
+66889
+~  
+```
+
+```sh
+sleep 10 &
+echo ${!}
+```
+
+# 演算子
 
 | 比較演算子 | 意味 |
 | --- | --- |

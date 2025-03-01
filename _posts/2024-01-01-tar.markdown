@@ -16,3 +16,19 @@ tar -cvf archive.tar -C /path/to/directory/ files
 - `files`: アーカイブに含めるファイルやディレクトリ。
 - アーカイブファイル (`archive.tar`) は現在の作業ディレクトリに作成される。
 
+# extraction
+
+展開のファイル指定
+
+```sh
+mkdir sb
+cd ${_}
+
+touch raw{0..3}
+tar zcvf data.tar.gz r*
+
+rm r*
+
+tar xvf data.tar.gz raw2
+# => raw2
+```

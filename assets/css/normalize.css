@@ -425,3 +425,11 @@ td,
 th {
   padding: 0;
 }
+
+.title {
+  text-decoration: none;
+}
+
+.title:hover {
+  text-decoration: underline;
+}

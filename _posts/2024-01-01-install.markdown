@@ -5,6 +5,7 @@ category: commands
 
 # make dir
 
+| option | value |
 | --- | --- |
 | owner | user |
 | group | group |

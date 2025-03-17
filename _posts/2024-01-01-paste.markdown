@@ -9,7 +9,7 @@ category: commands
 paste file1 file2
 ```
 
-- deliminatorは一文字(-d' ')
+- delimiterは一文字(-d' ')
 - 行数がないところは空白になるので注意
 
 # ファイル準備

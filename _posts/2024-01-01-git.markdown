@@ -9,8 +9,6 @@ gitを使って、バージョン管理をする。
 
 バージョン管理していない場合、初期設定が必要となる。
 
-![gitinit](/docs/images/gitinit.svg)
-
 ### コマンド
 
 ```sh
@@ -26,8 +24,6 @@ git init
 1. ファイルを編集する
 1. 編集したファイルをステージング(追跡)する
 1. メッセージをつけて、コミットする
-
-![gitroutine](/docs/images/gitroutine.svg)
 
 ### コマンド
 

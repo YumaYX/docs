@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8">
+    <title>Works</title>
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/skeleton.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/normalize.css">
+    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/extends.css">
+  </head>
+  <body>
+    
+    {% include navigation.html %}
+
+    <div class="container">
+      <div class="maincontents">
+      {{ content }}
+      </div>
+    </div>
+
+    <hr />
+    {% include footer.html %}
+
+  </body>
+</html>

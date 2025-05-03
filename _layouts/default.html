@@ -4,19 +4,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8">
     <title>Works</title>
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/skeleton.css">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/normalize.css">
-    <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/extends.css">
+    <link rel="stylesheet" href="https://yumayx.github.io/works/assets/css/skeleton.css">
+    <link rel="stylesheet" href="hhttps://yumayx.github.io/works/assets/css/normalize.css">
+    <link rel="stylesheet" href="https://yumayx.github.io/works/assets/css/extends.css">
   </head>
   <body>
 
-    {% include navigation.html %}
+    <nav class="navbar">
+      <div class="container">
+        <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
+      </div>
+    </nav>
 
-    <div class="container main">
+    <div class="container">
+      <div class="main">
       {{ content }}
+      </div>
     </div>
 
-    {% include footer.html %}
+    <hr />
+    <footer>
+      <div class="container">
+        <h1><strong>Yuma</strong></h1>
+        <div class="row">
+          <strong><p>{{ site.title }} | Built w/ GitHub Pages + Skelton CSS | by <a href="https://github.com/YumaYX"><span class="marker">YumaYX</span></a></p></strong>
+        </div>
+      </div>
+    </footer>
 
   </body>
 </html>

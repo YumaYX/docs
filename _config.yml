@@ -46,6 +46,7 @@ exclude:
   - mkpost
   - Makefile
   - .jekyll-cache/
+  - mod.sh
 #   - .sass-cache/
 #   - gemfiles/
 #   - node_modules/

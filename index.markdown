@@ -6,13 +6,15 @@ layout: default
 
 - [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
 - [Ruby Quick Reference](/RubyQuickReference/)
-- [Express](/express/)
 - [Workshop](/Workshop/)
+
+---
 
 # Works
 
 - [Works](/works)
 
+---
 
 # Articles
 

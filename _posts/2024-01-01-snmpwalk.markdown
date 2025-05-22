@@ -1,0 +1,12 @@
+---
+layout: post
+category: commands
+---
+
+```sh
+snmpwalk -v2c -c <コミュニティ名> <ホスト名：ポート> <OID>
+```
+
+##### Reference
+
+- https://www.manageengine.jp/products/OpManager/how-to-use-snmpwalk.html

@@ -21,7 +21,7 @@ layout: default
 {% assign sorted_site_categories = site.categories | sort %}
 {% for category in sorted_site_categories %}
 
-<h3 id="{{ category[0] }}">{{ category[0] | capitalize }}</h3>
+<h3 id="{{ category[0] }}" class="hdown">{{ category[0] | capitalize }}</h3>
 <ul>
 {% assign sorted_site_posts = site.posts | sort %}
 {% for post in sorted_site_posts %}

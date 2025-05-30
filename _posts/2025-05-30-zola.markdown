@@ -1,0 +1,174 @@
+---
+layout: post
+category: rust
+---
+
+# init
+
+```sh
+docker run -it -v $PWD:/app:z --workdir /app ghcr.io/getzola/zola:v0.20.0 init .
+```
+
+# for build & serve
+
+```sh
+cat <<'EOF' > Makefile
+ZOLA_IMAGE=ghcr.io/getzola/zola:v0.20.0
+VOLUME=-v $$PWD:/app:z
+WORKDIR=--workdir /app
+RUN=docker run $(VOLUME) $(WORKDIR)
+
+serve:
+	$(RUN) -p 8080:8080 $(ZOLA_IMAGE) serve --interface 0.0.0.0 --port 8080 --base-url localhost
+
+build:
+	$(RUN) $(ZOLA_IMAGE) build
+EOF
+```
+
+# make contents
+
+{% raw %}
+```sh
+cat <<'EOF' > templates/base.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>MyPosts</title>
+  <link rel="stylesheet" href="{{ get_url(path="css/style.css") }}">
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      {% block content %} {% endblock content %}
+    </div>
+  </section>
+</body>
+
+</html>
+EOF
+
+cat <<'EOF' > templates/index.html
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  This is my post made with Zola.
+</h1>
+<p><a href="{{ get_url(path='@/post/_index.md') }}">Posts</a>.</p>
+{% endblock content %}
+EOF
+
+
+cat <<'EOF' > templates/post.html
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  {{ section.title }}
+</h1>
+<ul>
+  <!-- If you are using pagination, section.pages will be empty.
+       You need to use the paginator object -->
+  {% for page in section.pages %}
+  <li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+  {% endfor %}
+</ul>
+{% endblock content %}
+EOF
+
+cat <<'EOF' > templates/post-page.html
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="title">
+  {{ page.title }}
+</h1>
+<p class="subtitle"><strong>{{ page.date }}</strong></p>
+{{ page.content | safe }}
+{% endblock content %}
+EOF
+
+mkdir -p content/post
+cat <<'EOF' > content/post/_index.md
++++
+title = "List of post posts"
+sort_by = "date"
+template = "post.html"
+page_template = "post-page.html"
++++
+EOF
+
+cat <<'EOF' > content/post/first.md
++++
+title = "My first post"
+date = 2019-11-27
++++
+
+This is my first post post.
+EOF
+
+cat <<'EOF' > content/post/second.md
++++
+title = "My second post"
+date = 2019-11-28
++++
+
+This is my second post post.
+EOF
+```
+{% endraw %}
+
+
+```sh
+mkdir -p static/css
+cat <<'EOF' > static/css/style.css
+body {
+    background-color: black;
+    color: white;
+}
+EOF
+# <link rel="stylesheet" href="{{ get_url(path="css/style.css") }}">
+# をtemplates/base.htmlに追記。
+```
+
+# serve
+
+```sh
+make
+```
+
+# directory tree
+
+```
+.
+├── Makefile
+├── config.toml
+├── content
+│   └── post
+│       ├── _index.md
+│       ├── first.md
+│       └── second.md
+├── public
+├── static
+├── templates
+│   ├── base.html
+│   ├── index.html
+│   ├── post-page.html
+│   └── post.html
+└── themes
+```
+
+# +Dir
+
+GitHub Actionsでレポジトリごとに公開したい場合などに有効。
+
+1. `config.toml`に`base_url = ""`を設定する。
+1. ローカルで動作試験する場合は、`zola serve --base-url localhost/x/`などを入れる。
+
+##### Reference
+
+- <https://www.getzola.org>

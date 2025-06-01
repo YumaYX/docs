@@ -7,6 +7,7 @@ layout: default
 - [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
 - [Ruby Quick Reference](/RubyQuickReference/)
 - [Workshop](/Workshop/)
+- [R-X](/R-X/)
 
 ---
 

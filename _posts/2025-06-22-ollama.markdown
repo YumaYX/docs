@@ -1,0 +1,97 @@
+---
+layout: post
+category: llm
+---
+
+Ollamaインストールと簡単な使用例
+
+- `serve`が動いていれば、APIを使用できる。
+  - runした後、プロンプトを抜けても裏でserveが動いている。
+- ハードと用途を考えてモデルを選ぶ。
+- streamが初期設定となっている。`stream`を`false`にすると、使いやすいだろう。
+- postで、bodyにjsonをつけて送る。　
+
+## test 
+
+- host: `localhost`
+- port: `11434`
+- model: `gemma3`
+
+```sh
+curl http://localhost:11434/api/chat \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma3",
+    "messages": [
+      { "role": "user", "content": "write a simple sample code with ruby." }
+    ],
+    "stream": false
+  }' | jq
+```
+
+## install & run server
+
+`gemma3`を使用する例を記載する。
+
+### mac
+
+```sh
+brew install ollama
+ollama serve
+```
+
+```sh
+ollama run gemma3
+```
+
+### linux
+
+```sh
+# https://ollama.com
+curl -fsSL https://ollama.com/install.sh | sh
+ollama run gemma3
+```
+
+## program with ruby
+
+```ruby
+require 'net/http'
+require 'uri'
+require 'json'
+
+# 送信先のURL
+url = URI.parse('http://localhost:11434/api/chat')
+
+# 送信するJSONデータ
+data = {
+    "model": "gemma3",
+    "messages": [
+      { "role": "user", "content": "write a simple sample code with ruby." }
+    ],
+    "stream": false
+}
+
+# HTTPリクエストを作成
+http = Net::HTTP.new(url.host, url.port)
+http.use_ssl = (url.scheme == "https")
+
+request = Net::HTTP::Post.new(url.path, {
+  'Content-Type' => 'application/json'
+})
+
+# JSONデータをボディに設定
+request.body = data.to_json
+
+# リクエスト送信 & レスポンス取得
+response = http.request(request)
+
+# レスポンス出力
+puts "Status: #{response.code}"
+puts "Body: #{response.body}"
+```
+
+##### Reference
+
+- <https://ollama.com>
+- <https://developer.mamezou-tech.com/blogs/2025/02/20/ollama_local_llm/>
+

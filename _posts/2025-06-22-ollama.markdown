@@ -17,6 +17,8 @@ Ollamaインストールと簡単な使用例
 - port: `11434`
 - model: `gemma3`
 
+### chat
+
 ```sh
 curl http://localhost:11434/api/chat \
   -H "Content-Type: application/json" \
@@ -28,6 +30,18 @@ curl http://localhost:11434/api/chat \
     "stream": false
   }' | jq
 ```
+
+### prompt
+
+```sh
+curl http://localhost:11434/api/generate \
+  -H "Content-Type: application/json" \
+  -d '{
+    "model": "gemma3",
+    "prompt": "write a simple sample code with ruby.",
+    "stream": false
+  }'
+  ```
 
 ## install & run server
 
@@ -65,9 +79,7 @@ url = URI.parse('http://localhost:11434/api/chat')
 # 送信するJSONデータ
 data = {
     "model": "gemma3",
-    "messages": [
-      { "role": "user", "content": "write a simple sample code with ruby." }
-    ],
+    "prompt": "write a simple sample code with ruby.",
     "stream": false
 }
 

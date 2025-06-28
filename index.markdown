@@ -6,11 +6,9 @@ layout: default
 
 - [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
 - [Works](/works)
-- Docs for Ruby
-  - [Ruby Demo Doc](https://yumayx.github.io/rubydemodoc/)
-- Docs for Linux
-  - [Workshop](/Workshop/)
-  - [R-X](/R-X/)
+- [Ruby Demo Doc](https://yumayx.github.io/rubydemodoc/)
+- [Workshop](/Workshop/)
+- [R-X](/R-X/)
 
 ---
 

@@ -74,6 +74,12 @@ curl http://localhost:11434/api/generate \
 | ruby -r json -e 'puts JSON.parse(STDIN.read)["response"]'
 ```
 
+### ollama interface
+
+```sh
+ollama run gemma3 'hallo'
+```
+
 ## install & run server
 
 `gemma3`を使用する例を記載する。

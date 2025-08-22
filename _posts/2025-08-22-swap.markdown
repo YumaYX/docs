@@ -1,0 +1,29 @@
+---
+layout: post
+category: linux
+---
+
+# swap
+
+```sh
+fallocate -l 32G /swapfile
+mkswap /swapfile
+chmod 600 /swapfile
+swapon /swapfile
+swapon -s
+```
+
+# zram
+
+```sh
+dnf install -y zram-generator
+
+cat << EOF > /etc/systemd/zram-generator.conf
+[zram0]
+zram-size = min(ram / 2, 4096)
+compression-algorithm = zstd
+EOF
+
+systemctl daemon-reload
+swapon -s
+```

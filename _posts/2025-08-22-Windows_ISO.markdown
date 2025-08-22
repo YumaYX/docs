@@ -1,6 +1,6 @@
 ---
 layout: post
-category: 
+category: windows
 ---
 
 ## MacでWin ISOブータブルメディアを作る手順

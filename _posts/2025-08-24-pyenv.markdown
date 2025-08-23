@@ -1,0 +1,28 @@
+---
+layout: post
+category: python
+---
+
+# pyenv
+
+```sh
+sudo yum install gcc zlib-devel bzip2 bzip2-devel readline readline-devel sqlite sqlite-devel openssl openssl-devel git libffi-devel
+
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+
+if grep "pyenv init -" ~/.bash_profile ] ; then
+  echo "skip."
+else
+  echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bash_profile
+  echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+fi
+source ~/.bash_profile
+
+pyenv install --list
+pyver="3.13.5"
+pyenv install ${pyver}
+pyenv global  ${pyver}
+
+pyenv rehash
+```
+

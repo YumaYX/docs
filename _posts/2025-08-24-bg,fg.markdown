@@ -1,0 +1,15 @@
+---
+layout: post
+category: commands
+---
+
+# fg, bg
+
+1. まずジョブをバックグラウンドに送る（例：Ctrl+Z → bg）
+
+```sh
+# (Ctrl+Z)
+bg
+disown
+```
+

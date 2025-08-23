@@ -1,0 +1,12 @@
+---
+layout: post
+category: shell
+---
+
+# syokiti
+
+```sh
+A="${A:-A}"
+echo ${A}
+```
+

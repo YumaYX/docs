@@ -26,3 +26,9 @@ category: editor
    puts say.upcase
    =end
    ```
+
+# HTML auto indent
+
+```
+Mac: Shift + Option + F
+```

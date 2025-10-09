@@ -47,6 +47,7 @@ exclude:
   - Makefile
   - .jekyll-cache/
   - mod.sh
+  - ~4001
 #   - .sass-cache/
 #   - gemfiles/
 #   - node_modules/

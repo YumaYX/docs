@@ -18,10 +18,5 @@ rsync -auvzP src(file/dir) dst(dir)
 | -P | keep partially transferred files |
 | --delete | delete extraneous files from dest dirs |
 | -r | recurse into directories |
-
-
-## rsync + ssh
-
-```
-rsync -rauv -e ssh a vagrant@192.168.255.100:/rsync
-```
+| --progress | show progress during transfer |
+| --bwlimit=RATE | BYTE: limit socket I/O bandwidth(KBps). The RATE value can be suffixed with a string to indicate  a  size  multiplier,  and  may be a fractional value(e.g. --bwlimit=1.5m). |

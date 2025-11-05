@@ -32,3 +32,9 @@ rm r*
 tar xvf data.tar.gz raw2
 # => raw2
 ```
+
+# Compression options
+
+| z | gzip |
+| j | bzip2 |
+| J | xz |

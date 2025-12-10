@@ -1,6 +1,6 @@
 ---
 layout: post
-category: Excel
+category: excel
 ---
 
 Rubyの頭で、Excelを扱いたいときの対応表

@@ -24,7 +24,7 @@ $
 
 Perl版 renameもあるらしく、`rename 's/old/new/' *.txt`で置換できるらしい。
 
-##### dnf provides rename
+### dnf provides rename
 
 util-linuxに入ってる。
 
@@ -42,7 +42,7 @@ Filename    : /usr/bin/rename
 $ 
 ```
 
-##### Environments
+### Environments
 
 ```
 $ cat /etc/redhat-release 

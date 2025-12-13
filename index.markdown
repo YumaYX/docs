@@ -5,7 +5,7 @@ layout: default
 # Links
 
 - [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
-- [Works](/works)
+- [Works](/works/) / [Works - Ja](/works/ja.index.html)
 - [Ruby Demo Doc](https://yumayx.github.io/rubydemodoc/)
 - [Workshop](/Workshop/)
 - [R-X](/R-X/)

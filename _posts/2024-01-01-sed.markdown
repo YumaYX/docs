@@ -36,6 +36,17 @@ sed -n '123,/^abc$/p'
 sed "/b/,/j/c x\ny"
 ```
 
+## 大文字・小文字区別しない置換
+
+- gで置換しているコマンドをgiに変えてあげる。
+- iはgrepと同じで大文字・小文字を区別しない。
+
+```sh
+sed 's/abc/&d/gi'
+```
+
+大文字・小文字関係なく`abc`でヒットした部分に`d`が付く動作となる。
+
 # 改行コード変換
 
 LF（Line Feed、Unixスタイル）とCRLF（Carriage Return + Line Feed、Windowsスタイル）があります。

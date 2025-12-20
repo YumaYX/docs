@@ -137,3 +137,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 - struct（必要な部分だけ）を作って、`変数.キー`で取り出す
 - `let url = v["url"].as_str().unwrap();`
 
+# 属性（attribute） -　未使用変数の許可
+
+```rust
+#[allow(unused_variables)]
+```
+
+- #[allow(...)] → 許可（警告抑制）の属性
+- #[deny(...)] → 警告をエラーに変える属性
+- #[warn(...)] → 明示的に警告を出す属性
+
+用途によって警告の制御やコンパイラの挙動を調整

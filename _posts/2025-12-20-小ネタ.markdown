@@ -1,0 +1,139 @@
+---
+layout: post
+category: rust
+title: "小ネタ"
+---
+
+# file read - 一括
+
+file readを最短で行いたい。
+
+１行でfile readを書くと、下のようになるが、
+- mainに返り型`Result<(), Box<dyn std::error::Error>>`
+- mainの最後に`Ok(())`
+が必要になる。その他、useも省略して、フルパスで関数を書いた。結局色々書くこととなる。
+
+```rust
+//use std::fs；
+//use std::path::Path;
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let rf = std::fs::read_to_string(std::path::Path::new("src/main.rs"))?;
+    println!("file: {}", rf);
+    Ok(())
+}
+```
+
+# file read - 一行ずつ
+
+```rust
+use std::fs::File;
+use std::io::{self, BufRead, BufReader};
+
+fn main() -> io::Result<()> {
+    let file = File::open("input.txt")?;
+    let reader = BufReader::new(file);
+
+    for line in reader.lines() {
+        let line = line?; // io::Result<String> を処理
+        println!("{}", line);
+    }
+
+    Ok(())
+}
+```
+
+- `?`を使ったら、返り型`io::Result<()>`・値(`OK(())`)必要
+- `expect`で書けば不要になるけど、どちらも失敗した時に止まる。
+
+## Stringの処理
+
+文字コード、処理に合わせて都度調べたほうがいい(パターンも多すぎる)。
+<https://doc.rust-lang.org/std/string/struct.String.html>
+
+# String
+
+## 連結
+
+```rust
+let mut s:String = String::from("hello");
+```
+
+```rust
+s.push_str(" world!");
+// または
+s = format!("{} {}", s, "world!");
+
+println!("{}", s);
+```
+
+# http通信
+
+asyncを不使用のパターン:CLIなど使用される場面を扱う。ただStringにするところまで。
+
+```toml
+[dependencies]
+reqwest = { version = "0.11", features = ["blocking", "json"] }
+# jsonはオプション
+```
+
+```rust
+fn main() -> Result<(), reqwest::Error> {
+    let res = reqwest::blocking::get("https://httpbin.org/get")?
+        .text()?;
+
+    println!("{}", res);
+    Ok(())
+}
+```
+
+# JSON
+
+```toml
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+```
+
+```rust
+use serde::Deserialize;
+
+#[derive(Deserialize, Debug)]
+struct User {
+    id: u32,
+    name: String,
+}
+
+fn main() {
+    let json = r#"{ "id": 1, "name": "Alice" }"#;
+
+    let user: User = serde_json::from_str(json).unwrap();
+    println!("{:?}", user);
+}
+```
+
+## http + json
+
+`.json`がポイント
+
+```rust
+use serde::Deserialize;
+
+#[derive(Debug, Deserialize)]
+struct Response {
+    url: String,
+}
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let data: Response = reqwest::blocking::get("https://httpbin.org/get")?
+        .json()?;   // 内部で text + deserialize
+
+    println!("{:?}", data);
+    Ok(())
+}
+```
+
+### valueを返すには？
+
+- struct（必要な部分だけ）を作って、`変数.キー`で取り出す
+- `let url = v["url"].as_str().unwrap();`
+

@@ -11,7 +11,8 @@ filename=${filename//" "/"_"}
 cat > $filename <<PTEMPLATE
 ---
 layout: post
-category: 
+category: Uncategorized
+title: "${1}"
 ---
 
 PTEMPLATE

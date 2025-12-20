@@ -16,6 +16,17 @@ layout: default
 
 # Articles
 
+
+## Menu
+
+<ul>
+{% assign sorted_site_categories = site.categories | sort %}
+{% for category in sorted_site_categories %}
+<li>{{ category[0] }}</li>
+{% endfor %}
+</ul>
+
+
 {% assign sorted_site_categories = site.categories | sort %}
 {% for category in sorted_site_categories %}
 

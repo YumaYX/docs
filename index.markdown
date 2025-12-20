@@ -19,7 +19,7 @@ layout: default
 <ul>
 {% assign sorted_site_categories = site.categories | sort %}
 {% for category in sorted_site_categories %}
-<li><a href="/{{ site.baseurl }}/#{{ category[0] }}">{{ category[0]}}</a></li>
+<li><a href="/{{ site.title}}/#{{ category[0] }}">#{{ category[0]}}</a></li>
 {% endfor %}
 </ul>
 

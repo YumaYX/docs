@@ -1,0 +1,59 @@
+---
+layout: post
+category: rust
+title: インストール
+---
+
+# Install Rust on RHEL
+
+```sh
+dnf -y install gcc
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+```
+
+# Install Rust on Mac(Homebrew)
+
+```sh
+brew install rustup-init
+rustup-init -y --profile default --no-modify-path
+#rustup-init
+```
+
+# PATH
+
+```sh
+source $HOME/.cargo/env
+```
+
+```sh
+rustup self update
+rustup update
+rustup component add clippy
+```
+
+---
+
+with docker
+
+# new
+
+```sh
+docker run --rm -v $(pwd):/m -w /m rust:latest cargo init . 
+```
+
+# build
+
+```sh
+docker run --rm -v $(pwd):/m -w /m rust:latest cargo build
+```
+
+# run
+
+```sh
+docker run --rm -v $(pwd):/m -w /m rust:latest cargo run
+```
+
+
+```sh
+alias ccargo='docker run --rm -v $(pwd):/m -w /m rust:latest cargo'
+```

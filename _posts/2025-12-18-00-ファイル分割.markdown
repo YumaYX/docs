@@ -1,0 +1,53 @@
+---
+layout: post
+category: rust
+title: ファイル分割
+---
+
+# src/lib.rs
+
+- cargoのsrc下の`lib.rs`は関数などを書けば、`main.rs`から使用できる。
+
+```rust
+// lib.rs
+pub fn hello() {
+    println!("Hello from lib!");
+}
+```
+
+```rust
+// main.rs
+use クレート名::hello; // use crate::hello;は不可だった。
+fn main() {
+    hello();
+}
+```
+
+---
+
+# src/dir/mod.rs
+
+```rust
+// main.rs
+mod dir;
+use crate::dir::my_function;
+fn main() {
+    my_function();
+}
+```
+
+```rust
+pub fn my_function () {
+    println!("my_function");
+}
+```
+
+# Environment
+
+```
+$ cargo -V
+cargo 1.92.0 (Homebrew)
+$ rustc -V
+rustc 1.92.0 (ded5c06cf 2025-12-08) (Homebrew)
+$ 
+```

@@ -23,6 +23,8 @@ layout: default
 {% endfor %}
 </ul>
 
+---
+
 # Articles
 
 {% assign sorted_site_categories = site.categories | sort %}

@@ -10,7 +10,7 @@ layout: default
 - [Workshop](/Workshop/)
 - [R-X](/R-X/)
 - [lllmd](/lllmd/)
-- [r3](/r3/)
+- [practice2](/practice2/)
 
 ---
 

@@ -54,8 +54,8 @@ Sub proc_xxxx()
 
     ''' TODO:
     ''' inputのlineについて、処理を行う。
-    ''' output_ws(y, 1).valueに、処理した内容を入れていく。
-    output_ws.Cells(y, 1).value = 
+    ''' output_ws(y, 1).Valueに、処理した内容を入れていく。
+    output_ws.Cells(y, 1).Value = 
     ''' output_wsに値を入れたあと、yをインクリメントしていく。
     y = y + 1
   Next i

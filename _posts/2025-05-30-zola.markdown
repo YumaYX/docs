@@ -1,7 +1,7 @@
 ---
 layout: post
 category: rust
-title: Zora
+title: Zola
 ---
 
 # init

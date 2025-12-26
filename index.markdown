@@ -10,6 +10,7 @@ layout: default
 - [Workshop](/Workshop/)
 - [R-X](/R-X/)
 - [lllmd](/lllmd/)
+- [VBANotes](/VBANotes/)
 - [practice2](/practice2/)
 
 ---

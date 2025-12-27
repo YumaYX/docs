@@ -1,0 +1,54 @@
+---
+layout: post
+category: rust
+title: "自作crateクレイト"
+---
+
+自作のcrateを使用する。
+
+# crate公開 @ GitHub
+
+```sh
+cargo new --lib <name>
+```
+
+1. シンプルな構成として、name/src/lib.rsに、関数を追加する（追加されている）。
+1. pushして公開する。
+  - 特に、packageにするなど特別に手順は不要。
+
+---
+
+# 公開したcrateを使用する。
+
+crateの名前をrapiとする。
+
+```toml
+[dependencies]
+rapi = {git = "https://github.com/YumaYX/rapi"}
+```
+
+```rust
+extern crate rapi;
+
+fn main() {
+    let sum = rapi::add(1, 2);
+    println!("sum: {}", sum);
+}
+```
+
+## 出力
+
+```
+~/a  cargo run
+   Compiling rapi v0.1.0 (https://github.com/YumaYX/rapi#bb47af42)
+   Compiling a v0.1.0 (/Users/user/a)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.27s
+     Running `target/debug/a`
+sum: 3
+~/a  
+```
+
+#### Reference
+
+<https://qiita.com/nemutas/items/27aed12959fc1035029d>
+

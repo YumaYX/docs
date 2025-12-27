@@ -38,3 +38,27 @@ tar xvf data.tar.gz raw2
 | z | gzip |
 | j | bzip2 |
 | J | xz |
+
+---
+
+ファイルを残さないパターン（ディレクトリは不可）
+
+```
+/tmp/compress  xz a b c; ls -1
+a.xz
+b.xz
+c.xz
+/tmp/compress  
+```
+
+ファイルを残すパターン
+
+```
+/tmp/compress  tar cJf all.xz a b c; ls -1
+a
+all.xz
+b
+c
+/tmp/compress  
+```
+

@@ -54,9 +54,9 @@ c.xz
 ファイルを残すパターン
 
 ```
-/tmp/compress  tar cJf all.xz a b c; ls -1
+/tmp/compress  tar cJf all.tar.xz a b c; ls -1
 a
-all.xz
+all.tar.xz
 b
 c
 /tmp/compress  

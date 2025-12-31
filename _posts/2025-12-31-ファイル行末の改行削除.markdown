@@ -1,0 +1,10 @@
+---
+layout: post
+category: perl
+title: "ファイル行末の改行削除"
+---
+
+```sh
+perl -0777 -i -pe 's/[\r\n]+\z//' <file name>
+```
+

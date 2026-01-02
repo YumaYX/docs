@@ -25,6 +25,22 @@ grep "^[XYZ]"
 grep "^[X-Z]"
 ```
 
+# grep - or
+
+## 一文字のor。
+
+```sh
+grep '[abcd]'
+```
+
+- `|`は使わないということ。
+
+## 文字列のor。
+
+```sh
+grep -E 'abc|def'
+```
+
 ### 時間抽出例
 
 ```sh

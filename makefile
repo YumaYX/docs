@@ -1,10 +1,12 @@
 s:	install
+	sh gen_post_index.sh
 	bundle exec jekyll server -H 0.0.0.0 -P 4001
 
 install:
 	bundle install
 
 pub:
+	rm -f ./*.markdown
 	git status
 	sleep 5
 	git add .

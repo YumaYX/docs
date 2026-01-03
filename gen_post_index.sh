@@ -23,33 +23,6 @@ permalink: /${line}/
 EOF
 done
 
-cat <<'EOF' > index.markdown
----
-layout: default
----
-
-# Links
-
-- [GitHub Repositories](https://github.com/YumaYX?tab=repositories)
-- [Works](/works/) / [Works - Ja](/works/ja.index.html)
-- [Ruby Demo Doc](https://yumayx.github.io/rubydemodoc/)
-- [Workshop](/Workshop/)
-- [R-X](/R-X/)
-- [lllmd](/lllmd/)
-- [VBANotes](/VBANotes/)
-- [practice2](/practice2/)
-
----
-
-# Articles
-
-EOF
-
-echo "- ["All List"]({{ site.baseurl }}/all/)\n" >> index.markdown
-cat _posts/* | grep ^categor | sort | uniq | awk '{print $2}' | while read line
-do
-  echo "- ["${line}"]({{ site.baseurl }}/${line}/)" >> index.markdown
-done
 
 cat <<'EOF' > list.markdown
 ---
@@ -71,5 +44,47 @@ permalink: /all/
 {% endfor %}
 </ul>
 {% endfor %}
+EOF
+
+
+
+cat <<'EOF' > index.markdown
+---
+layout: default
+---
+
+<div class="row">
+
+<div class="one-half column">
+<h2>Articles</h2>
+
+<ul><li><a href="{{ site.baseurl }}/all/">All List</a></li></ul>
+<ul>
+EOF
+
+cat _posts/* | grep ^categor | sort | uniq | awk '{print $2}' | while read line
+do
+  echo "<li><a href=\"{{ site.baseurl }}/${line}/\">${line}</a></li>" >> index.markdown
+done
+
+cat <<'EOF' >> index.markdown
+</ul>
+</div>
+
+<div class="one-half column">
+<h2>Links</h2>
+<ul>
+  <li><a href="https://github.com/YumaYX?tab=repositories">GitHub Repositories</a></li>
+  <li><a href="/works/">Works</a> / <a href="/works/ja.index.html">Works - Ja</a></li>
+  <li><a href="https://yumayx.github.io/rubydemodoc/">Ruby Demo Doc</a></li>
+  <li><a href="/Workshop/">Workshop</a></li>
+  <li><a href="/R-X/">R-X</a></li>
+  <li><a href="/lllmd/">lllmd</a></li>
+  <li><a href="/VBANotes/">VBANotes</a></li>
+  <li><a href="/practice2/">practice2</a></li>
+</ul>
+</div>
+
+</div>
 
 EOF

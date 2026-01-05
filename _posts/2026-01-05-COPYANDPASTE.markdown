@@ -20,6 +20,8 @@ title: "COPY AND PASTE"
 <div id="winhosts">C:\Windows\System32\drivers\etc\hosts</div>
 <button onclick="copyById('winhosts')">Copy</button>
 
+
+
 <script>
   function getTodayJST(format) {
     const d = new Date(
@@ -63,4 +65,74 @@ title: "COPY AND PASTE"
       weekday: 'short'
     }) +
     ')';
+</script>
+
+
+---
+
+<div id="appList"></div>
+
+<script>
+const apps = [
+  ["エクスプローラー", "explorer"],
+  ["コマンドプロンプト", "cmd"],
+  ["PowerShell", "powershell"],
+  ["タスクマネージャー", "taskmgr"],
+  ["コントロールパネル", "control"],
+  ["システム構成", "msconfig"],
+  ["サービス", "services.msc"],
+  ["イベントビューアー", "eventvwr"],
+  ["パフォーマンスモニター", "perfmon"],
+  ["リソースモニター", "resmon"],
+
+  ["コンピューターの管理", "compmgmt.msc"],
+  ["ディスクの管理", "diskmgmt.msc"],
+  ["デバイスマネージャー", "devmgmt.msc"],
+  ["ローカルユーザーとグループ", "lusrmgr.msc"],
+  ["ローカルグループポリシー", "gpedit.msc"],
+  ["ローカルセキュリティポリシー", "secpol.msc"],
+
+  ["システム情報", "msinfo32"],
+  ["DirectX 診断ツール", "dxdiag"],
+  ["Windows バージョン", "winver"],
+
+  ["メモ帳", "notepad"],
+  ["電卓", "calc"],
+  ["ペイント", "mspaint"],
+  ["WordPad", "write"],
+  ["切り取りツール", "snippingtool"],
+  ["スクリーンキーボード", "osk"],
+  ["文字コード表", "charmap"],
+
+  ["ネットワーク接続", "ncpa.cpl"],
+  ["インターネットオプション", "inetcpl.cpl"],
+  ["Windows Defender ファイアウォール", "wf.msc"],
+
+  ["ユーザーアカウント", "netplwiz"],
+  ["ディスククリーンアップ", "cleanmgr"],
+  ["Windows の機能", "optionalfeatures"],
+  ["拡大鏡", "magnify"]
+];
+
+const makeId = cmd => "id_" + cmd.replace(/[^a-zA-Z0-9]/g, "");
+
+function copyById(id) {
+  navigator.clipboard.writeText(
+    document.getElementById(id).textContent
+  );
+}
+
+function renderApps(apps, targetId) {
+  document.getElementById(targetId).innerHTML =
+    apps.map(([name, cmd]) => {
+      const id = makeId(cmd);
+      return `
+        <h2>${name}</h2>
+        <div id="${id}">${cmd}</div>
+        <button onclick="copyById('${id}')">Copy</button>
+      `;
+    }).join("");
+}
+
+renderApps(apps, "appList");
 </script>

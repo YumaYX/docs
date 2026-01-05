@@ -7,7 +7,7 @@ title: "rust loop update with ollama"
 ```bash
 #!/bin/bash
 
-while true; do
+for i in $(seq 5); do
 
 cargo build > output_cargo_build.txt 2>&1
 
@@ -21,10 +21,11 @@ $(cat output_cargo_build.txt)
 EOF
 
 cp -v src/main.rs src/main.rs.$(date +%Y%m%d%H%M%S)-${$}.bak
-ollama run rnj-1 "\"$(cat output_prompt.txt)\"" | /usr/local/bin/ys-ecb | tee src/main.rs
+ollama run rnj-1 "\"$(cat output_prompt.txt)\"" | ys-ecb | tee src/main.rs
 
 echo sleep 30
 date
 sleep 30
 done
 ```
+

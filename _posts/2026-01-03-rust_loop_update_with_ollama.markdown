@@ -20,7 +20,7 @@ $(cat src/main.rs)
 $(cat output_cargo_build.txt)
 EOF
 
-cp -v src/main.rs src/main.rs.bak
+cp -v src/main.rs src/main.rs.$(date +%Y%m%d%H%M%S)-${$}.bak
 ollama run rnj-1 "\"$(cat output_prompt.txt)\"" | /usr/local/bin/ys-ecb | tee src/main.rs
 
 echo sleep 30

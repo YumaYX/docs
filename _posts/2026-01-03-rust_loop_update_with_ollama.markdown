@@ -22,7 +22,9 @@ $(cat output_cargo_build.txt)
 EOF
 
 cp -v src/main.rs src/main.rs.$(date +%Y%m%d%H%M%S)-${$}.bak
-ollama run rnj-1 "\"$(cat output_prompt.txt)\"" | awk 'BEGIN{in_block=0} /^```/ {in_block = !in_block; next} in_block' | tee src/main.rs
+ollama run rnj-1 "\"$(cat output_prompt.txt)\"" \
+  | awk 'BEGIN{in_block=0} /^```/ {in_block = !in_block; next} in_block' \
+  | tee src/main.rs
 
 date
 

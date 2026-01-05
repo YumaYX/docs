@@ -1,6 +1,6 @@
 ---
 layout: post
-category: uncategorized
+category: windows
 title: "COPY AND PASTE"
 ---
 
@@ -11,8 +11,14 @@ title: "COPY AND PASTE"
 <div id="d3"></div>
 <button onclick="copyById('d3')">Copy</button>
 
-<div id=winhome>C:\Users\%username%\</div>
+<div id="youbi"></div>
+<button onclick="copyById('youbi')">Copy</button>
+
+<div id="winhome">C:\Users\%username%\</div>
 <button onclick="copyById('winhome')">Copy</button>
+
+<div id="winhosts">C:\Windows\System32\drivers\etc\hosts</div>
+<button onclick="copyById('winhosts')">Copy</button>
 
 <script>
   function getTodayJST(format) {
@@ -49,3 +55,12 @@ title: "COPY AND PASTE"
   }
 </script>
 
+<script>
+  document.getElementById('youbi').textContent =
+    '(' +
+    new Date().toLocaleDateString('ja-JP', {
+      timeZone: 'Asia/Tokyo',
+      weekday: 'short'
+    }) +
+    ')';
+</script>

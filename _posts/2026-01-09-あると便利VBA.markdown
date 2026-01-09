@@ -1,0 +1,110 @@
+---
+layout: post
+category: excel
+title: "あると便利VBA"
+---
+
+あると便利VBA
+
+# idea
+
+1. 列書き出し
+1. シート書き出し
+
+---
+
+以下、ChatGPT出力(2026年 1月 9日 金曜日 18時04分03秒 JST)。実行環境が無いため、もちろん実行テストはしていない。
+
+1. Excel用のVBAマクロを書いて。アクティブシートのアクティブセルの列を、１行目から、コンテンツの最終行までをテキストファイルに出力する（空白セルはスキップ）。テキスト出力ファイル名は、「シート名+日時分秒.txt」とする。
+
+```vba
+Sub ExportActiveColumnToText()
+    Dim ws As Worksheet
+    Dim targetCol As Long
+    Dim lastRow As Long
+    Dim r As Long
+    Dim filePath As String
+    Dim fileName As String
+    Dim fileNo As Integer
+    Dim cellValue As String
+
+    Set ws = ActiveSheet
+    targetCol = ActiveCell.Column
+
+    ' ブックが保存されているか確認
+    If ThisWorkbook.Path = "" Then
+        MsgBox "ブックを保存してから実行してください。", vbExclamation
+        Exit Sub
+    End If
+
+    ' 対象列の最終行を取得
+    lastRow = ws.Cells(ws.Rows.Count, targetCol).End(xlUp).Row
+
+    ' ファイル名作成（シート名＋日時分秒）
+    fileName = ws.Name & "_" & Format(Now, "yyyymmdd_hhnnss") & ".txt"
+    filePath = ThisWorkbook.Path & "\" & fileName
+
+    fileNo = FreeFile
+    Open filePath For Output As #fileNo
+
+    ' 1行目から最終行まで出力（空白はスキップ）
+    For r = 1 To lastRow
+        cellValue = Trim(ws.Cells(r, targetCol).Value)
+        If cellValue <> "" Then
+            Print #fileNo, cellValue
+        End If
+    Next r
+
+    Close #fileNo
+
+    MsgBox "テキストファイルを出力しました。" & vbCrLf & filePath, vbInformation
+End Sub
+```
+
+2. Excel用のVBAマクロを書いて。アクティブシートの全セルの内容（コンテンツの最終行、最終列全て）をテキストファイルに出力する（空白セルはスキップ）。テキスト出力ファイル名は、「シート名+日時分秒.txt」とする。
+
+```vba
+Sub ExportAllCellsToText()
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim lastCol As Long
+    Dim r As Long, c As Long
+    Dim filePath As String
+    Dim fileName As String
+    Dim fileNo As Integer
+    Dim cellValue As String
+
+    Set ws = ActiveSheet
+
+    ' ブックが保存されているか確認
+    If ThisWorkbook.Path = "" Then
+        MsgBox "ブックを保存してから実行してください。", vbExclamation
+        Exit Sub
+    End If
+
+    ' 最終行・最終列を取得
+    lastRow = ws.Cells.Find("*", SearchOrder:=xlByRows, SearchDirection:=xlPrevious).Row
+    lastCol = ws.Cells.Find("*", SearchOrder:=xlByColumns, SearchDirection:=xlPrevious).Column
+
+    ' ファイル名作成（シート名＋日時分秒）
+    fileName = ws.Name & "_" & Format(Now, "yyyymmdd_hhnnss") & ".txt"
+    filePath = ThisWorkbook.Path & "\" & fileName
+
+    fileNo = FreeFile
+    Open filePath For Output As #fileNo
+
+    ' 全セル走査（空白はスキップ）
+    For r = 1 To lastRow
+        For c = 1 To lastCol
+            cellValue = Trim(ws.Cells(r, c).Value)
+            If cellValue <> "" Then
+                Print #fileNo, cellValue
+            End If
+        Next c
+    Next r
+
+    Close #fileNo
+
+    MsgBox "テキストファイルを出力しました。" & vbCrLf & filePath, vbInformation
+End Sub
+```

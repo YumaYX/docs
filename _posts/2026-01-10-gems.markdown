@@ -1,0 +1,58 @@
+---
+layout: post
+category: ruby
+title: "gems"
+---
+
+## Gemfile
+- そのリポジトリ（開発環境）を動かすための依存管理
+- gem 利用者には影響しない
+
+## gemspec
+- gem 自体の依存関係を定義する本体
+
+## add_dependency
+- 実行時必須の依存関係
+- `gem install` / `bundle install` でインストールされる
+
+## add_development_dependency
+- gem 開発用の依存関係
+- gem 利用者にはインストールされない
+
+## gem build
+- 依存関係の解決・インストールはしない
+- dependency 情報を `.gem` に封入するだけ
+
+## development 判定のタイミング
+- gemspec 評価時に runtime / development に分類される
+- install 時に runtime dependency のみが有効化される
+
+---
+
+## 一文まとめ
+**「gemspec で役割を決め、build で梱包し、install で runtime だけが効く」**
+
+---
+
+## インストール先の違い
+
+### gem install
+
+* RubyGems が管理するグローバル（または rbenv/rvm ごとの）gem ディレクトリにインストール
+* runtime dependency のみインストール
+* development dependency は無視
+* 例: `gem install my_gem-0.1.0.gem`
+
+### bundle install
+
+* Bundler が管理する **プロジェクト単位の Gemfile.lock に基づく依存解決**
+* デフォルトでは **システム全体には入らない**（`bundle exec` 経由で利用）
+* Gemfile に `gemspec` を書いておくと development dependency も含めてインストール可能
+* 例: `bundle install`
+
+---
+
+## 一文まとめ
+
+**「gemspec で依存の役割を決め、build で梱包し、gem install は runtime だけ、bundle install は開発環境も含めてプロジェクト内にインストールされる」**
+

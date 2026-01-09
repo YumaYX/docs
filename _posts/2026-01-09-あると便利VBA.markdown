@@ -17,7 +17,7 @@ title: "あると便利VBA"
 
 1. Excel用のVBAマクロを書いて。アクティブシートのアクティブセルの列を、１行目から、コンテンツの最終行までをテキストファイルに出力する（空白セルはスキップ）。テキスト出力ファイル名は、「シート名+日時分秒.txt」とする。
 
-```vba
+```vb
 Sub ExportActiveColumnToText()
     Dim ws As Worksheet
     Dim targetCol As Long
@@ -63,7 +63,7 @@ End Sub
 
 2. Excel用のVBAマクロを書いて。アクティブシートの全セルの内容（コンテンツの最終行、最終列全て）をテキストファイルに出力する（空白セルはスキップ）。テキスト出力ファイル名は、「シート名+日時分秒.txt」とする。
 
-```vba
+```vb
 Sub ExportAllCellsToText()
     Dim ws As Worksheet
     Dim lastRow As Long

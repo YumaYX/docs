@@ -20,7 +20,7 @@ eee
 
 ```sh
 mkdir -p xx
-csplit -f xx/xx -q input.txt /^# / '{*}'
+csplit -f xx/xx -n 9 -q input.txt /^# / '{*}'
 ```
 
 - gnuとfreebsdでオプションが異なるので注意

@@ -19,9 +19,9 @@ eee
 ```
 
 ```sh
-csplit input.txt '/^# /' '{*}'
+mkdir -p xx
+csplit -f xx/xx -q input.txt /^# / '{*}'
 ```
 
----
-
-gnuとfreebsdでオプションが異なるので注意
+- gnuとfreebsdでオプションが異なるので注意
+- 削除/処理する場合は、`find xx -type f -name "xx*" | xargs`に`rm`など。

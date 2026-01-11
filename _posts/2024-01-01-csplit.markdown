@@ -1,0 +1,27 @@
+---
+layout: post
+category: commands
+---
+
+見出しごとに分割する
+例：# で始まる行を見出しとして分割
+入力ファイル input.txt
+
+```
+# A
+aaa
+bbb
+# B
+ccc
+ddd
+# C
+eee
+```
+
+```sh
+csplit input.txt '/^# /' '{*}'
+```
+
+---
+
+gnuとfreebsdでオプションが異なるので注意

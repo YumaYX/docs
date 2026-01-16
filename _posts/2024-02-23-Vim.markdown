@@ -3,6 +3,16 @@ layout: post
 category: editor
 ---
 
+# ビジュアルブロックモード
+
+Vimで複数行の先頭に同じ文字やテキストを一括で入力
+
+1. Ctrl+v を押してビジュアルブロックモードに入る
+1. 先頭に文字を追加したい行を上下に選択
+1. I（大文字アイ）を押す
+1. 入力したい文字をタイプする
+1. Esc を押す。
+
 # Replace
 
 In Vim editor, you can replace strings using the `:s` command, which stands for substitute. Here's a basic overview:

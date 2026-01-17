@@ -1,0 +1,38 @@
+---
+layout: post
+category: excel
+title: "Excel VBAの型"
+---
+
+- Mainと処理関数を分けるといいのでは。
+- 処理ひとつひとつは関数に分けるべきでは。
+
+```vb
+Sub Main()
+  Dim filename As String: filename = Application.GetOpenFilename(FileFilter:="Excelファイル,*.xls*,CSVファイル,*.csv")
+  Dim wb As Worksheet: Set wb = Workbooks(filename)
+  Set wb = Workbooks.Open(filename)
+  Dim ws As Worksheet: Set ws = Sheets("Sheet1")
+
+  ' 処理1
+  Call f1(ws)
+
+  ' 処理2
+  Call f2(ws)
+  
+  ' ...
+
+  'wb.save, wb.saveas
+  wb.Close
+End Sub
+```
+
+```vb
+Sub f1 (sht As Worksheet)
+  'sht.Cells(..
+End Sub
+
+Sub f2 (sht As Worksheet)
+  'sht.Cells(..
+End Sub
+```

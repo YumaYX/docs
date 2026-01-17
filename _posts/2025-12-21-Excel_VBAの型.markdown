@@ -9,10 +9,15 @@ title: "Excel VBAの型"
 
 ```vb
 Sub Main()
-  Dim filename As String: filename = Application.GetOpenFilename(FileFilter:="Excelファイル,*.xls*,CSVファイル,*.csv")
-  Dim wb As Worksheet: Set wb = Workbooks(filename)
+  ' 選択式
+  Dim filename As String
+  filename = Application.GetOpenFilename(FileFilter:="Excelファイル,*.xls*,CSVファイル,*.csv")
+  If filename = "False" Then Exit Sub ' キャンセル対応
+  Dim wb As Workbook
   Set wb = Workbooks.Open(filename)
-  Dim ws As Worksheet: Set ws = Sheets("Sheet1")
+  Dim ws As Worksheet
+  Set ws = wb.Sheets("Sheet1")
+
 
   ' 処理1
   Call f1(ws)

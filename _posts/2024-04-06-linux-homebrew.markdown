@@ -1,3 +1,4 @@
+
 ---
 layout: post
 category: linux
@@ -9,7 +10,7 @@ title: "Install_homebrew2"
 
 ## Linux版の操作条件
 
-- 更新やパッケージ操作は必ず linuxbrew ユーザー行う。
+- 更新やパッケージ操作は必ず linuxbrew ユーザーにて行う。
 - 全員が既存パッケージを使えますが、インストールや更新は linuxbrew ユーザーでのみ行うのが安全
   - root書き込みを行うと、新規ファイルの所有者が、rootになる。他ユーザーでも同じ。brewを共有できなくなる。
   - linuxbrewのフォルダを全ユーザーに共有しておくのが、ベスト（らしい）

@@ -7,14 +7,17 @@ category: gitlab
 
 # GitLab CLI (glab)
 
+snapdで`glab`をインストールしたところ、rootでしか正常動作しなかった。`brew`で入れたところ、フリーズせずに、動作した。
+
 ```sh
+# rootでしか通常動作しなかった。
 sudo dnf install epel-release -y
 sudo dnf install snapd -y
 
 sudo systemctl restart snapd
 snap install glab
 
-# 最後いらないなら削除
+# 最後いらないなら削除(snapdの挙動？)
 #sudo systemctl stop snapd
 #sudo dnf remove snapd -y
 ```
@@ -43,7 +46,9 @@ brew install gh
 gh auth login
 ```
 
-#### @ rhel系(未検証)
+#### @ rhel系(未検証:検証する前にbrewを)
+
+未検証:検証する前にbrewを入れたため、dnf経由では達成する意義が無くなった。
 
 ```sh
 sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
@@ -78,8 +83,11 @@ done
 
 ```sh
 cat mylist | awk '{print $1}' | awk -F/ '{print $2}' | GITLAB_HOST=localhost:8080 xargs -I@ glab repo create @ -s
-#なぜかrootでしかできなかった。snapdの問題？一般ユーザーでGITLAB_HOSTを指定してもダメだった。
 ```
+
+- なぜかrootでしかできなかった。
+- 一般ユーザーで`GITLAB_HOST`を指定してもダメだった。
+- brewでインストールした場合、一般ユーザーで、通常動作したので、snapdが関連していると考得られる。
 
 ## push to my gitlab
 

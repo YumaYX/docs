@@ -62,7 +62,7 @@ gh auth login
 ```sh
 mkdir -p github-reops; cd $_
 
-gh repo list > mylist
+gh repo list -L 100 > mylist
 # ここでは、privateを含むのレポジトリ名を取っておきたい。
 ```
 

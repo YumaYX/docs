@@ -78,10 +78,8 @@ cat <<'EOF' >> index.markdown
   <li><a href="/works/">Works</a> / <a href="/works/ja.index.html">Works - Ja</a></li>
   <li><a href="https://yumayx.github.io/rubydemodoc/">Ruby Demo Doc</a></li>
   <li><a href="/Workshop/">Workshop</a></li>
-  <li><a href="/R-X/">R-X</a></li>
   <li><a href="/lllmd/">lllmd</a></li>
   <li><a href="/VBANotes/">VBANotes</a></li>
-  <li><a href="/practice2/">practice2</a></li>
 </ul>
 </div>
 

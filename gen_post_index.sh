@@ -56,7 +56,7 @@ layout: default
 <div class="row">
 
 <div class="one-half column">
-<h2>ARTICLES</h2>
+<h1>ARTICLES</h1>
 
 <ul><li><a href="{{ site.baseurl }}/all/">All List</a></li></ul>
 <ul>
@@ -72,7 +72,7 @@ cat <<'EOF' >> index.markdown
 </div>
 
 <div class="one-half column">
-<h2>LINKS</h2>
+<h1>LINKS</h1>
 <ul>
   <li><a href="https://github.com/YumaYX?tab=repositories">GitHub Repositories</a></li>
   <li><a href="/works/">Works</a> / <a href="/works/ja.index.html">Works - Ja</a></li>

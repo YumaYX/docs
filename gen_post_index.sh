@@ -10,6 +10,7 @@ title: ${line}
 permalink: /${line}/
 ---
 
+<section>
 <h2 id="{{ category[0] }}">{{ category[0] | capitalize }}</h2>
 <ul>
 {% assign sorted_site_posts = site.posts | sort %}
@@ -19,7 +20,7 @@ permalink: /${line}/
 {% endif %}
 {% endfor %}
 </ul>
-
+</section>
 EOF
 done
 
@@ -31,6 +32,8 @@ title: All List
 permalink: /all/
 ---
 
+
+<section>
 {% assign sorted_site_categories = site.categories | sort %}
 {% for category in sorted_site_categories %}
 
@@ -44,6 +47,7 @@ permalink: /all/
 {% endfor %}
 </ul>
 {% endfor %}
+</section>
 EOF
 
 
@@ -53,6 +57,8 @@ cat <<'EOF' > index.markdown
 layout: default
 ---
 
+
+<section>
 <div class="row">
 
 <div class="one-half column">
@@ -84,5 +90,7 @@ cat <<'EOF' >> index.markdown
 </div>
 
 </div>
+
+</section>
 
 EOF

@@ -1,0 +1,242 @@
+---
+layout: post
+category: ruby 
+title: "Railsとデータ操作"
+---
+
+# モチベーション
+
+- データのコントロール、橋渡し等
+- データコントロールをメインにまとまった資料があまり見つからない（ほとんど調べてない）、Railsって、そういう用途じゃないからな。でも最終的にやってることは、一緒で、デジタルデータの操作。
+
+1. 作成するモデル・使い方
+
+Webページを扱う。モデルは以下の内容で作成する。
+
+| column1* | column2 | column3 | column4 |
+|---|---|---|---|
+| url | title | access_flag | content |
+
+# プロジェクトの作り方
+
+## ディレクトリ作成
+
+```sh
+mkdir bookmark
+cd $_
+bundle init
+
+echo 'gem "rails"' >> Gemfile
+```
+
+## Install Rails
+
+```sh
+# install rails
+bundle install
+
+# make rails project
+bundle exec rails new --minimal .
+```
+
+##### Reference
+
+- <https://railsdoc.com/page/rails_new>
+- <https://qiita.com/morioka1206/items/d9297cc5d5085422acac>
+
+## scaffoldを使用した機能作り
+
+| - | - |
+| --- | --- |
+| モデル名 | Page |
+| カラム1* | url:string |
+| カラム2 | title:string |
+| カラム3 | access_flag:boolean |
+| カラム4 | content:text |
+
+> `rails generate scaffold 名前 [カラム名:型[:index]..] [オプション]`
+
+```sh
+bundle exec rails g scaffold Page url:string title:string access_flag:boolean content:text
+```
+
+## ユニーク制約
+
+### migrateファイルにて
+
+生成される`db/migrate/yyyymmddhhmmss_create_pages.rb`編集する。
+
+```ruby
+add_index :pages, :url, unique: true
+```
+
+をchangeメソッドの中に追加する。
+
+マイグレートする。
+
+```sh
+bundle exec rails db:migrate
+```
+
+##### Reference
+
+- <https://qiita.com/devactken/items/df5422d33768a05969eb>
+
+
+# データ取り込み
+
+## データの用意
+
+データを用意する。今回は、URLs。
+
+```sh
+cat <<'EOF'> urls.txt
+https://yumayx.github.io/works/
+https://github.com/YumaYX
+https://yumayx.github.io/YS1/
+EOF
+```
+
+`bundle exec rails console`にて、追加していく。
+
+```ruby
+File.foreach("urls.txt") do |line|
+  url = line.strip
+  next if url.blank?
+
+  page = Page.new(url: url)
+
+  unless page.save
+    puts "NG: #{url} / #{page.errors.full_messages}"
+  end
+end
+
+Page.all
+```
+
+rakeタスクにしてもいい。
+
+# データ操作
+
+## rails console
+
+簡単な操作を行う場合。`bundle exec rails console`にて、例えばタイトルを全て大文字にする。
+
+```ruby
+Page.find_each do |page|
+  next unless page.title.present?
+
+  page.update(title: page.title.upcase)
+end
+```
+
+##### Reference
+
+- <https://railsguides.jp/active_record_querying.html>
+
+## タスクで扱う場合
+
+少し複雑な操作、何度も繰り返す場合。URLにアクセスして、タイトルを取得する。
+
+```sh
+bundle exec rails generate task update_titles
+vim lib/tasks/update_titles.rake
+```
+
+```ruby
+# lib/tasks/update_titles.rake
+namespace :data do
+  desc "Update titles from URLs"
+  task update_titles: :environment do
+    require 'open-uri'
+    require 'nokogiri'
+
+    Page.find_each do |page|
+      next unless page.url.present?
+
+      begin
+        html = URI.open(page.url, read_timeout: 5)
+        doc = Nokogiri::HTML(html)
+        title = doc.at('title')&.text
+
+        if title.present?
+          page.update(title: title)
+          puts "Updated: #{page.url}"
+        else
+          puts "No title: #{page.url}"
+        end
+      rescue => e
+        puts "Error: #{page.url} (#{e.message})"
+      end
+    end
+  end
+end
+```
+
+```sh
+bundle exec rake data:update_titles
+```
+
+## 保存時に加工したい場合（DBに保存される値を変える）
+
+```ruby
+# example
+class User < ApplicationRecord
+  before_save :normalize_name
+
+  private
+
+  def normalize_name
+    self.name = name.strip.capitalize
+  end
+end
+```
+
+# データを見たい
+
+## アクセス方法
+
+```sh
+bundle exec rails server
+# rails server -b 0.0.0.0
+```
+
+<http://localhost:3000/pages>にアクセスする。ドメイン名は適宜変更する。
+
+## 見た目(html構成)を変えたい
+
+データを扱いたいだけなので、あんまり見たいということは無いが、デバッグ用に。他に、htmlやmarkdown生成には、役立つかもしれない。
+
+この辺りを変えてあげればいいのかも。
+
+```
+app/views/pages/_form.html.erb
+app/views/pages/_page.html.erb
+app/views/pages/edit.html.erb
+app/views/pages/index.html.erb
+app/views/pages/new.html.erb
+app/views/pages/show.html.erb
+```
+
+`_`始まりは、他のビューから呼ばれる部品。`<%= render 'page' %>`などで使用できる。
+
+# 出力・応用
+
+タスクに登録したり、`bundle exec rails console`で、Rubyでできることは、なんでもできる。
+
+# その他
+
+- 命名規則参考
+  - <https://qiita.com/pank24ever/items/b3698c400d7a5fb59914>
+
+# Environments
+
+```
+$ ruby -v
+ruby 4.0.0 (2025-12-25 revision 553f1675f3) +PRISM [x86_64-linux]
+$ 
+
+$ bundle exec rails -v
+Rails 8.1.3
+$ 
+```

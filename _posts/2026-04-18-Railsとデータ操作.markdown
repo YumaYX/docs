@@ -1,6 +1,6 @@
 ---
 layout: post
-category: ruby 
+category: ruby
 title: "Railsとデータ操作"
 ---
 # モチベーション

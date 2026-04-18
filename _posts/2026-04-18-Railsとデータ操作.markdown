@@ -3,13 +3,18 @@ layout: post
 category: ruby 
 title: "Railsとデータ操作"
 ---
-
 # モチベーション
 
-- データのコントロール、橋渡し等
-- データコントロールをメインにまとまった資料があまり見つからない（ほとんど調べてない）、Railsって、そういう用途じゃないからな。でも最終的にやってることは、一緒で、デジタルデータの操作。
+- データのコントロールを規則的に実施したい。
+- Railsを使ったデータ操作メインにまとまった資料をあまり目にしない。Railsって、そういう用途じゃないからな。でも最終的にやってることは、一緒なので、操作についてまとめる。
+- Rails使ってまでやることかと言われると、そこまでじゃないけど、自分で足回り書くのもめんどいし、楽しいじゃんというところ。
+- 爆速で、データベースにデータをぶち込んで、データ操作したいなど。
 
-1. 作成するモデル・使い方
+## ストラテジー
+
+Rails特に`rails console`を使って、Rubyを書いてデータ操作する。ほぼActive Record。
+
+## 作成するモデル・使い方
 
 Webページを扱う。モデルは以下の内容で作成する。
 
@@ -19,19 +24,14 @@ Webページを扱う。モデルは以下の内容で作成する。
 
 # プロジェクトの作り方
 
-## ディレクトリ作成
-
 ```sh
+# make dir
 mkdir bookmark
 cd $_
 bundle init
 
+# Install Rails
 echo 'gem "rails"' >> Gemfile
-```
-
-## Install Rails
-
-```sh
 # install rails
 bundle install
 
@@ -46,7 +46,7 @@ bundle exec rails new --minimal .
 
 ## scaffoldを使用した機能作り
 
-| - | - |
+| Name | Item |
 | --- | --- |
 | モデル名 | Page |
 | カラム1* | url:string |
@@ -60,17 +60,21 @@ bundle exec rails new --minimal .
 bundle exec rails g scaffold Page url:string title:string access_flag:boolean content:text
 ```
 
+Rails 8系を想定している場合、scaffold時にurl:string:uniqと指定すればマイグレーションファイルに自動でユニーク制約が追加される。
+
+実際のところ、scaffoldする必要もないかもしれない。モデルだけ作ればいいかもしれない。
+
 ## ユニーク制約
 
 ### migrateファイルにて
 
-生成される`db/migrate/yyyymmddhhmmss_create_pages.rb`編集する。
+生成される`db/migrate/yyyymmddhhmmss_create_pages.rb`を編集する。
 
 ```ruby
 add_index :pages, :url, unique: true
 ```
 
-をchangeメソッドの中に追加する。
+をchangeメソッドの中に追加する。制約があれば、自由に追加する。
 
 マイグレートする。
 
@@ -80,14 +84,13 @@ bundle exec rails db:migrate
 
 ##### Reference
 
-- <https://qiita.com/devactken/items/df5422d33768a05969eb>
-
+<https://qiita.com/devactken/items/df5422d33768a05969eb>
 
 # データ取り込み
 
 ## データの用意
 
-データを用意する。今回は、URLs。
+データを用意する。今回は、複数のURLを使用する。
 
 ```sh
 cat <<'EOF'> urls.txt
@@ -114,7 +117,7 @@ end
 Page.all
 ```
 
-rakeタスクにしてもいい。
+rakeタスクにしてもいい。seedを使うのもどうかな。
 
 # データ操作
 
@@ -132,7 +135,7 @@ end
 
 ##### Reference
 
-- <https://railsguides.jp/active_record_querying.html>
+<https://railsguides.jp/active_record_querying.html>
 
 ## タスクで扱う場合
 
@@ -209,7 +212,7 @@ bundle exec rails server
 
 この辺りを変えてあげればいいのかも。
 
-```
+```text
 app/views/pages/_form.html.erb
 app/views/pages/_page.html.erb
 app/views/pages/edit.html.erb
@@ -220,14 +223,11 @@ app/views/pages/show.html.erb
 
 `_`始まりは、他のビューから呼ばれる部品。`<%= render 'page' %>`などで使用できる。
 
+データが多い場合は表示を絞ったり、した方がいい。
+
 # 出力・応用
 
 タスクに登録したり、`bundle exec rails console`で、Rubyでできることは、なんでもできる。
-
-# その他
-
-- 命名規則参考
-  - <https://qiita.com/pank24ever/items/b3698c400d7a5fb59914>
 
 # Environments
 

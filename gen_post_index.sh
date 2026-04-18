@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat _posts/* | grep ^categor | xargs -n1 | sort | uniq | awk '{print $2}' | while read line
+cat _posts/* | grep ^categor | awk '{print $2}' | sort | uniq | xargs -n1 | while read line
 do
   echo "${line}"
   cat << EOF > ${line}.markdown
@@ -94,3 +94,5 @@ cat <<'EOF' >> index.markdown
 </section>
 
 EOF
+
+rm -f .markdown

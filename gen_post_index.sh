@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat _posts/* | grep ^categor | sort | uniq | awk '{print $2}' | while read line
+cat _posts/* | grep ^categor | xargs -n1 | sort | uniq | awk '{print $2}' | while read line
 do
   echo "${line}"
   cat << EOF > ${line}.markdown

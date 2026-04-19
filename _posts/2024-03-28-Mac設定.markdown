@@ -30,3 +30,15 @@ sudo pmset repeat sleep MTWRFSU "02:50:00"
 
 `sleep` -> `cancel`に変更
 
+
+---
+
+# Mac日本語切り替え安定化
+
+```sh
+defaults write -g NSAutoFillHeuristicControllerEnabled -bool FALSE
+```
+
+- https://x.com/techtalkjp/status/2016765842638459118
+- https://x.com/shimamuraakio/status/1969673675478876236
+

@@ -15,3 +15,17 @@ magick wizard.png -quality 50 -define webp:lossless=true wizard.webp
 ```sh
 ffmpeg -i a.mov -vf "fps=24,scale=360:-1" output.gif
 ```
+
+「横幅を360pxにして、縦は自動調整」という意味です。
+
+360 → 横幅を360ピクセルに固定
+-1 → アスペクト比（縦横比）を保ったまま自動計算
+
+つまり、元動画の比率を崩さずに小さくしているだけです。
+
+もう少し具体例：
+
+scale=640:480 → 強制的に640×480（比率は崩れる可能性あり）
+scale=360:-1 → 横だけ指定、縦は自動
+scale=-1:360 → 縦だけ指定、横は自動
+

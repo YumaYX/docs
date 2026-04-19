@@ -8,3 +8,25 @@ category: mac
 ```sh
 sudo pmset repeat sleep MTWRFSU "01:00:00"
 ```
+
+# display
+
+```
+pmset -g sched
+```
+
+`Repeating power events:`があれば消してもいい（自分で設定したもの）。
+
+# setting
+
+```sh
+#sudo pmset repeat sleep MTWRFSU "00:50:00"
+sudo pmset repeat sleep MTWRFSU "02:50:00"
+```
+
+ひとつしか設定できない(設定する場合は、launchdを使うといいらしい)。
+
+# unset
+
+`sleep` -> `cancel`に変更
+

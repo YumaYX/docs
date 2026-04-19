@@ -1,0 +1,17 @@
+---
+layout: post
+category: uncategorized
+title: "images"
+---
+
+# png to webp
+
+```sh
+magick wizard.png -quality 50 -define webp:lossless=true wizard.webp
+```
+
+# mov to gif
+
+```sh
+ffmpeg -i a.mov -vf "fps=24,scale=360:-1" output.gif
+```

@@ -78,3 +78,26 @@ git checkout -f
 ```sh
 git checkout <hash> <file>
 ```
+
+# リモートのブランチを使う
+
+```
+~/YS1  git branch -r
+  origin/HEAD -> origin/master
+  origin/dev
+  origin/master
+~/YS1  git pull origin dev
+From github.com:YumaYX/YS1
+ * branch            dev        -> FETCH_HEAD
+Already up to date.
+~/YS1  
+~/YS1  git branch
+* master
+~/YS1  git checkout dev
+branch 'dev' set up to track 'origin/dev'.
+Switched to a new branch 'dev'
+~/YS1  git branch
+* dev
+  master
+~/YS1  
+```

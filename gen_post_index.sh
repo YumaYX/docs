@@ -86,6 +86,7 @@ cat <<'EOF' >> index.markdown
   <li><a href="/Workshop/">Workshop</a></li>
   <li><a href="/lllmd/">lllmd</a></li>
   <li><a href="/VBANotes/">VBANotes</a></li>
+  <li><a href="/pagerag/">pagerag</a></li>
 </ul>
 </div>
 

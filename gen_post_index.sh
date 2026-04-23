@@ -82,9 +82,6 @@ cat <<'EOF' >> index.markdown
 <ul>
   <li><a href="https://github.com/YumaYX?tab=repositories">GitHub Repositories</a></li>
   <li><a href="/works/">Works</a></li>
-  <li><a href="https://yumayx.github.io/rubydemodoc/">Ruby Demo Doc</a></li>
-  <li><a href="/lllmd/">lllmd</a></li>
-  <li><a href="/pagerag/">pagerag</a></li>
 </ul>
 </div>
 

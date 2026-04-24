@@ -1,0 +1,170 @@
+---
+layout: post
+title: "Podmanコマンド・使用例"
+date: 2023-12-19 21:22:47 JST
+tags: 
+category: linux
+---
+
+# コンテナの操作コマンドチートシート
+
+# 操作
+
+## Container
+
+### Run
+
+```sh
+podman volume create myvolume
+podman run -it --rm -v myvolume:/media --name myrl docker.io/rockylinux/rockylinux:9 /bin/bash
+# -d:detach、離す、background
+# -i:interactive
+# -t:tty
+# --rm:コンテナ終了時にコンテナ自動的に削除
+# --name:コンテナの名前
+# -v:ボリュームマウント -v < <Volume Name>:<マウント先> >
+# --net mynetwork
+# --ip=192.168.1.1
+```
+
+```sh
+# status
+docker ps # running
+docker ps -a # all
+# stop
+podman stop <CONTAINER ID| NAME>
+# delete
+podman rm <CONTAINER ID | NAME>
+```
+
+### Export & Import
+
+```sh
+# export
+podman commit <CONTAINER ID> <IMAGE NAME>
+podman export <CONTAINER ID> > <OUTPUT NAME>.tar
+
+# import
+cat <OUTPUT NAME>.tar | podman import - myalma:latest
+```
+
+## Image
+
+```sh
+# list
+podman image list
+# delete
+podman rmi <IMAGE ID>
+# delete all
+podman rmi -a
+```
+
+## Volume
+
+```sh
+# create
+podman volume create <VOLUME NAME>
+# status
+podman volume inspect <VOLUME NAME>
+# => "Mountpoint": "/var/lib/containers/storage/volumes/myvol/_data"
+
+# export volume
+podman volume export <VOLUME NAME> --output <EXPORTE NAME>.tar
+
+# import volume
+podman volume create <VOLUME NAME>
+podman volume import <VOLUME NAME> <EXPORTE NAME>.tar
+
+## del volume
+podman volume prune # unused
+podman volume rm --all
+```
+
+## Pod
+
+```sh
+# stop
+podman pod stop <POD NAME>
+# rm
+podman pod rm <POD NAME>
+```
+
+## Network
+
+```sh
+# status
+podman network ls
+# create network
+podman network create my_network_a
+podman network create --subnet=192.168.1.0/24 my_network_b
+# delete network
+podman network rm my_network_a my_network_b
+```
+
+## All Delete
+
+```sh
+podman system prune
+podman system reset
+```
+
+---
+
+# Containers in Pod
+
+```sh
+# POD
+podman pod create \
+ --name wp-pod \
+ -p 80:80
+
+# VOLUME
+podman volume create wp-mysql
+
+# CONTAINER
+## DB SERVER - START
+podman run \
+ --detach \
+ --name wp-pod-db \
+ --pod=wp-pod \
+ --restart=always \
+ -e MYSQL_ROOT_PASSWORD='mysql-root-password' \
+ -e MYSQL_DATABASE='wp' \
+ -e MYSQL_USER='wordpress' \
+ -e MYSQL_PASSWORD='wordpress-password' \
+ -v wp-mysql:/var/lib/mysql \
+ docker.io/library/mariadb
+
+## WEB SERVER - START
+podman run \
+ --detach \
+ --name wp-pod-web \
+ --pod=wp-pod \
+ --restart=always \
+ -e WORDPRESS_DB_NAME='wp' \
+ -e WORDPRESS_DB_HOST='127.0.0.1' \
+ -e WORDPRESS_DB_USER='wordpress' \
+ -e WORDPRESS_DB_PASSWORD='wordpress-password' \
+ docker.io/library/wordpress:latest
+```
+
+##### Reference
+
+- <https://non-filtered-worklog.hateblo.jp/entry/2021/06/15/230119>
+
+---
+
+# Install Podman
+
+```sh
+dnf -y update
+dnf -y install podman podman-docker
+```
+
+# Environments
+
+```
+[root@localhost ~]# cat /etc/redhat-release 
+AlmaLinux release 9.3 (Shamrock Pampas Cat)
+[root@localhost ~]#
+```

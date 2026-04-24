@@ -1,0 +1,33 @@
+---
+layout: post
+category: linux
+---
+
+```sh
+# 日本語関連のパッケージをインストール
+dnf -y install langpacks-ja glibc-langpack-ja.x86_64
+
+localectl
+
+# システム全体の文字セット
+localectl set-locale LANG=ja_JP.utf8
+echo $LANG
+
+# 日本語キーボード設定
+localectl set-keymap jp106
+localectl
+
+# 入力プログラムをインストール
+dnf -y install ibus-anthy
+```
+
+- システムの設定からのキーボードを選んで、日本語anthyを選択
+- 半角/全角漢字キーで英かな切り替え可能
+
+---
+
+anthyがあれば、IMEひとつ追加するだけでいい。Win(Super)+space切り替えがあるが、使わない。他の入力ソース(en)など追加しなくていい。
+
+- 入力ソースが 2 つ以上登録されると、上段のパネルに入力ソースの切り替えアイコンが表示される
+- mozcは試していない
+- 入力ソースenを選ぶとキーボードがusになる。日本語キーボードで使えない・選ばない

@@ -36,7 +36,6 @@ jobs:
       - name: Build with jekyll
         # Outputs to the './_site' directory by default
         run: |-
-          sh gen_post_index.sh
           bundle exec jekyll build
           sh mod.sh
       - name: Upload artifact

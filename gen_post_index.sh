@@ -81,7 +81,7 @@ cat <<'EOF' >> index.markdown
 <h1>LINKS</h1>
 <ul>
   <li><a href="https://github.com/YumaYX?tab=repositories">GitHub Repositories</a></li>
-  <li><a href="/works/">Works</a></li>
+  <li><a href="/">Works</a></li>
 </ul>
 </div>
 

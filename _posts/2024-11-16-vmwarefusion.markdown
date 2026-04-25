@@ -1,6 +1,6 @@
 ---
 layout: post
-category: linux
+category: virtualmachine
 ---
 
 run virtual machine on apple Silicon mac

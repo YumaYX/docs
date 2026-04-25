@@ -131,7 +131,8 @@ Manufacturer.connection.close
   - テーブル定義時に、「, index: { unique: true }」ユニーク制約してあげれば、事前に気付く（が、まず、重複してる状況がありえない）。
   - ちなみに「, unique: true」の設定の仕方は間違い
 
-- [参考](https://shifumin.hatenablog.com/entry/2019/02/02/000000)
+[create_tableでカラムを定義するのと同時にユニークインデックスを貼るやつ - しふみんのブログ](https://shifumin.hatenablog.com/entry/2019/02/02/000000)
+
 
 ```ruby
 require 'active_record'
@@ -246,7 +247,7 @@ SELECT "users".* FROM "users" ORDER BY "users"."id" ASC, "users"."name" ASC
 irb(main):010:0>
 ```
 
-- <https://railsdoc.com/page/model_order>
+[order | Railsドキュメント](https://railsdoc.com/page/model_order)
 
 ## env
 

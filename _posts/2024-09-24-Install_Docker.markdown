@@ -29,4 +29,4 @@ sudo docker run hello-world
 curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
 ```
 
-[Install Docker Engine on RHEL | Docker Docs](https://docs.docker.com/engine/install/rhel/)
+[Install Docker Engine on RHEL \| Docker Docs](https://docs.docker.com/engine/install/rhel/)

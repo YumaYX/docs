@@ -247,7 +247,7 @@ SELECT "users".* FROM "users" ORDER BY "users"."id" ASC, "users"."name" ASC
 irb(main):010:0>
 ```
 
-[order | Railsドキュメント](https://railsdoc.com/page/model_order)
+[order \| Railsドキュメント](https://railsdoc.com/page/model_order)
 
 ## env
 

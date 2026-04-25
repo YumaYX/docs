@@ -3,7 +3,7 @@ layout: post
 title: "Podmanコマンド・使用例"
 date: 2023-12-19 21:22:47 JST
 tags: 
-category: linux
+category: container
 ---
 
 # コンテナの操作コマンドチートシート

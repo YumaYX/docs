@@ -131,7 +131,7 @@ Manufacturer.connection.close
   - テーブル定義時に、「, index: { unique: true }」ユニーク制約してあげれば、事前に気付く（が、まず、重複してる状況がありえない）。
   - ちなみに「, unique: true」の設定の仕方は間違い
 
-<https://shifumin.hatenablog.com/entry/2019/02/02/000000>
+- [参考](https://shifumin.hatenablog.com/entry/2019/02/02/000000)
 
 ```ruby
 require 'active_record'

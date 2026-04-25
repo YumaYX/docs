@@ -172,4 +172,4 @@ GitHub Actionsでレポジトリごとに公開したい場合などに有効。
 
 ##### Reference
 
-- <https://www.getzola.org>
+[Zola](https://www.getzola.org)

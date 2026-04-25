@@ -50,5 +50,4 @@ sum: 3
 
 #### Reference
 
-<https://qiita.com/nemutas/items/27aed12959fc1035029d>
-
+[【Rust】Library crateの使い方 #Rust - Qiita](https://qiita.com/nemutas/items/27aed12959fc1035029d)

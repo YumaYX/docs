@@ -87,7 +87,7 @@ sqlite3 data.db "DROP TABLE mydata;"
 
 # Reference
 
-<https://qiita.com/arc279/items/bba7f6be362e376f06ab>
+[bash で sqlite3 をいじるためのメモ #Bash - Qiita](https://qiita.com/arc279/items/bba7f6be362e376f06ab)
 
 ## tsv
 

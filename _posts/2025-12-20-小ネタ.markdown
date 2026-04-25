@@ -48,7 +48,7 @@ fn main() -> io::Result<()> {
 ## Stringの処理
 
 文字コード、処理に合わせて都度調べたほうがいい(パターンも多すぎる)。
-<https://doc.rust-lang.org/std/string/struct.String.html>
+[String in std::string - Rust](https://doc.rust-lang.org/std/string/struct.String.html)
 
 # String
 

@@ -20,4 +20,4 @@ vagrant plugin install vagrant-vmware-desktop
 
 # ref.
 
-<https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93>
+[Vagrant and VMWare Fusion 13 on Apple M1 Pro · GitHub](https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93)

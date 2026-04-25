@@ -41,8 +41,8 @@ bundle exec rails new --minimal .
 
 ##### Reference
 
-- <https://railsdoc.com/page/rails_new>
-- <https://qiita.com/morioka1206/items/d9297cc5d5085422acac>
+- [rails new | Railsドキュメント](https://railsdoc.com/page/rails_new)
+- [いい感じにrails newする　rails newのオプション #Ruby - Qiita](https://qiita.com/morioka1206/items/d9297cc5d5085422acac)
 
 ## scaffoldを使用した機能作り
 
@@ -84,7 +84,8 @@ bundle exec rails db:migrate
 
 ##### Reference
 
-<https://qiita.com/devactken/items/df5422d33768a05969eb>
+[Rails scaffoldとは何か? #初心者 - Qiita](https://qiita.com/devactken/items/df5422d33768a05969eb)
+
 
 # データ取り込み
 
@@ -135,7 +136,7 @@ end
 
 ##### Reference
 
-<https://railsguides.jp/active_record_querying.html>
+[Active Record クエリインターフェイス - Railsガイド](https://railsguides.jp/active_record_querying.html)
 
 ## タスクで扱う場合
 

@@ -7,9 +7,8 @@ category: linux
 
 # Ref.
 
-- <https://qiita.com/furandon_pig/items/b197571ee91a6dd573e5>
-- <https://cdn.kernel.org/>
-
+- [Linuxカーネルビルド環境をCentOS-7からAlmaLinux8に移行したのでビルド手順の差異を調べてみる #Linux - Qiita](https://qiita.com/furandon_pig/items/b197571ee91a6dd573e5)
+- [The Linux Kernel Archives](https://cdn.kernel.org/)
 
 # 必要なパッケージインストール
 
@@ -62,7 +61,7 @@ dracut --force /boot/initramfs-6.7.x86_64.img 6.7.6
 
 > dracutはカーネルによって使用される初期イメージを生成し、ルートファイルシステムにアクセスするのに必要なブロックデバイスモジュール (IDE、SCSI、RAID など) をプリロードします。
 
-- <https://wiki.archlinux.jp/index.php/Dracut>
+- [dracut - ArchWiki](https://wiki.archlinux.jp/index.php/Dracut)
 
 # grub.cfgの更新
 ```sh

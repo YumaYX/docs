@@ -151,6 +151,5 @@ sed -n '/^```/,/^```/ {/^```/d; p}'
 
 ##### Reference
 
-- <https://ollama.com>
-- <https://developer.mamezou-tech.com/blogs/2025/02/20/ollama_local_llm/>
-
+- [Ollama](https://ollama.com)
+- [Ollamaを使ってオープンソースLLMをローカルホストしてみよう | 豆蔵デベロッパーサイト](https://developer.mamezou-tech.com/blogs/2025/02/20/ollama_local_llm/)

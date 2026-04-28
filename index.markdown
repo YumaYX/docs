@@ -15,7 +15,7 @@ layout: default
 <ul>
   {% for category in sorted_categories %}
     <li>
-      <a href="#{{ category[0] | slugify }}">
+      <a href="{{ site.baseurl }}/menu#{{ category[0] | slugify }}">
         {{ category[0] | upcase }}
       </a>
     </li>
@@ -33,32 +33,5 @@ layout: default
 
 </div>
 
-
 </section>
 
----
-
-## ARTICLES
-
-<ul>
-  {% for category in sorted_categories %}
-    <li>
-      <section>
-        <h3 id="{{ category[0] | slugify }}">
-          {{ category[0] | upcase }}
-        </h3>
-
-        {% assign posts = category[1] | sort: "title" %}
-        <ul>
-          {% for post in posts %}
-            <li>
-              <a href="{{ post.url | relative_url }}">
-                {{ post.title }}
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </section>
-    </li>
-  {% endfor %}
-</ul>

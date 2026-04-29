@@ -1,5 +1,16 @@
 ---
 layout: default
+links:
+  - name: YS0
+    url: https://github.com/YumaYX/YS0
+  - name: YS1
+    url: https://yumayx.github.io/YS1/
+  - name: YS124
+    url: https://yumayx.github.io/YS124/
+  - name: YS910
+    url: https://yumayx.github.io/YS910/
+  - name: YS1XL
+    url: https://github.com/YumaYX/YS1XL/
 ---
 
 {% assign sorted_categories = site.categories | sort %}
@@ -27,7 +38,11 @@ layout: default
 <h2>LINKS</h2>
 <ul>
 <li><a href="https://github.com/YumaYX?tab=repositories">GITHUB REPOSITORIES</a></li>
-<li><a href="https://yumayx.github.io/">WORKS</a></li>
+
+{% for item in page.links %}
+<li><a href="{{ item.url }}">{{ item.name }}</a></li>
+{% endfor %}
+
 </ul>
 </div>
 

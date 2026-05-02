@@ -132,8 +132,8 @@ body {
     color: white;
 }
 EOF
-# <link rel="stylesheet" href="{{ get_url(path="css/style.css") }}">
-# をtemplates/base.htmlに追記。
+## <link rel="stylesheet" href="{{ get_url(path="css/style.css") }}">
+## をtemplates/base.htmlに追記。
 ```
 
 # serve

@@ -18,6 +18,6 @@ brew install vagrant
 vagrant plugin install vagrant-vmware-desktop
 ```
 
-# ref.
+## ref.
 
 [Vagrant and VMWare Fusion 13 on Apple M1 Pro · GitHub](https://gist.github.com/sbailliez/2305d831ebcf56094fd432a8717bed93)

@@ -70,6 +70,6 @@ root 以外のユーザーとしてログインできない場合や、wheel 管
     SELinux の再ラベルプロセスが終了するまで待機します。大規模なディスクの再ラベルには時間がかかる可能性があることに注意してください。プロセスが完了すると、システムが自動的に再起動します。 
 ```
 
-# Reference
+## Reference
 
 [ref.](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/changing-and-resetting-the-root-password-from-the-command-line_managing-users-and-groups)

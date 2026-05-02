@@ -7,7 +7,7 @@ category: windows
 
 ---
 
-## MacでWin ISOブータブルメディアを作る手順
+### MacでWin ISOブータブルメディアを作る手順
 
 ```sh
 brew install wimlib

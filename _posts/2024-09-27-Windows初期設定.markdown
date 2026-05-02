@@ -16,7 +16,7 @@ category: windows
 1. スタートボタンを左寄せにする方法
 - <https://solutions.vaio.com/4349>
 
-# tips
+## tips
 
 1. ネットワーク接続の表示
 - <https://www.aryeh.co.jp/2023/11/22/おだんご日記01-ネットワーク接続画面を秒速で出/>
@@ -24,7 +24,7 @@ category: windows
 echo ncpa.cpl > ncpa.cpl.bat
 ```
 
-# extra
+## extra
 
 1. Hyper-V有効化
   - [Windows および Windows Server に Hyper-V をインストールする \| Microsoft Learn](https://learn.microsoft.com/ja-jp/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v#enable-hyper-v-using-powershell)

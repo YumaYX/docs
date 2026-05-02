@@ -3,7 +3,7 @@ layout: post
 category: commands
 ---
 
-# make dir
+## make dir
 
 | option | value |
 | --- | --- |

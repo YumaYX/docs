@@ -5,19 +5,19 @@ category: linux
 
 カーネルのビルド、インストールをしてみる。
 
-# Ref.
+## Ref.
 
 - [Linuxカーネルビルド環境をCentOS-7からAlmaLinux8に移行したのでビルド手順の差異を調べてみる #Linux - Qiita](https://qiita.com/furandon_pig/items/b197571ee91a6dd573e5)
 - [The Linux Kernel Archives](https://cdn.kernel.org/)
 
-# 必要なパッケージインストール
+## 必要なパッケージインストール
 
 ```sh
 dnf install -y ncurses-devel dracut grub2 bc
 LANG=C dnf -y group install "Development Tools"
 ```
 
-# カーネルソースの準備
+## カーネルソースの準備
 
 ```sh
 cd
@@ -32,14 +32,14 @@ sed -i 's@^CONFIG_SYSTEM_TRUSTED_KEYS="certs/rhel.pem"@CONFIG_SYSTEM_TRUSTED_KEY
 sed -i 's@^CONFIG_DEBUG_INFO_BTF=y@CONFIG_DEBUG_INFO_BTF=n@g' .config
 ```
 
-### make menuconfig
+#### make menuconfig
 
 ```
 cd /usr/src/linux-6.7.6
 make menuconfig
 ```
 
-# カーネルビルド
+## カーネルビルド
 
 ```sh
 # build
@@ -57,13 +57,13 @@ dracut --force /boot/initramfs-6.7.x86_64.img 6.7.6
 # (第二引数が多分uname -rの出力結果)
 ```
 
-## dracut
+### dracut
 
 > dracutはカーネルによって使用される初期イメージを生成し、ルートファイルシステムにアクセスするのに必要なブロックデバイスモジュール (IDE、SCSI、RAID など) をプリロードします。
 
 - [dracut - ArchWiki](https://wiki.archlinux.jp/index.php/Dracut)
 
-# grub.cfgの更新
+## grub.cfgの更新
 ```sh
 # BIOS環境の場合
 cp -pv /boot/grub2/grub.cfg ~/grub.cfg.bak
@@ -82,7 +82,7 @@ grub2-set-default 1
 grubby --default-kernel
 ```
 
-# その他設定
+## その他設定
 
 ```sh
 for f in $(ls -1 /boot/loader/entries/*.conf); do echo $f; grep options ${f}; done
@@ -90,9 +90,9 @@ for f in $(ls -1 /boot/loader/entries/*.conf); do echo $f; grep options ${f}; do
 sed -i 's/^options/options $kernelopts $tuned_params/g' /boot/loader/entries/5de5d51b138a43fe9a9729b711cc6dc7-6.7.x86_64.conf
 ```
 
-# 結果
+## 結果
 
-## before
+### before
 
 ```
 [root@localhost ~]# uname -r
@@ -100,7 +100,7 @@ sed -i 's/^options/options $kernelopts $tuned_params/g' /boot/loader/entries/5de
 [root@localhost ~]# 
 ```
 
-## after
+### after
 
 ```
 [root@localhost ~]# uname -r
@@ -108,7 +108,7 @@ sed -i 's/^options/options $kernelopts $tuned_params/g' /boot/loader/entries/5de
 [root@localhost ~]# 
 ```
 
-# Env.
+## Env.
 
 ```
 AlmaLinux release 9.3 (Shamrock Pampas Cat)

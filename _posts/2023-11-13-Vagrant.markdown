@@ -3,9 +3,9 @@ layout: post
 category: virtualmachine
 ---
 
-# Vagrantfile
+## Vagrantfile
 
-## Template
+### Template
 
 ```sh
 cat <<'EOF' > Vagrantfile
@@ -28,15 +28,15 @@ end
 EOF
 ```
 
-## network
+### network
 
-### hostname
+#### hostname
 
 ```ruby
   config.vm.hostname = "hostname"
 ```
 
-### bridge
+#### bridge
 
 ```ruby
   config.vm.define "machine" do |machine|
@@ -44,7 +44,7 @@ EOF
   end
 ```
 
-### host-only network
+#### host-only network
 
 ```ruby
   config.vm.define "machine" do |machine|
@@ -52,15 +52,15 @@ EOF
   end
 ```
 
-### port-forwarding
+#### port-forwarding
 
 ```ruby
     machine.vm.network :forwarded_port, guest:22, host:1234, id:"ssh"
 ```
 
-## tips
+### tips
 
-### Vagrant provision時ansibleの実行
+#### Vagrant provision時ansibleの実行
 
 ```ruby
   config.vm.provision "ansible" do |ansible|
@@ -68,7 +68,7 @@ EOF
   end
 ```
 
-### /vagrantにマウントしない方法
+#### /vagrantにマウントしない方法
 
 イメージによって、エラー有無がある。
 
@@ -76,20 +76,20 @@ EOF
   config.vm.synced_folder '.', '/vagrant', disabled: true
 ```
 
-### プラグインvagrant-vbguest
+#### プラグインvagrant-vbguest
 
 - チェック、アップデートに時間がかかる
 - 必要がない限り導入しない
 - 分岐等あるが、コストに見合わない
 
-## commands
+### commands
 
 ```sh
 # Vagrantfile作成
 vagrant init
 ```
 
-# vm起動
+## vm起動
 
 ```sh
 vagrant up
@@ -97,38 +97,38 @@ vagrant up --provision
 vagrant up --no-provision
 ```
 
-# provisionのみ
+## provisionのみ
 
 ```sh
 vagrant provision
 ```
 
-# Status取得
+## Status取得
 ```sh
 vagrant status
 ```
 
-# ssh接続
+## ssh接続
 ```sh
 vagrant ssh
 ```
 
-# 保存停止
+## 保存停止
 ```sh
 vagrant suspend
 ```
 
-# halt
+## halt
 ```sh
 vagrant halt
 ```
 
-# Status取得(all)
+## Status取得(all)
 ```sh
 vagrant global-status
 ```
 
-# VM破壊
+## VM破壊
 ```sh
 vagrant destroy -f [id]
 ```
@@ -137,20 +137,20 @@ vagrant destroy -f [id]
 vagrant global-status --prune
 ```
 
-# パラレル実行(xargsのコマンドでパラレル実行する)
+## パラレル実行(xargsのコマンドでパラレル実行する)
 
 ```sh
 seq 2 | xargs -P2 -I@ vagrant up vm@
 ```
 
-### vagrantとSCP
+#### vagrantとSCP
 
 ```sh
 vagrant ssh-config > ssh.config
 scp -P 2222 -F ssh.config vagrant@localhost:/etc/redhat-release .
 ```
 
-# 共有フォルダマウントできない時
+## 共有フォルダマウントできない時
 
 ```sh
 # プラグインのインストール
@@ -161,7 +161,7 @@ vagrant vbguest
 
 
 
-### Clean for mac command
+#### Clean for mac command
 
 ```sh
 vagrant global-status
@@ -180,7 +180,7 @@ VBoxManage list vms | awk '{print $1}' | xargs -I@ VBoxManage unregistervm @
 rm -rf "${HOME}/VirtualBox VMs"/*
 ```
 
-## Install
+### Install
 
 ```sh
 brew install vagrant

@@ -3,7 +3,7 @@ layout: post
 category: commands
 ---
 
-# 無期限設定
+## 無期限設定
 
 ```sh
 username='user'
@@ -14,7 +14,7 @@ passwd -w -1 ${username}
 chage -l ${username}
 ```
 
-# パスワードの設定確認
+## パスワードの設定確認
 
 ```sh
 chage -l ${username}
@@ -22,7 +22,7 @@ chage -l ${username}
 
 オプションはL(エル)の小文字
 
-# 引数表 passwd / chage
+## 引数表 passwd / chage
 
 | desc | passwd arg | chage arg | 設定なしvalue |
 | --- | --- | --- | ---|

@@ -32,29 +32,29 @@ activerecordとsqlite3が必要
 ```ruby
 require 'active_record'
 
-# テーブルを作成
+## テーブルを作成
 class Manufacturer <  ActiveRecord::Base ; end
 
-# データベースに接続
+## データベースに接続
 Manufacturer.establish_connection(
   adapter: 'sqlite3',
   database: 'database.db'
 )
 
-# テーブル作成
+## テーブル作成
 unless Manufacturer.table_exists?
   Manufacturer.connection.create_table :manufacturers do |t|
     t.string :name
     end
 end
 
-# データを挿入
+## データを挿入
 Manufacturer.transaction do
   Manufacturer.create(name: 'Honda')
   Manufacturer.create(name: 'Nissan')
   Manufacturer.create(name: 'BMW')
 end
-# データベースの切断
+## データベースの切断
 Manufacturer.connection.close
 ```
 
@@ -143,7 +143,7 @@ end
 Manufacturer.establish_connection(adapter: 'sqlite3', database: 'database.db')
 
 p Manufacturer.find(1).car
-# has_oneにより、carが使える
+## has_oneにより、carが使える
 Manufacturer.all.each do |row|
   if row.car
     p "#{row.name},#{row.car.car_name}"

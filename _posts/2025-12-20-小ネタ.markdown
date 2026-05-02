@@ -4,7 +4,7 @@ category: rust
 title: "小ネタ"
 ---
 
-# file read - 一括
+## file read - 一括
 
 file readを最短で行いたい。
 
@@ -23,7 +23,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-# file read - 一行ずつ
+## file read - 一行ずつ
 
 ```rust
 use std::fs::File;
@@ -45,14 +45,14 @@ fn main() -> io::Result<()> {
 - `?`を使ったら、返り型`io::Result<()>`・値(`OK(())`)必要
 - `expect`で書けば不要になるけど、どちらも失敗した時に止まる。
 
-## Stringの処理
+### Stringの処理
 
 文字コード、処理に合わせて都度調べたほうがいい(パターンも多すぎる)。
 [String in std::string - Rust](https://doc.rust-lang.org/std/string/struct.String.html)
 
-# String
+## String
 
-## 連結
+### 連結
 
 ```rust
 let mut s:String = String::from("hello");
@@ -66,7 +66,7 @@ s = format!("{} {}", s, "world!");
 println!("{}", s);
 ```
 
-# http通信
+## http通信
 
 asyncを不使用のパターン:CLIなど使用される場面を扱う。ただStringにするところまで。
 
@@ -86,7 +86,7 @@ fn main() -> Result<(), reqwest::Error> {
 }
 ```
 
-# JSON
+## JSON
 
 ```toml
 [dependencies]
@@ -111,7 +111,7 @@ fn main() {
 }
 ```
 
-## http + json
+### http + json
 
 `.json`がポイント
 
@@ -132,12 +132,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-### valueを返すには？
+#### valueを返すには？
 
 - struct（必要な部分だけ）を作って、`変数.キー`で取り出す
 - `let url = v["url"].as_str().unwrap();`
 
-# 属性（attribute） -　未使用変数の許可
+## 属性（attribute） -　未使用変数の許可
 
 ```rust
 #[allow(unused_variables)]

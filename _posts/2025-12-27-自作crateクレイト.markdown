@@ -6,7 +6,7 @@ title: "自作crateクレイト"
 
 自作のcrateを使用する。
 
-# crate公開 @ GitHub
+## crate公開 @ GitHub
 
 ```sh
 cargo new --lib <name>
@@ -18,7 +18,7 @@ cargo new --lib <name>
 
 ---
 
-# 公開したcrateを使用する。
+## 公開したcrateを使用する。
 
 crateの名前をrapiとする。
 
@@ -36,7 +36,7 @@ fn main() {
 }
 ```
 
-## 出力
+### 出力
 
 ```
 ~/a  cargo run
@@ -48,6 +48,6 @@ sum: 3
 ~/a  
 ```
 
-#### Reference
+##### Reference
 
 [【Rust】Library crateの使い方 #Rust - Qiita](https://qiita.com/nemutas/items/27aed12959fc1035029d)

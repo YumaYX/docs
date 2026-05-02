@@ -3,9 +3,9 @@ layout: post
 category: shell
 ---
 
-# Top
+## Top
 
-## 正規表現にて
+### 正規表現にて
 
 ```sh
 sed -n '1,/C/p' target.txt
@@ -15,20 +15,20 @@ sed -n '1,/C/p' target.txt
 awk '{print $0; if ($0 ~ /C/)exit}' target.txt
 ```
 
-## 文字列にて
+### 文字列にて
 
 ```sh
 awk '{if ($0 == "C")exit; print $0}' target.txt
 ```
 awkは、exitの位置で、末行を含むか含まないかを選択可能
 
-# Middle
+## Middle
 
 ```sh
 awk '/B/,/D/' target.txt
 ```
 
-# Bottom
+## Bottom
 
 ```sh
 sed -n '/C/,$p' target.txt

@@ -20,13 +20,13 @@ expect "\\\$"
 - send expectがマッチする時入力
 - interact 制御をユーザーへ渡す
 
-## 実行
+### 実行
 
 ```sh
 expect file.tcl
 ```
 
-# 多段の場合
+## 多段の場合
 
 ```sh
 #!/usr/bin/expect -f
@@ -48,14 +48,14 @@ expect {
 }
 ```
 
-# 変数
+## 変数
 
 ```sh
 set v "value"
 puts ${v}
 ```
 
-# expectのインストール方法
+## expectのインストール方法
 
 ```sh
 dnf -y install expect
@@ -65,7 +65,7 @@ dnf -y install expect
 
 ---
 
-# おまけ
+## おまけ
 
 一般ユーザーで、好きなだけパスワードを変更するシェル
 

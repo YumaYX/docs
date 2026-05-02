@@ -3,30 +3,30 @@ layout: post
 category: windows
 ---
 
-# install
+## install
 
 ```
 wsl --install
 ```
 
-# up
+## up
 
 ```
 wsl -d Ubuntu
 ```
 
-# stop
+## stop
 
 ```
 wsl --shutdown
 ```
 
-# update
+## update
 ```
 wsl --update
 ```
 
-# uninstall
+## uninstall
 ```
 wsl --uninstall
 ```

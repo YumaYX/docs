@@ -8,13 +8,13 @@ category: commands
 入力ファイル input.txt
 
 ```
-# A
+## A
 aaa
 bbb
-# B
+## B
 ccc
 ddd
-# C
+## C
 eee
 ```
 

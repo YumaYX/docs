@@ -3,13 +3,13 @@ layout: post
 category: mac
 ---
 
-# 毎日1時にスリープ設定
+## 毎日1時にスリープ設定
 
 ```sh
 sudo pmset repeat sleep MTWRFSU "01:00:00"
 ```
 
-# display
+## display
 
 ```
 pmset -g sched
@@ -17,7 +17,7 @@ pmset -g sched
 
 `Repeating power events:`があれば消してもいい（自分で設定したもの）。
 
-# setting
+## setting
 
 ```sh
 #sudo pmset repeat sleep MTWRFSU "00:50:00"
@@ -26,14 +26,14 @@ sudo pmset repeat sleep MTWRFSU "02:50:00"
 
 ひとつしか設定できない(設定する場合は、launchdを使うといいらしい)。
 
-# unset
+## unset
 
 `sleep` -> `cancel`に変更
 
 
 ---
 
-# Mac日本語切り替え安定化
+## Mac日本語切り替え安定化
 
 ```sh
 defaults write -g NSAutoFillHeuristicControllerEnabled -bool FALSE

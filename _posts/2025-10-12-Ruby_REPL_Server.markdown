@@ -5,7 +5,7 @@ category: ruby
 
 ソケット(`ポート5000`)経由で`python`から、`ruby`のメソッドを使用する方法。
 
-## server.rb
+### server.rb
 
 ```ruby
 # server.rb
@@ -69,7 +69,7 @@ loop do
 end
 ```
 
-## methods.rb
+### methods.rb
 
 ```ruby
 # methods.rb
@@ -98,7 +98,7 @@ module StringOps
 end
 ```
 
-## client.py
+### client.py
 
 ```python
 import socket, json
@@ -116,7 +116,7 @@ print(call_ruby("MathOps::Advanced", "pow", 2, 5)) # => 32
 print(call_ruby("StringOps", "concat", "ab", "cd"))# => "abcd"
 ```
 
-# kill processes
+## kill processes
 
 ```sh
 lsof -i :5000

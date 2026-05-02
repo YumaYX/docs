@@ -12,13 +12,13 @@ Ollamaインストールと簡単な使用例
 - streamが初期設定となっている。`stream`を`false`にすると、使いやすいだろう。
 - postで、bodyにjsonをつけて送る。　
 
-## test 
+### test 
 
 - host: `localhost`
 - port: `11434`
 - model: `gemma3`
 
-### chat
+#### chat
 
 `/api/chat`
 
@@ -34,7 +34,7 @@ curl http://localhost:11434/api/chat \
   }' | jq
 ```
 
-#### chat with history
+##### chat with history
 
 `/api/chat`
 
@@ -54,7 +54,7 @@ curl http://localhost:11434/api/chat \
 ```
 
 
-### prompt
+#### prompt
 
 `/api/generate`
 
@@ -68,23 +68,23 @@ curl http://localhost:11434/api/generate \
   }' | jq
 ```
 
-#### Extract and Print Response Text from Pipe with Ruby One-liner
+##### Extract and Print Response Text from Pipe with Ruby One-liner
 
 ```sh
 | ruby -r json -e 'puts JSON.parse(STDIN.read)["response"]'
 ```
 
-### ollama interface
+#### ollama interface
 
 ```sh
 ollama run gemma3 'hallo'
 ```
 
-## install & run server
+### install & run server
 
 `gemma3`を使用する例を記載する。
 
-### mac
+#### mac
 
 ```sh
 brew install ollama
@@ -95,7 +95,7 @@ ollama serve
 ollama run gemma3
 ```
 
-### linux
+#### linux
 
 ```sh
 # https://ollama.com
@@ -103,7 +103,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama run gemma3
 ```
 
-## program with ruby
+### program with ruby
 
 ```ruby
 require 'net/http'
@@ -139,9 +139,9 @@ puts "Status: #{response.code}"
 puts "Body: #{response.body}"
 ```
 
-### Commands
+#### Commands
 
-#### コードブロックからの抽出
+##### コードブロックからの抽出
 
 複数コードブロックがある場合は、複数のコードブロックの内容が連結される。
 
@@ -149,7 +149,7 @@ puts "Body: #{response.body}"
 sed -n '/^```/,/^```/ {/^```/d; p}'
 ```
 
-##### Reference
+###### Reference
 
 - [Ollama](https://ollama.com)
 - [Ollamaを使ってオープンソースLLMをローカルホストしてみよう \| 豆蔵デベロッパーサイト](https://developer.mamezou-tech.com/blogs/2025/02/20/ollama_local_llm/)

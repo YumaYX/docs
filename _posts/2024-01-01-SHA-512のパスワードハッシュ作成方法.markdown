@@ -4,7 +4,7 @@ category: shell
 ---
 
 ```sh
-# linux
+## linux
 python3 -c 'import crypt; print(crypt.crypt("mypassword", crypt.METHOD_SHA512))'
 ```
 

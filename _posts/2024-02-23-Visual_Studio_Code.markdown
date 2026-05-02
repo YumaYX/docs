@@ -3,7 +3,7 @@ layout: post
 category: editor
 ---
 
-# Commentout
+## Commentout
 
 1. **Single-line comments:**
    - Place the cursor on the line you want to comment out.
@@ -27,7 +27,7 @@ category: editor
    =end
    ```
 
-# HTML auto indent
+## HTML auto indent
 
 ```
 Mac: Shift + Option + F

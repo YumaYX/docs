@@ -3,7 +3,7 @@ layout: post
 category: commands
 ---
 
-# options
+## options
 
 - -r
     - 再起ダウンロード
@@ -29,7 +29,7 @@ user_agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15
 --user-agent="${user_agent}"
 ```
 
-# 使用例コマンド
+## 使用例コマンド
 
 ```sh
 wget -r -l1 -w5 --random-wait -A jpg,png,gif -p https://

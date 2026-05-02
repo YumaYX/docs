@@ -20,7 +20,7 @@ device='/dev/sdb'
 sudo dd if=./${name} of=${device} bs=1048576 status=progress
 ```
 
-# Env.
+## Env.
 
 ```
 AlmaLinux release 9.5 (Teal Serval)

@@ -19,7 +19,7 @@ $
 
 ```sh
 seq 10 | ruby -ne 'sum||=0;sum+=$_.to_i;END{puts sum}'
-# => 55
+## => 55
 ```
 
 ## 抽出

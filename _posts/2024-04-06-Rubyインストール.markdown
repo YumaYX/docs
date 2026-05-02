@@ -3,7 +3,7 @@ layout: post
 category: ruby
 ---
 
-# install ruby on mac
+## install ruby on mac
 
 ```sh
 brew update
@@ -13,7 +13,7 @@ time CONFIGURE_OPTS="--disable-install-doc" rbenv install ${rubyver} && rbenv gl
 gem update --system; gem update
 ```
 
-# install ruby on rhel with homebrew
+## install ruby on rhel with homebrew
 
 brewを使う時、opensslをbrewでインストールする。dnfからインストールすると失敗する。
 
@@ -25,7 +25,7 @@ time CONFIGURE_OPTS="--disable-install-doc" rbenv install ${rubyver} && rbenv gl
 gem update --system; gem update
 ```
 
-# rbenv PATH通し
+## rbenv PATH通し
 
 - $HOME/.rbenv/binにパスを通した上で、initする。
 - .zshrc注意
@@ -35,7 +35,7 @@ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.zshrc
 echo 'if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi' >> ~/.zshrc 
 ```
 
-# install ruby on linux without brew
+## install ruby on linux without brew
 
 ```sh
 dnf -y install sudo

@@ -3,7 +3,7 @@ layout: post
 category: commands
 ---
 
-# 重複行に対する操作
+## 重複行に対する操作
 
 - -c
     - 出現回数：何回出現したか集計

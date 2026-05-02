@@ -23,7 +23,7 @@ do
 done
 ```
 
-## 動作チェック
+### 動作チェック
 
 ```sh
 watch -n 1 logger hello

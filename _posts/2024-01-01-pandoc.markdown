@@ -3,7 +3,7 @@ layout: post
 category: commands
 ---
 
-# markdown to html
+## markdown to html
 
 ```sh
 pandoc -f markdown -t html memo.md -o index.html -s --toc

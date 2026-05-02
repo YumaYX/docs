@@ -3,7 +3,7 @@ layout: post
 category: shell
 ---
 
-# cpu & mem
+## cpu & mem
 
 ```sh
 grep MemTotal /proc/meminfo

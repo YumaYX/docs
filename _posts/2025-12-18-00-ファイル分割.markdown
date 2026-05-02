@@ -4,7 +4,7 @@ category: rust
 title: ファイル分割
 ---
 
-# src/lib.rs
+## src/lib.rs
 
 - cargoのsrc下の`lib.rs`は関数などを書けば、`main.rs`から使用できる。
 
@@ -25,7 +25,7 @@ fn main() {
 
 ---
 
-# src/dir/mod.rs
+## src/dir/mod.rs
 
 ```rust
 // main.rs
@@ -42,7 +42,7 @@ pub fn my_function () {
 }
 ```
 
-# Environment
+## Environment
 
 ```
 $ cargo -V

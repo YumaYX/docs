@@ -3,7 +3,7 @@ layout: post
 category: commands
 ---
 
-# fg, bg
+## fg, bg
 
 
 端末で実行中のジョブをバックグラウンドで動かしつつ、シェルの管理から切り離す（独立させる）操作

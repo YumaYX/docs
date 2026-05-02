@@ -3,15 +3,15 @@ layout: post
 category: commands
 ---
 
-# grepのor
+## grepのor
 
-## eオプションにて
+### eオプションにて
 
 ```sh
 grep -e <PATTERN1> -e <PATTERN2>
 ```
 
-## 正規表現にて
+### 正規表現にて
 
 ```sh
 # -E（検索正規表現）が必要
@@ -25,9 +25,9 @@ grep "^[XYZ]"
 grep "^[X-Z]"
 ```
 
-# grep - or
+## grep - or
 
-## 一文字のor。
+### 一文字のor。
 
 ```sh
 grep '[abcd]'
@@ -35,13 +35,13 @@ grep '[abcd]'
 
 - `|`は使わないということ。
 
-## 文字列のor。
+### 文字列のor。
 
 ```sh
 grep -E 'abc|def'
 ```
 
-### 時間抽出例
+#### 時間抽出例
 
 ```sh
 $ seq -w 59 | grep -E '^(1[8-9]|[2-4][0-9]|5[0-2])' > a
@@ -52,9 +52,9 @@ $ cksum a b
 $ 
 ```
 
-# コメント・空行の除去
+## コメント・空行の除去
 
-## grep による除去
+### grep による除去
 
 コメント行を除去（先頭に空白があってもOK）
 
@@ -74,7 +74,7 @@ grep -v '^\s*$'
 grep -Ev '^\s*#|^\s*$'
 ```
 
-# 特定文字列が含まれるファイル一覧
+## 特定文字列が含まれるファイル一覧
 
 ```sh
 grep -rin pattern .
@@ -87,21 +87,21 @@ grep -rin pattern .
 - -n
     - 検索結果に行番号
 
-# 合致前後取得
+## 合致前後取得
 
-## 前9行 Before (10行出力)
+### 前9行 Before (10行出力)
 
 ```sh
 grep -B 9 pattern
 ```
 
-## 後ろ9行 After (10行出力)
+### 後ろ9行 After (10行出力)
 
 ```sh
 grep -A 9 pattern
 ```
 
-# ファイルの引き算
+## ファイルの引き算
 
 ```
 $ cat text 
@@ -124,7 +124,7 @@ $ cat pattern
 $ 
 ```
 
-### `text` - `pattern`
+#### `text` - `pattern`
 
 ```sh
 cat text | grep -vf pattern

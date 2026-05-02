@@ -3,7 +3,7 @@ layout: post
 category: windows
 ---
 
-## Screenshot スクリーンショット
+### Screenshot スクリーンショット
 
 - `Windowns` + `Shift` + `s`
 

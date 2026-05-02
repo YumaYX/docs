@@ -25,17 +25,17 @@ Webページを扱う。モデルは以下の内容で作成する。
 # プロジェクトの作り方
 
 ```sh
-# make dir
+## make dir
 mkdir bookmark
 cd $_
 bundle init
 
-# Install Rails
+## Install Rails
 echo 'gem "rails"' >> Gemfile
-# install rails
+## install rails
 bundle install
 
-# make rails project
+## make rails project
 bundle exec rails new --minimal .
 ```
 
@@ -148,7 +148,7 @@ vim lib/tasks/update_titles.rake
 ```
 
 ```ruby
-# lib/tasks/update_titles.rake
+## lib/tasks/update_titles.rake
 namespace :data do
   desc "Update titles from URLs"
   task update_titles: :environment do
@@ -184,7 +184,7 @@ bundle exec rake data:update_titles
 ## 保存時に加工したい場合（DBに保存される値を変える）
 
 ```ruby
-# example
+## example
 class User < ApplicationRecord
   before_save :normalize_name
 
@@ -202,7 +202,7 @@ end
 
 ```sh
 bundle exec rails server
-# rails server -b 0.0.0.0
+## rails server -b 0.0.0.0
 ```
 
 <http://localhost:3000/pages>にアクセスする。ドメイン名は適宜変更する。

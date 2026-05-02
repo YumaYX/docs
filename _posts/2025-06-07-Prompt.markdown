@@ -3,27 +3,27 @@ layout: post
 category: shell
 ---
 
-##### bash
+###### bash
 
-## simple
+### simple
 
 ```sh
 export PS1='\$ '
 ```
 
-## with current directory
+### with current directory
 
 ```sh
 export PS1='\w\$ '
 ```
 
-## with full path
+### with full path
 
 ```sh
 export PS1='\W\$ '
 ```
 
-## colorful
+### colorful
 
 ```sh
 export PS1='\[\e[32m\]\u\[\e[m\]@\[\e[36m\]\h \[\e[33m\]\w\[\e[m\]\$ '

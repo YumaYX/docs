@@ -3,7 +3,7 @@ layout: post
 category: linux
 ---
 
-## RHELベース7系のコマンド記録
+### RHELベース7系のコマンド記録
 
 参考として。
 

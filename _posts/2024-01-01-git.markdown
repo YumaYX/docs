@@ -5,11 +5,11 @@ category: commands
 
 gitを使って、バージョン管理をする。
 
-# 初期化
+## 初期化
 
 バージョン管理していない場合、初期設定が必要となる。
 
-### コマンド
+#### コマンド
 
 ```sh
 cd <project dir>
@@ -17,7 +17,7 @@ git init
 # .gitディレクトリが生成される
 ```
 
-# 運用時
+## 運用時
 
 バージョン管理は、以下のフローで行う。
 
@@ -25,15 +25,15 @@ git init
 1. 編集したファイルをステージング(追跡)する
 1. メッセージをつけて、コミットする
 
-### コマンド
+#### コマンド
 
-#### 状態確認
+##### 状態確認
 
 ```sh
 git status
 ```
 
-#### ファイル編集
+##### ファイル編集
 
 ```sh
 vim <file name>
@@ -42,21 +42,21 @@ git status
 git diff
 ```
 
-#### ステージング
+##### ステージング
 
 ```sh
 git add <file name>
 git status
 ```
 
-#### コミット
+##### コミット
 
 ```sh
 git commit -am "<commit message>"
 git status
 ```
 
-## 追跡対象外設定
+### 追跡対象外設定
 
 `.gitignore`ファイルを作成する。バージョン管理外のファイル、ディレクトリを列挙する。
 
@@ -65,21 +65,21 @@ touch .gitignore
 echo '*.swp' >> .gitignore
 ```
 
-# ファイルを戻す
+## ファイルを戻す
 
-## 編集したファイルを最新のコミット時点に戻す場合
+### 編集したファイルを最新のコミット時点に戻す場合
 
 ```sh
 git checkout -f
 ```
 
-## 特定のコミットの特定のファイルを戻す
+### 特定のコミットの特定のファイルを戻す
 
 ```sh
 git checkout <hash> <file>
 ```
 
-# リモートのブランチを使う
+## リモートのブランチを使う
 
 ```
 ~/YS1  git branch -r
@@ -102,7 +102,7 @@ Switched to a new branch 'dev'
 ~/YS1  
 ```
 
-# new repo commands
+## new repo commands
 
 ```sh
 reponame=""

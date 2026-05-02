@@ -5,7 +5,7 @@ category: linux
 
 雑多
 
-# バッテリー残量
+## バッテリー残量
 
 ```sh
 upower -i $(upower -e | grep BAT)

@@ -3,7 +3,7 @@ layout: post
 category: commands
 ---
 
-# @macOS
+## @macOS
 
 ```sh
 iso='/path/to/iso'

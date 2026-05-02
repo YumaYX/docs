@@ -4,7 +4,7 @@ category: uncategorized
 title: "rules"
 ---
 
-## docsのルール
+### docsのルール
 
 - 記事は、マークダウンで書く。それだけ。
   - htmlを手書きしない。とにかくマークダウンで書く。

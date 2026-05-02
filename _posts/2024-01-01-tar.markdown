@@ -30,7 +30,7 @@ tar zcvf data.tar.gz r*
 rm r*
 
 tar xvf data.tar.gz raw2
-# => raw2
+## => raw2
 ```
 
 # Compression options

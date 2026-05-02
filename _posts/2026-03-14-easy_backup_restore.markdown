@@ -6,7 +6,7 @@ title: "easy backup restore"
 
 about easy backup & restore
 
-# backup
+## backup
 
 ```sh
 #!/usr/bin/env bash
@@ -15,7 +15,7 @@ dest='/samba/share/backup.xz'
 sudo tar Jvcf "${dest}" /work /root/.ssh /home/*/.ssh /var/spool/cron
 ```
 
-# restore
+## restore
 
 ```sh
 #!/usr/bin/env bash

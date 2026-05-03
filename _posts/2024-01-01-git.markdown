@@ -5,65 +5,217 @@ category: commands
 
 gitを使って、バージョン管理をする。
 
-## 初期化
+## Gitクライアント
 
-バージョン管理していない場合、初期設定が必要となる。
-
-#### コマンド
+### 初期設定
 
 ```sh
-cd <project dir>
-git init
-# .gitディレクトリが生成される
+git config --global user.name "<Your Name>"
+git config --global user.email "<your.email@example.com>"
 ```
 
-## 運用時
+```sh
+git config --global color.ui true
+```
 
-バージョン管理は、以下のフローで行う。
+[Git - Git の設定](https://git-scm.com/book/ja/v2/Git-%E3%81%AE%E3%82%AB%E3%82%B9%E3%82%BF%E3%83%9E%E3%82%A4%E3%82%BA-Git-%E3%81%AE%E8%A8%AD%E5%AE%9A)
 
-1. ファイルを編集する
-1. 編集したファイルをステージング(追跡)する
-1. メッセージをつけて、コミットする
+## レポジトリクローン
 
-#### コマンド
+###  クローン
 
-##### 状態確認
+レポジトリのクローン：ソースコードのダウンロード
+
+```sh
+git clone <レポジトリURL>
+```
+
+### レポジトリクローン
+
+> 既存のプロジェクトに貢献したいけれども、そのリポジトリにプッシュする権限がないという場合は、プロジェクトを「フォーク」できます。 「フォーク」するとは、GitHub があなた専用にそのプロジェクトのコピーを作るということです。あなた自身の名前空間に置かれるので、そこには自分でプッシュできます。
+
+- [Git - プロジェクトへの貢献](https://git-scm.com/book/ja/v2/GitHub-プロジェクトへの貢献.html#_プロジェクトのフォーク)
+- [リポジトリのcloneとforkの違い #Git - Qiita](https://qiita.com/matsubox/items/09904e4c51e6bc267990)
+
+### コミット履歴の確認
+
+```sh
+# リッチ表示
+git log
+```
+
+```sh
+# 一行ずつ表示
+git log --oneline
+```
+
+### ブランチ表示
+
+```sh
+git fetch
+git branch -a
+```
+
+[Git のリモートのブランチを確認する #Git - Qiita](https://qiita.com/noraworld/items/6804d26bc27c4516a782)
+
+## ソースコードの変更
+
+### ブランチの切り替え
+
+新しくブランチを作成して切り替える場合
+
+```sh
+git switch -c <new branch name>
+```
+
+ブランチを切り替える場合
+
+```sh
+git switch <branch name>
+```
+
+### 変更
+
+エディターで、ソースコードの修正を行う。
+
+### 状態確認
 
 ```sh
 git status
 ```
 
-##### ファイル編集
+### 変更内容の確認
 
 ```sh
-vim <file name>
-git status
-
 git diff
 ```
 
-##### ステージング
+### ステージング
+
+* `git add -A`（Allの略）→ **全部追加（迷ったらこれ）**
+* `git add -u`（Updateの略）→ **変更・削除だけ（新規は除く）**
+
+補足（必要なときだけ）：
+
+* `git add .` → 今いるフォルダ配下だけ追加
+* `git add ファイル名` → 特定のファイルだけ
+* `git add -f`（Forceの略）→ ignore無視（基本使わない）
+
+### 変更のコミット
+
+`ステージング`後に実施するのが基本。
+
+* `git commit -m "message"` → **メッセージ付きでコミット（基本）**
+* `git commit -am "message"` → **add + commitを一発（新規ファイルは除く）**
+
+### 変更を取り消し（コミットの前）
 
 ```sh
-git add <file name>
-git status
+git checkout -f
 ```
 
-##### コミット
+### 変更のプッシュ
+```sh
+git push
+```
+
+## プルリク
+
+変更内容を取得してすぐに反映する
 
 ```sh
-git commit -am "<commit message>"
-git status
+git pull
+git push
+# プリリク作成
 ```
 
-### 追跡対象外設定
+## add, commit取り消し
 
-`.gitignore`ファイルを作成する。バージョン管理外のファイル、ディレクトリを列挙する。
+### 変更取り消し
+
+* `git reset --soft`（Softの略）→ **commitだけ戻す（addは残る）**
+* `git reset`（= `--mixed` / Mixedの略）→ **addを外す（ファイルは残る）**
+* `git reset --hard`（Hardの略）→ **全部（コミット、ステージング、変更）消す**
+
+### コミットの打ち直し
 
 ```sh
-touch .gitignore
-echo '*.swp' >> .gitignore
+git revert <commit-id>
 ```
+
+## 新規レポジトリ追加
+
+### 新しいGitリポジトリの作成
+
+```sh
+git init
+```
+
+### リモートリポジトリの管理
+
+登録されているリモート一覧を表示
+
+* **確認**
+
+```sh
+git remote -v
+```
+
+* **追加**
+
+リモート（例：origin）を登録する
+
+```sh
+git remote add <名前> <URL>
+
+# 例：
+git remote add origin https://github.com/user/repo.git
+```
+
+* **削除**
+
+指定したリモートを削除する
+
+```sh
+git remote remove <名前>
+
+#例：
+git remote remove origin
+```
+
+## その他
+
+* **リモートから変更取得**
+  `git fetch`
+  → リモートの最新状態をローカルに取得（マージはしない）
+
+* **特定コミットを適用**
+  `git cherry-pick`
+  → 別ブランチの特定コミットだけを取り込む
+
+  指定したコミットだけ現在のブランチに適用
+  ```sh
+  git cherry-pick <コミットID>
+  ```
+
+* **履歴を整理**
+  `git rebase`
+  → コミット履歴を一直線に並べ直す（履歴がきれいになる）
+
+* **変更を一時保存**
+  `git stash`
+  → 作業中の変更を退避して、作業ディレクトリをクリーンにする
+
+* **タグ付け**
+  `git tag`
+  → 特定のコミットに名前（バージョンなど）を付ける
+
+* **管理しないファイル指定**
+  `.gitignore`
+  → Gitで追跡しないファイルやフォルダを設定する
+
+
+---
 
 ## ファイルを戻す
 

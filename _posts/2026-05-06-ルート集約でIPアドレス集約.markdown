@@ -1,0 +1,200 @@
+---
+layout: post
+category: network
+title: "ルート集約でIPアドレス集約"
+---
+
+IPv4アドレスのリストを連続したブロックにまとめ、最小限のCIDRブロックに集約するルート集約アルゴリズムを理解する。
+
+# モチベーション
+
+複数の連続・非連続のIPアドレス(/32)を集約して表現したい。
+
+## IPアドレス集約の例
+
+集約の例は以下のものになる。
+
+### 192.168.0.6~9, 11~14
+
+- 192.168.0.6から、192.168.0.14。ただし、第四オクテット10を除外
+
+```
+Cidr { addr: 192.168.0.6, prefix: 31 }
+Cidr { addr: 192.168.0.8, prefix: 31 }
+Cidr { addr: 192.168.0.11, prefix: 32 }
+Cidr { addr: 192.168.0.12, prefix: 31 }
+Cidr { addr: 192.168.0.14, prefix: 32 }
+```
+
+### 172.16.100~151.123~151
+
+- 172.16.100.123から、172.16.151.151まで。ただし、第四オクテット123~151のみ
+- 変換後は208個(52 x 4)
+
+```
+Cidr { addr: 172.16.100.123, prefix: 32 }
+Cidr { addr: 172.16.100.124, prefix: 30 }
+Cidr { addr: 172.16.100.128, prefix: 28 }
+Cidr { addr: 172.16.100.144, prefix: 29 }
+Cidr { addr: 172.16.101.123, prefix: 32 }
+Cidr { addr: 172.16.101.124, prefix: 30 }
+Cidr { addr: 172.16.101.128, prefix: 28 }
+Cidr { addr: 172.16.101.144, prefix: 29 }
+Cidr { addr: 172.16.102.123, prefix: 32 }
+Cidr { addr: 172.16.102.124, prefix: 30 }
+...
+Cidr { addr: 172.16.150.128, prefix: 28 }
+Cidr { addr: 172.16.150.144, prefix: 29 }
+Cidr { addr: 172.16.151.123, prefix: 32 }
+Cidr { addr: 172.16.151.124, prefix: 30 }
+Cidr { addr: 172.16.151.128, prefix: 28 }
+Cidr { addr: 172.16.151.144, prefix: 29 }
+```
+
+### 10.0.0.1 ~ 10.0.0.254
+
+- 第四オクテット0, 255は、抜き
+
+```
+Cidr { addr: 10.0.0.1, prefix: 32 }
+Cidr { addr: 10.0.0.2, prefix: 31 }
+Cidr { addr: 10.0.0.4, prefix: 30 }
+Cidr { addr: 10.0.0.8, prefix: 29 }
+Cidr { addr: 10.0.0.16, prefix: 28 }
+Cidr { addr: 10.0.0.32, prefix: 27 }
+Cidr { addr: 10.0.0.64, prefix: 26 }
+Cidr { addr: 10.0.0.128, prefix: 26 }
+Cidr { addr: 10.0.0.192, prefix: 27 }
+Cidr { addr: 10.0.0.224, prefix: 28 }
+Cidr { addr: 10.0.0.240, prefix: 29 }
+Cidr { addr: 10.0.0.248, prefix: 30 }
+Cidr { addr: 10.0.0.252, prefix: 31 }
+Cidr { addr: 10.0.0.254, prefix: 32 }
+```
+
+## アプローチ
+
+ルーティングにおいて、ルート集約というものがある[1]。一つのIPアドレスは、/32のネットワークアドレスとも言えるので、ルート集約アルゴリズムを適用できる。
+
+- [1][ルーティング編 第3回 ルート集約を押さえよう | 日経クロステック（xTECH）](https://xtech.nikkei.com/it/article/COLUMN/20080715/310883/)
+
+# ルート集約アルゴリズム
+
+連続するIPを可能な限り大きなCIDRブロックにまとめ、冗長なCIDRを減らすルート集約(Route Aggregation)を行う。ステップとしては、以下を行う。
+
+1. IPを整数化・ソート
+2. ブロックサイズを拡張
+3. 連続ブロックを検出
+4. アラインメント確認
+5. CIDRプレフィックス計算
+6. ネットワークアドレス計算
+7. 結果に追加
+
+## 1. IPv4アドレスを整数に変換
+
+1. IPアドレスを、32ビットの整数に変換する。
+2. IPアドレスのリストをソートする。
+
+```rust
+let mut ints: Vec<u32> = ip_list.iter().map(|ip| u32::from(*ip)).collect();
+ints.sort();
+```
+
+次ステップ以降、ループ分で、IPアドレスのリストの先頭から、インデックスを使って、アクセスし、IPアドレスそれぞれに対して、以下のステップの処理を行う。
+
+### 2. ブロックサイズを二倍ずつ拡張
+
+最初は1アドレスのブロックからループを開始する。
+
+次のステップ3, 4の条件を満たす限り、ブロックを2倍ずつ大きくしていく。
+
+```rust
+let mut size = 1;
+loop {
+    let next_size = size * 2;
+    if i + next_size > ints.len() || !is_continuous(&ints[i..i+next_size]) || !is_aligned(ints[i], next_size) {
+        break;
+    }
+    size = next_size;
+}
+```
+
+CIDRのプレフィックスに合わせて、ブロックサイズは常に1, 2, 4, 8, 16,…のように2の累乗になるので、2倍ずつ大きくする。
+
+## 3. 連続ブロックを検出する
+
+連続した整数列かどうかをチェックする。
+
+falseであれば、ステップ3, 4をスキップする。
+
+例:
+- `[1, 2, 3, 4]` → 連続
+- `[1, 2, 4]` → 非連続
+
+```rust
+fn is_continuous(block: &[u32]) -> bool {
+    block.windows(2).all(|w| w[1] == w[0] + 1)
+}
+```
+
+### 4. ブロックのアラインメントを確認
+
+CIDRブロックは開始アドレスがブロックサイズに整列しているか確認する。
+
+falseであれば、ステップ4をスキップする。
+
+```rust
+fn is_aligned(start: u32, size: usize) -> bool {
+    start.is_multiple_of(size as u32)
+}
+```
+
+- 2で割り切れる → 末尾1ビットが 0
+- 4で割り切れる → 末尾2ビットが 00
+- 8で割り切れる → 末尾3ビットが 000
+- 16で割り切れる → 末尾4ビットが 0000
+- ...
+
+### 5. CIDR のプレフィックスを計算
+
+32からブロックサイズ分引いて、CIDRのプレフィックスを計算する。
+
+```rust
+let prefix = 32 - (size as f64).log2() as u8;
+```
+
+ブロックサイズ`size`からCIDRの`/prefix` を求める。
+例:
+- size=4 → log2(4)=2 → prefix=32-2=30 → `/30`のCIDR
+
+### 6. ネットワークアドレスを決定
+
+先のプレフィックスを使用して、サブネットマスクを生成して、ブロックのネットワークアドレスを求める。
+
+```rust
+let mask: u32 = (!0u32) << (32 - prefix);
+let network = ints[i] & mask;
+```
+
+ネットワークアドレス = ブロック開始アドレス AND マスク
+
+### 7. CIDRブロックを結果に追加
+
+1. 計算されたネットワークアドレスとプレフィックスを `Cidr` 構造体に格納（採用）する。
+2. インデックス`i`をブロックサイズ分進めて（追加して）次のブロックを処理する：次のループへ。
+
+```rust
+result.push(Cidr {
+    addr: Ipv4Addr::from(network),
+    prefix,
+});
+```
+
+ステップ2から、繰り返す。
+
+---
+
+# プログラム
+
+[aggregate_ips in ys1r::ipaggregator - Rust](https://yumayx.github.io/YS1-R/ys1r/ipaggregator/fn.aggregate_ips.html)
+

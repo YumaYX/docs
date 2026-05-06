@@ -3,10 +3,10 @@ layout: post
 category: ruby
 title: "Railsとデータ操作"
 ---
+
 # モチベーション
 
 - データのコントロールを規則的に実施したい。
-- Railsを使ったデータ操作メインにまとまった資料をあまり目にしない。Railsって、そういう用途じゃないからな。でも最終的にやってることは、一緒なので、操作についてまとめる。
 - Rails使ってまでやることかと言われると、そこまでじゃないけど、自分で足回り書くのもめんどいし、楽しいじゃんというところ。
 - 爆速で、データベースにデータをぶち込んで、データ操作したいなど。
 
@@ -25,17 +25,17 @@ Webページを扱う。モデルは以下の内容で作成する。
 # プロジェクトの作り方
 
 ```sh
-## make dir
+# make dir
 mkdir bookmark
 cd $_
 bundle init
 
-## Install Rails
+# Install Rails
 echo 'gem "rails"' >> Gemfile
-## install rails
+# install rails
 bundle install
 
-## make rails project
+# make rails project
 bundle exec rails new --minimal .
 ```
 
@@ -84,8 +84,7 @@ bundle exec rails db:migrate
 
 ##### Reference
 
-[Rails scaffoldとは何か? #初心者 - Qiita](https://qiita.com/devactken/items/df5422d33768a05969eb)
-
+<https://qiita.com/devactken/items/df5422d33768a05969eb>
 
 # データ取り込み
 
@@ -95,7 +94,7 @@ bundle exec rails db:migrate
 
 ```sh
 cat <<'EOF'> urls.txt
-https://yumayx.github.io/works/
+https://yumayx.github.io/
 https://github.com/YumaYX
 https://yumayx.github.io/YS1/
 EOF
@@ -134,7 +133,7 @@ Page.find_each do |page|
 end
 ```
 
-##### Reference
+### Reference
 
 [Active Record クエリインターフェイス - Railsガイド](https://railsguides.jp/active_record_querying.html)
 
@@ -148,7 +147,7 @@ vim lib/tasks/update_titles.rake
 ```
 
 ```ruby
-## lib/tasks/update_titles.rake
+# lib/tasks/update_titles.rake
 namespace :data do
   desc "Update titles from URLs"
   task update_titles: :environment do
@@ -181,10 +180,39 @@ end
 bundle exec rake data:update_titles
 ```
 
+### lib/*.rbを使う場合
+
+```sh
+cat <<'EOF'>lib/method.rb
+module Y123
+  def self.hello
+    v = "hello"
+    puts v
+    v
+  end
+end
+# Y123.hello
+EOF
+
+cat <<'EOF'>lib/tasks/use_lib_method.rake 
+require Rails.root.join('lib/method')
+
+namespace :jisaku do
+  desc "use lib/module method"
+  task use_lib_mod_method: :environment do
+    Y123.hello
+  end
+end
+EOF
+
+bundle exec rails jisaku:use_lib_mod_method
+#=> hello
+```
+
 ## 保存時に加工したい場合（DBに保存される値を変える）
 
 ```ruby
-## example
+# example
 class User < ApplicationRecord
   before_save :normalize_name
 
@@ -196,13 +224,103 @@ class User < ApplicationRecord
 end
 ```
 
+## libのRubyスクリプトから操作する場合
+
+lib/app.rb等のスクリプトを作成する。`config/environment.rb`を`require_relative`すると、Modelが使用できるようになる。
+
+```ruby
+require_relative '../config/environment'
+
+page = Page.find_by(url: target_url) # など
+# ...
+```
+
+## Webフォームでも、コンソールでも更新する場合
+
+※ferrum, nokogiriを使用しているので、以下は、Gemfileの更新が必要。
+
+```sh
+echo 'gem "ferrum"' >> Gemfile
+echo 'gem "nokogiri"' >> Gemfile
+bundle install
+
+mkdir -p lib/page_tools
+```
+
+ファイル：`lib/page_tools/metadata.rb`を作る。
+
+```ruby
+cat<<'EOF'>lib/page_tools/metadata.rb
+require_relative '../../config/environment'
+require "ferrum"
+require "nokogiri"
+
+module PageTools
+  module Metadata
+    def self.update(page)
+      #return unless page.access_flag # すでにアクセス済みならスキップ
+      browser = Ferrum::Browser.new(timeout: 30)
+      browser.goto(page.url)
+      browser.network.wait_for_idle
+
+      title = browser.title
+      html = browser.body
+
+      page.update!(
+        title: title,
+        content: html,
+        access_flag: true # 成功したらtrue
+      )
+    rescue
+      # 失敗時は何もしない（access_flagもfalseのまま）
+      puts "ERROR" * 40
+      nil
+    ensure
+      browser&.quit
+    end
+  end
+end
+EOF
+```
+
+### Controllerの修正
+
+```sh
+vim app/controllers/pages_controller.rb
+```
+libを読み込むようにする。
+
+```ruby
+require_relative "../../lib/page_tools/metadata"
+```
+
+createメソッドの中で、save後に以下のメソッド呼び出しを含める。
+
+```
+PageTools::Metadata.update(@page)
+```
+
+### コンソールなどでの更新
+```sh
+bundle exec rails c
+```
+
+```ruby
+require_relative "lib/page_tools/metadata"
+
+Page.where(access_flag: false).each do |page|
+  PageTools::Metadata.update(page)
+end
+```
+
+
 # データを見たい
 
 ## アクセス方法
 
 ```sh
 bundle exec rails server
-## rails server -b 0.0.0.0
+# rails server -b 0.0.0.0
 ```
 
 <http://localhost:3000/pages>にアクセスする。ドメイン名は適宜変更する。

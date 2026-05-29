@@ -1,0 +1,39 @@
+---
+layout: post
+category: commands
+---
+
+## patch command
+
+### example
+
+```sh
+cat <<'EOF1'> original
+abcd
+original
+efgh
+original
+ijkl
+EOF1
+
+cp original pattern
+sed -i 's/original/new/g' pattern
+
+diff original pattern > diffpattern
+
+patch original < diffpattern
+
+cat original
+```
+
+#### result
+
+```sh
+$ cat original
+abcd
+new
+efgh
+new
+ijkl
+$
+```

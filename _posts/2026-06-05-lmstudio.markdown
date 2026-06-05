@@ -1,5 +1,6 @@
 ---
-title: "OllamaのメンタルモデルでLM Studio導入 on AlmaLinux"
+layout: post
+title: "LM Studio"
 emoji: "😂"
 type: "tech"
 category: llm

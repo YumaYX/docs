@@ -30,3 +30,11 @@ echo ncpa.cpl > ncpa.cpl.bat
   - [Windows および Windows Server に Hyper-V をインストールする \| Microsoft Learn](https://learn.microsoft.com/ja-jp/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v#enable-hyper-v-using-powershell)
 1. WinGet
   - [アプリ インストーラー - Microsoft Apps](https://www.microsoft.com/p/app-installer/9nblggh4nns1#activetab=pivot:overviewtab)
+
+```cmd
+winget install Hashicorp.Vagrant
+```
+
+```ps1
+Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
+```

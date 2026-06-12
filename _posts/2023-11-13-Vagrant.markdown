@@ -13,10 +13,12 @@ cat <<'EOF' > Vagrantfile
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "rockylinux/9"
-  #config.vm.box = "almalinux/9"
+  #config.vm.box = "rockylinux/9"
+  config.vm.box = "almalinux/9"
 
   config.vm.provider "virtualbox" do |vb|
+  #config.vm.provider 'libvirt' do |vb|
+  #config.vm.provider "hyperv" do |vb|
   #config.vm.provider "vmware_desktop" do |vb|
     vb.memory = "768"
     vb.cpus = 2

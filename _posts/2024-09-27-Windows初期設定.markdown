@@ -38,3 +38,8 @@ winget install Hashicorp.Vagrant
 ```ps1
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ```
+
+```cmd
+# admininstrator
+vagrant up
+```

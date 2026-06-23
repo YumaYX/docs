@@ -1,0 +1,39 @@
+---
+layout: post
+category: llm
+title: "OPENCODE"
+---
+
+## opencode x deepseek-v4-flash
+
+```sh
+mkdir work;podman run -it --rm -v ./work:/work:Z -w /work almalinux:latest /bin/bash
+```
+
+
+```sh
+dnf -y update
+dnf install zstd nodejs npm -y
+npm install -g opencode-ai
+npm install -g @modelcontextprotocol/server-filesystem
+
+mkdir -p ~/.config/opencode && cat <<'EOF' > ~/.config/opencode/opencode.json
+{
+  "mcp": {
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/work"
+      ],
+      "enabled": true
+    }
+  }
+}
+EOF
+
+opencode
+```
+

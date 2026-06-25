@@ -13,7 +13,7 @@ permalink: /${category}/
 ## ${atitle} ARTICLE(S)
 
 <ul>
-  {% for post in site.categories.${category} %}
+  {% for post in site.categories.${category} | sort: "title" %}
     <li>
       <a href="{{ post.url | relative_url }}">
         {{ post.title }}

@@ -4,6 +4,14 @@ category: rust
 title: Zola
 ---
 
+## 注意：
+
+JekyllのLiquidの文法がぶつかって、一部コンフィグがうまく表示されない(\{\{\}\}が衝突)。以下参照。
+
+[Zola](https://github.com/YumaYX/docs/blob/main/_posts/2025-05-30-zola.markdown)
+
+---
+
 # init
 
 ```sh

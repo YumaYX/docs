@@ -1,6 +1,7 @@
 grep '^catego' _posts/* | awk '{print $2}' | sort | uniq | while read -r line
 do
   category=$(printf '%s' "$line" | tr '[:upper:]' '[:lower:]')
+  atitle=$(printf '%s' "$line" | tr '[:lower:]' '[:upper:]')
 
   cat <<EOF > "${category}.markdown"
 ---
@@ -9,7 +10,7 @@ title: ${line}
 permalink: /${category}/
 ---
 
-## ${line}
+## ${atitle} ARTICLE(S)
 
 <ul>
   {% for post in site.categories.${category} %}

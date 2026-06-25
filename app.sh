@@ -1,4 +1,4 @@
-grep '^cate' _posts/* | awk '{print $2}' | sort | uniq | while read -r line
+grep '^catego' _posts/* | awk '{print $2}' | sort | uniq | while read -r line
 do
   category=$(printf '%s' "$line" | tr '[:upper:]' '[:lower:]')
 
@@ -20,7 +20,5 @@ permalink: /${category}/
     </li>
   {% endfor %}
 </ul>
-
 EOF
-exit
 done

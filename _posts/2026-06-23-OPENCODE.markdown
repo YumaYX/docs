@@ -7,7 +7,7 @@ title: "OPENCODE"
 ## opencode x deepseek-v4-flash
 
 ```sh
-mkdir work;podman run -it --rm -v ./work:/work:Z -w /work almalinux:latest /bin/bash
+mkdir -p work;podman run -it --rm -v ./work:/work:Z -w /work almalinux:latest /bin/bash
 ```
 
 

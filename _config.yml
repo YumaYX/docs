@@ -28,6 +28,7 @@ exclude:
   - .jekyll-cache/
   - mod.sh
   - ~4001
+  - app.sh
 #   - .sass-cache/
 #   - gemfiles/
 #   - node_modules/

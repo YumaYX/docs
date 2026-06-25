@@ -26,7 +26,7 @@ links:
 <ul>
   {% for category in sorted_categories %}
     <li>
-      <a href="{{ site.baseurl }}/menu#{{ category[0] | slugify }}">
+      <a href="{{ site.baseurl }}/{{ category[0] | slugify }}">
         {{ category[0] | upcase }}
       </a>
     </li>

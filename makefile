@@ -4,6 +4,9 @@ s:	install
 install:
 	bundle install
 
+clean:
+	git clean -fd
+
 pub:
 	git status
 	sleep 5

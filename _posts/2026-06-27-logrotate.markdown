@@ -53,7 +53,7 @@ sudo cat > /etc/logrotate2.conf <<'EOF'
 EOF
 
 logrotate -f /etc/logrotate2.conf; ls -1 /var/log/messages*
-# => /var/log/messages-HHMMSSで作られる。
+# => /var/log/messages-YYYYmmdd-HHMMSSで作られる。
 ```
 
 3 別フォルダにアーカイブしたい。

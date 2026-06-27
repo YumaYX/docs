@@ -41,9 +41,11 @@ logrotate -f /etc/logrotate2.conf; ls -1 /var/log/messages*
 2 日時をファイルに付ける。
 
 ```sh
+sudo cat > /etc/logrotate2.conf <<'EOF'
 /var/log/messages {
     rotate 7
     create 0640 root root
+
 
     dateext
     dateformat -%Y%m%d-%H%M%S
@@ -63,6 +65,7 @@ sudo cat > /etc/logrotate2.conf <<'EOF'
 /var/log/messages {
     rotate 7
     create 0640 root root
+
 
     olddir /var/log/archive
 }

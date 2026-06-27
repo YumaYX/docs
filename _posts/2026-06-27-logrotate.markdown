@@ -4,9 +4,7 @@ category: linux
 title: "logrotate"
 ---
 
-## logrotate
-
-### command
+## command
 
 force execution
 
@@ -21,7 +19,7 @@ logrotate -d /etc/logrotate.conf
 ```
 
 
-### pattern
+## pattern
 
 - example: `/var/log/messages`
 
@@ -74,7 +72,7 @@ logrotate -f /etc/logrotate2.conf; ls -1 /var/log/archive/messages*
 # => /var/log/archive/messages.1-7が作られる。
 ```
 
-回転？
+4 回転？
 
 ```sh
 sudo cat > /etc/logrotate2.conf <<'EOF'

@@ -1,6 +1,7 @@
 ---
 layout: post
 category: ruby
+title: Json_to_Yaml
 ---
 
 Json to YAML with ruby

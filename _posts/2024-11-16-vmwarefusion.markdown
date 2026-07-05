@@ -1,6 +1,7 @@
 ---
 layout: post
 category: virtualmachine
+title: vmwarefusion
 ---
 
 run virtual machine on apple Silicon mac

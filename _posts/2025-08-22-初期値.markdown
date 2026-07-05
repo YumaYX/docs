@@ -1,6 +1,7 @@
 ---
 layout: post
 category: shell
+title: 初期値
 ---
 
 ## syokiti

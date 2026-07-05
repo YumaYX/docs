@@ -1,6 +1,7 @@
 ---
 layout: post
 category: shell
+title: CPU,Memory
 ---
 
 ## cpu & mem

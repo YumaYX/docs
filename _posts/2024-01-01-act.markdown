@@ -1,6 +1,7 @@
 ---
 layout: post
 category: commands
+title: act
 ---
 
 # on Apple Silicon

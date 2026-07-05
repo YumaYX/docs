@@ -1,6 +1,7 @@
 ---
 layout: post
 category: make
+title: ファイル個別処理
 ---
 
 ## 個別ファイル処理

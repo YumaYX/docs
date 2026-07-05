@@ -1,6 +1,7 @@
 ---
 layout: post
 category: ruby
+title: Ruby_REPL_Server
 ---
 
 ソケット(`ポート5000`)経由で`python`から、`ruby`のメソッドを使用する方法。

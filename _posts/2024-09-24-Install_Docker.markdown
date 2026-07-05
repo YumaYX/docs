@@ -1,6 +1,7 @@
 ---
 layout: post
 category: container
+title: Install_Docker
 ---
 
 install docker @ RHEL based distribution

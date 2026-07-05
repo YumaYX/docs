@@ -1,6 +1,7 @@
 ---
 layout: post
 category: windows
+title: wsl
 ---
 
 ## install

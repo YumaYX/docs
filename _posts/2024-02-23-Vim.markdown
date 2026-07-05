@@ -1,6 +1,7 @@
 ---
 layout: post
 category: editor
+title: Vim
 ---
 
 # ビジュアルブロックモード

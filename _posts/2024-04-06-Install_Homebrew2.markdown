@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: Install_Homebrew2
 ---
 
 - 勉強にならないから避けていたHomebrew@Linux

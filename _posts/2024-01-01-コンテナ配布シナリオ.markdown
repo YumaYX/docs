@@ -1,6 +1,7 @@
 ---
 layout: post
 category: container
+title: コンテナ配布シナリオ
 ---
 
 閉域環境でのコンテナ配布シナリオを考える。

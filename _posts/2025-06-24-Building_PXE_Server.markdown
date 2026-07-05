@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: Building_PXE_Server
 ---
 
 ### **PXE Boot Server Setup**

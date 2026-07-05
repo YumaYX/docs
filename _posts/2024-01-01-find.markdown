@@ -1,6 +1,7 @@
 ---
 layout: post
 category: commands
+title: find
 ---
 
 ## ディレクトリのリスト表示（半年以上変更されていないディレクトリ）

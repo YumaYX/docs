@@ -1,6 +1,7 @@
 ---
 layout: post
 category: mac
+title: Mac設定
 ---
 
 ## 毎日1時にスリープ設定

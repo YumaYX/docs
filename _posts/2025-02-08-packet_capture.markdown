@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: packet_capture
 ---
 
 `tcpdump` および `wireshark` をインストールするコマンド

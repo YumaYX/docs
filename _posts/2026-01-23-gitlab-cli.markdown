@@ -1,6 +1,7 @@
 ---
 layout: post
 category: gitlab
+title: gitlab-cli
 ---
 
 なぜかGitLab。

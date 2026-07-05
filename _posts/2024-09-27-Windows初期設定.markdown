@@ -1,6 +1,7 @@
 ---
 layout: post
 category: windows
+title: Windows初期設定
 ---
 
 無心で設定する。

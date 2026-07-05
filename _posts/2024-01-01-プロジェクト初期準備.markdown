@@ -1,6 +1,7 @@
 ---
 layout: post
 category: ruby
+title: プロジェクト初期準備
 ---
 
 Rubyプロジェクトに必要な準備

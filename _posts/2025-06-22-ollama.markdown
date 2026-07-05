@@ -1,6 +1,7 @@
 ---
 layout: post
 category: llm
+title: ollama
 ---
 
 Ollamaインストールと簡単な使用例

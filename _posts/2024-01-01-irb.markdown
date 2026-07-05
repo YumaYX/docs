@@ -1,6 +1,7 @@
 ---
 layout: post
 category: commands
+title: irb
 ---
 
 irbを使って、Rubyスクリプトの実行過程を出力する。

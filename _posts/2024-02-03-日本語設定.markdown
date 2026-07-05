@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: 日本語設定
 ---
 
 ```sh

@@ -1,6 +1,7 @@
 ---
 layout: post
 category: commands
+title: dnf
 ---
 
 ## コマンド名から、パッケージを引く方法

@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: ISOを焼く
 ---
 
 AlmaLinux 9.5が出たので、ISOを焼く。

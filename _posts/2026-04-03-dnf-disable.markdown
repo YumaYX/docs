@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: dnf-disable
 ---
 
 コマンドでdisabledできる。

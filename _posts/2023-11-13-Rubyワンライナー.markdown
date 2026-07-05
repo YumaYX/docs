@@ -1,6 +1,7 @@
 ---
 layout: post
 category: ruby
+title: Rubyワンライナー
 ---
 
 # Rubyのワンライナー

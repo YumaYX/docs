@@ -1,6 +1,7 @@
 ---
 layout: post
 category: commands
+title: fallocate
 ---
 
 1Gのダミーファイルを作る。

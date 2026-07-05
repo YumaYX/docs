@@ -13,16 +13,13 @@ permalink: /${category}/
 
 ## ${atitle} ARTICLE(S)
 
-{% assign posts = site.categories[category] | sort: "title" | reverse %}
-
 <ul>
-  {% for post in posts %}
+  {% for post in site.categories.${category} reversed %}
     <li>
-      <a href="{{ post.url | relative_url }}">
-        {{ post.title }}
-      </a>
+      <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
 </ul>
+
 EOF
 done

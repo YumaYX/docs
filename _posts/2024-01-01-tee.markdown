@@ -1,6 +1,7 @@
 ---
 layout: post
 category: commands
+title: tee
 ---
 
 sudoを使って、リダイレクト相当をする場合

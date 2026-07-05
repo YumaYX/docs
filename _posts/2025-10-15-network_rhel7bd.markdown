@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: network_rhel7bd
 ---
 
 ### RHELベース7系のコマンド記録

@@ -1,6 +1,7 @@
 ---
 layout: post
 category: commands
+title: stdin
 ---
 
 ## 標準入力の扱い

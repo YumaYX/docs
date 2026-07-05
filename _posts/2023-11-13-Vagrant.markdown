@@ -1,6 +1,7 @@
 ---
 layout: post
 category: virtualmachine
+title: Vagrant
 ---
 
 ## Vagrantfile

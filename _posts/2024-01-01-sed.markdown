@@ -1,6 +1,7 @@
 ---
 layout: post
 category: commands
+title: sed
 ---
 
 ## 末尾一行削除

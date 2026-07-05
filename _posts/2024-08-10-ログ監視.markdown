@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: ログ監視
 ---
 
 下の例では、`/var/log/messages`の監視を行う。grepの条件で、以降の処理を行うかどうかを分岐する。合致するログをトリガーにして、処理を実行できる。

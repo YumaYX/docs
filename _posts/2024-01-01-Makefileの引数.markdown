@@ -1,6 +1,7 @@
 ---
 layout: post
 category: make
+title: Makefileの引数
 ---
 
 # Makefileで引数をとる方法

@@ -1,6 +1,7 @@
 ---
 layout: post
 category: shell
+title: Shell_coding_standards
 ---
 
 my bash coding standards

@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: reset-root-password
 ---
 
 ```

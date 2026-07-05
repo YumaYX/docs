@@ -1,6 +1,7 @@
 ---
 layout: post
 category: shell
+title: テキスト抽出
 ---
 
 ## Top

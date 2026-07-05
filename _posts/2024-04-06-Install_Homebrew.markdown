@@ -1,6 +1,7 @@
 ---
 layout: post
 category: linux
+title: Install_Homebrew
 ---
 
 # Install Homebrew on RHEL

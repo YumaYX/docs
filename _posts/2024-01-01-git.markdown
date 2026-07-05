@@ -1,6 +1,7 @@
 ---
 layout: post
 category: commands
+title: git
 ---
 
 gitを使って、バージョン管理をする。

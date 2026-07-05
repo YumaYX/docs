@@ -1,6 +1,7 @@
 ---
 layout: post
 category: ruby
+title: install_serverspec
 ---
 
 install serverspec gem

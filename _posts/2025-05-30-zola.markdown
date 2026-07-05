@@ -4,14 +4,6 @@ category: rust
 title: Zola
 ---
 
-## 注意：
-
-JekyllのLiquidの文法がぶつかって、一部コンフィグがうまく表示されない(\{\{\}\}が衝突)。以下参照。
-
-[Zola](https://github.com/YumaYX/docs/blob/main/_posts/2025-05-30-zola.markdown)
-
----
-
 # init
 
 ```sh
@@ -132,6 +124,7 @@ EOF
 {% endraw %}
 
 
+{% raw %}
 ```sh
 mkdir -p static/css
 cat <<'EOF' > static/css/style.css
@@ -143,6 +136,7 @@ EOF
 ## <link rel="stylesheet" href="{{ get_url(path="css/style.css") }}">
 ## をtemplates/base.htmlに追記。
 ```
+{% endraw %}
 
 # serve
 

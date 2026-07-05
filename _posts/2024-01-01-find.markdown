@@ -15,7 +15,7 @@ find /backup/* -daystart -maxdepth 0 -mtime +180 -type d
 
 `-mtime` オプションは、ディレクトリが最後に変更されてからの経過時間を指定します。  `+` 記号は「より多い」という意味で、指定した日数以上経過したものを検索します。
 
-### +mtime(plus)
+### mtime +plus
 
 ```sh
 find . -daystart -mtime +2
@@ -24,7 +24,7 @@ find . -daystart -mtime +2
 # 期間: ./20250531（一番古いファイル）　〜 ./20260702（3(2+1)日前）
 ```
 
-### -mtime(minus)
+### mtime -minus
 
 ```sh
 find . -daystart -mtime -2
@@ -33,7 +33,7 @@ find . -daystart -mtime -2
 # ./20260704（2） 〜 ./20260705（1）
 ```
 
-### mtime(nothing)
+### mtime (nothing)
 
 ```sh
 find . -daystart -mtime 2

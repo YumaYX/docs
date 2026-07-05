@@ -97,6 +97,7 @@ ansible-playbook -i hosts r.yml --limit sv1
 
 ### ホスト指定でタスクの実行の書き方
 
+{% raw %}
 ```yaml
 - name: Git Clone Repos with https
   ansible.builtin.git:
@@ -106,6 +107,7 @@ ansible-playbook -i hosts r.yml --limit sv1
     - dotfiles
   when: inventory_hostname in groups['two']
 ```
+{% endraw %}
 
 - whenがポイント
 - groupsには、hostsの定義から指定

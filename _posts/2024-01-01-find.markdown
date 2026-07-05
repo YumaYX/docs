@@ -55,7 +55,6 @@ find . -daystart -mtime 2
 ## 環境づくりコマンド
 
 ```sh
-#2026-07-05
 mkdir -p work; cd ${_}
 
 for f in $(seq 0 400)
@@ -64,5 +63,6 @@ do
   touch -t ${datelabel} ${datelabel}
   ls -l ${datelabel}
 done
+# 2026-07-05
 # 20260705 => 20250531
 ```

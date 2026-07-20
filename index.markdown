@@ -12,11 +12,11 @@ links:
   - name: YS1XL
     url: https://github.com/YumaYX/YS1XL/
   - name: ips
-    url: https://github.com/YumaYX/ips/
+    url: /ips/
   - name: maildocs
-    url: https://github.com/YumaYX/maildocs/
+    url: /maildocs/
   - name: lllmd
-    url: https://github.com/YumaYX/lllmd/
+    url: /lllmd/
 ---
 
 {% assign sorted_categories = site.categories | sort %}

@@ -13,6 +13,8 @@ links:
     url: https://github.com/YumaYX/YS1XL/
   - name: ips
     url: https://github.com/YumaYX/ips/
+  - name: maildocs
+    url: https://github.com/YumaYX/maildocs/
 ---
 
 {% assign sorted_categories = site.categories | sort %}

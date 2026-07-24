@@ -17,7 +17,7 @@ jobs:
         run: |
           git config --global user.name "${GITHUB_ACTOR}"
           git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
-          sh mkpost "untitled"
+          $(/usr/bin/env bash) mkpost "untitled"
           git add _posts
           git commit -m "Auto commit: $(date)" || echo "No changes to commit"
           git push origin HEAD

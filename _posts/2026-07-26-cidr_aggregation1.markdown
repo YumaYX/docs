@@ -179,14 +179,6 @@ Y = 192.168.0.128/25
 
 実装は、タイトル：[AddressSet in ips::addressset - Rust](https://yumayx.github.io/ips/ips/addressset/struct.AddressSet.html#method.normalize_linear)にて行なっている。
 
-### IPアドレスのみのルート集約
-
-以前に、"IPアドレス/32"のリストを集約するアルゴリズムを整理したものがある。タイトル：[ルート集約のアルゴリズムを使ったIPアドレスの集約方法の理解](https://zenn.dev/yumayx/articles/b3c032715af661)
-
-本稿と、以前の記事の違いは、CIDR表記のリストを集約するか、IPアドレス/32のリストを集約するかの違いとなる（CIDR表記のリストを集約するのが本稿である）。参考にしてほしい。
-
-その他に[ルート集約のアルゴリズム - 2分木編｜Yuma](https://zenn.dev/yumayx/articles/f2bceeb89b31a3)を書いた。これは本稿と目的は一緒ではあるが、アプローチ、実装方法が異なる。こちらも参考にしてほしい。
-
 ## まとめ
 
 CIDR表記のIPアドレス、ネットワークアドレスを線形版で、集約する方法を示した。総当たりで、包含、兄弟関係、それ以外かを繰り返しチェックすることで、集約することができる。

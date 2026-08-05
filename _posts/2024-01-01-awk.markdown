@@ -34,3 +34,27 @@ awk '{if ($0 ~ /B/) exit;print $0;}' sample.txt
 ```sh
 awk '($2 == "keyword1" || $2 == "keyword2") && $3 == "target" {print}' sample.txt
 ```
+
+
+## テキストの初回出現
+
+テキストの初回出現を並べる方法
+
+```
+$ cat text 
+apple
+apple
+banana
+apple
+orange
+banana
+$ 
+```
+
+```
+$ cat text | awk '!a[$1]++'
+apple
+banana
+orange
+$ 
+```

@@ -18,3 +18,5 @@ title: "${1}"
 PTEMPLATE
 
 #vim ${filename}
+echo "${filename}"
+

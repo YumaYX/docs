@@ -42,4 +42,3 @@ $ cargo run --bin hello -q
 Hello, Rust!
 $
 ```
-

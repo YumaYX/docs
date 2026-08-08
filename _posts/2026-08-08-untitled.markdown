@@ -1,6 +1,13 @@
 ---
 layout: post
-category: uncategorized
-title: "untitled"
+category: rust
+title: "Windows実行ファイル配布"
 ---
+
+
+r.8 8 8
+
+Githubを通じて、exeファイルの配布を試みたがWindowsセキュリティの誤検知により、配布不可。
+
+これ以上モチベーションがないため、調査終了。
 

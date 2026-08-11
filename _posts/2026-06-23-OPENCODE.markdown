@@ -6,8 +6,9 @@ title: "OPENCODE"
 
 ## opencode
 
+@ almalinux
+
 ```sh
-# @ almalinux
 mkdir -p work;podman run -it --rm -v ./work:/work:Z -w /work almalinux:latest /bin/bash
 ```
 
@@ -48,8 +49,8 @@ install cargo fmt clippy make git by dnf.
 
 ## for mac
 
+@ apple silicon mac
 
 ```sh
-# @ apple silicon mac
 docker run -ti --platform linux/arm64/v8 -v ./work:/work -w /work almalinux:9 /bin/bash
 ```

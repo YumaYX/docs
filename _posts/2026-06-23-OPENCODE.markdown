@@ -54,3 +54,50 @@ install cargo fmt clippy make git by dnf.
 ```sh
 docker run -ti --platform linux/arm64/v8 -v ./work:/work -w /work almalinux:9 /bin/bash
 ```
+
+---
+
+```sh
+cat <<'DOCKEREOF' > Dockerfile
+FROM almalinux:9
+
+RUN dnf -y update \
+    && dnf -y install nodejs npm rust cargo rustfmt clippy make git \
+    && dnf clean all
+
+RUN npm install -g opencode-ai \
+    && npm install -g @modelcontextprotocol/server-filesystem
+
+RUN mkdir -p ~/.config/opencode \
+    && cat <<'EOF' > ~/.config/opencode/opencode.json
+{
+  "mcp": {
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/work"
+      ],
+      "enabled": true
+    }
+  }
+}
+EOF
+
+WORKDIR /work
+CMD ["opencode"]
+DOCKEREOF
+```
+
+```sh
+# 1. イメージをbuild
+docker build -t myapp .
+
+# 2. コンテナをrun
+docker run -it --rm --platform linux/arm64/v8 -v ./work:/work -w /work --name myapp-container myapp
+
+# 3. コンテナを削除
+# docker rm myapp-container
+```

@@ -4,9 +4,10 @@ category: llm
 title: "OPENCODE"
 ---
 
-## opencode x deepseek-v4-flash
+## opencode
 
 ```sh
+# @ almalinux
 mkdir -p work;podman run -it --rm -v ./work:/work:Z -w /work almalinux:latest /bin/bash
 ```
 
@@ -39,10 +40,16 @@ opencode
 
 モデルを選択する。
 
-
-
 ## sample prompt(s)
 
 ```
 install cargo fmt clippy make git by dnf.
+```
+
+## for mac
+
+
+```sh
+# @ apple silicon mac
+docker run -ti --platform linux/arm64/v8 -v ./work:/work -w /work almalinux:9 /bin/bash
 ```

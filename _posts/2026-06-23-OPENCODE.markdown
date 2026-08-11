@@ -39,3 +39,10 @@ opencode
 
 モデルを選択する。
 
+
+
+## sample prompt(s)
+
+```
+install cargo fmt clippy make git by dnf.
+```

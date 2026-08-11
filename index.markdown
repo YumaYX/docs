@@ -38,6 +38,7 @@ links:
     </li>
   {% endfor %}
 </ul>
+<ul><li><a href="/docs/all/">All Posts</a></li></ul>
 </div>
 
 <div class="one-half column">

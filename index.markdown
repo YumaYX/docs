@@ -13,8 +13,6 @@ links:
     url: https://github.com/YumaYX/YS1XL/
   - name: ips
     url: /ips/
-  - name: maildocs
-    url: /maildocs/
   - name: lllmd
     url: /lllmd/
 ---

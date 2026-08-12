@@ -11,8 +11,6 @@ links:
     url: https://yumayx.github.io/YS910/
   - name: YS1XL
     url: https://github.com/YumaYX/YS1XL/
-  - name: ips
-    url: /ips/
   - name: lllmd
     url: /lllmd/
 ---

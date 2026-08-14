@@ -63,3 +63,10 @@ title: "Clock"
     updateDateTime();
     setInterval(updateDateTime, 1000);
 </script>
+
+
+---
+
+```sh
+curl -o https://yumayx.github.io/docs/uncategorized/2026/08/14/untitled.2093.112611.html
+```

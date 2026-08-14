@@ -1,6 +1,65 @@
 ---
 layout: post
 category: uncategorized
-title: "untitled"
+title: "Clock"
 ---
 
+<div id="datetime"></div>
+
+ <script>
+    function zeroPad(num) {
+      return String(num).padStart(2, '0');
+    }
+
+    function updateDateTime() {
+      const now = new Date();
+
+      const youbi = ['日', '月', '火', '水', '木', '金', '土'];
+      const dayOfWeek = youbi[now.getDay()];
+
+      // 西暦（年月日）
+      const seirekiDate =
+        now.getFullYear() + '年' +
+        zeroPad(now.getMonth() + 1) + '月' +
+        zeroPad(now.getDate()) + '日' +
+        '（' + dayOfWeek + '）';
+
+      // 和暦（年月日）※ 年月日を明示的に組み立て
+      const warekiParts = new Intl.DateTimeFormat(
+        'ja-JP-u-ca-japanese',
+        { era: 'long', year: 'numeric', month: 'numeric', day: 'numeric' }
+      ).formatToParts(now);
+
+      let era = '';
+      let year = '';
+      let month = '';
+      let day = '';
+
+      warekiParts.forEach(p => {
+        if (p.type === 'era') era = p.value;
+        if (p.type === 'year') year = p.value;
+        if (p.type === 'month') month = zeroPad(p.value);
+        if (p.type === 'day') day = zeroPad(p.value);
+      });
+
+      const wareki =
+        era + year + '年' +
+        month + '月' +
+        day + '日' +
+        '（' + dayOfWeek + '）';
+
+      // 時間
+      const time =
+        zeroPad(now.getHours()) + ':' +
+        zeroPad(now.getMinutes()) + ':' +
+        zeroPad(now.getSeconds());
+
+      document.getElementById('datetime').innerHTML =
+        '和暦：' + wareki + '<br>' +
+        '西暦：' + seirekiDate + '<br>' +
+        '時間：' + time;
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+</script>

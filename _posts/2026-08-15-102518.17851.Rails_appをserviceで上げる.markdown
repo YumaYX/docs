@@ -45,6 +45,7 @@ EOF
 
 ## Open the port
 
+```sh
 firewall-cmd --permanent --zone=public --add-port=1234/tcp
 firewall-cmd --reload
 firewall-cmd --list-all

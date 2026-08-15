@@ -67,7 +67,7 @@ title: "Clock"
 
 ---
 
-## @cmd
+## ダウンロード
 
 ```sh
 curl -o https://yumayx.github.io/docs/uncategorized/2026/08/14/untitled.2093.112611.html

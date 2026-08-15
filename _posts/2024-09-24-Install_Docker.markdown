@@ -4,7 +4,7 @@ category: container
 title: Install_Docker
 ---
 
-install docker @ RHEL based distribution
+## RHEL 系ディストリビューションへのインストール
 
 ```sh
 sudo yum remove -y docker \
@@ -27,6 +27,7 @@ sudo yum install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin d
 sudo systemctl start docker
 sudo docker run hello-world
 
+# act: GitHub Actions をローカルで実行するツール
 curl https://raw.githubusercontent.com/nektos/act/master/install.sh | sudo bash
 ```
 

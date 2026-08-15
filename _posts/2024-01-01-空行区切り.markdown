@@ -4,11 +4,17 @@ category: shell
 title: 空行区切り
 ---
 
+空行区切りのブロックをファイルごとに分割して整形する。
+
 ```sh
 target='f'
 cat $target | csplit - -z /^$/ '{*}' > /dev/null
 ls -1 xx* | xargs -I@ sed -i '/^$/d' @
 find . -name "xx*" -type f -size 0 | xargs rm
 ```
+
+- `csplit - -z /^$/ '{*}'`: 空行(`^$`)を区切りに分割。`-` は標準入力、`-z` は空のファイルを生成しない
+- `sed -i '/^$/d'`: 分割後の各ファイルから空行を削除
+- `find ... -size 0`: サイズ0のファイルを削除
 
 ※ GNUのコマンドで実行すること。

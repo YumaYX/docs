@@ -29,17 +29,18 @@ seq 10 | ruby -ne 'sum||=0;sum+=$_.to_i;END{puts sum}'
 ruby -nle 'puts $_ if $_ =~ /^abc/' file
 ```
 
-### 引数
+### オプション
 
 | Option | Desc. |
 | --- | --- |
-| -e command | exec command as string |
-| -l | $_ + chomp |
-| -n | each line (with -e) |
-| -r lib | require |
-| $_ | value |
+| -e command | 実行するRubyコード |
+| -l | 各行を$_に代入し末尾をchomp |
+| -n | 1行ずつ処理(-eと併用) |
+| -r lib | requireするライブラリ |
 
-#### アルファベットの利用する場合
+※ `$_` はオプションではなく、1行分の文字列が入る組み込み変数
+
+#### アルファベットを利用する場合
 
 ```sh
 ruby -e "puts ('a'..'z').to_a" | while read line; do echo ${line}; done

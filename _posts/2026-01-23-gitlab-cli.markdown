@@ -38,7 +38,7 @@ GitHubからクローンした自分のプロジェクトをGitLabにpushした�
 - podmanのgitlabはポートが開いていない箇所がある。
 - gitlabはoauthアプリが最初にない。→tokenで処理する。事前に作っておく。
 
-#### GitHub cli
+#### GitHub CLI
 
 ```sh
 @ Mac
@@ -47,7 +47,7 @@ brew install gh
 gh auth login
 ```
 
-##### @ rhel系(未検証:検証する前にbrewを)
+##### RHEL系(未検証)
 
 未検証:検証する前にbrewを入れたため、dnf経由では達成する意義が無くなった。
 
@@ -64,7 +64,7 @@ gh auth login
 mkdir -p github-reops; cd $_
 
 gh repo list -L 100 > mylist
-# ここでは、privateを含むのレポジトリ名を取っておきたい。
+# ここでは、private を含むレポジトリ名を取っておきたい。
 ```
 
 ### clone repos from github
@@ -88,7 +88,7 @@ cat mylist | awk '{print $1}' | awk -F/ '{print $2}' | GITLAB_HOST=localhost:808
 
 - なぜかrootでしかできなかった。
 - 一般ユーザーで`GITLAB_HOST`を指定してもダメだった。
-- brewでインストールした場合、一般ユーザーで、通常動作したので、snapdが関連していると考得られる。
+- brewでインストールした場合、一般ユーザーで、通常動作したので、snapdが関連していると考えられる。
 
 ### push to my gitlab
 
@@ -100,7 +100,7 @@ do
   git remote remove origin
   git remote -v; sleep 2
   git remote add origin ssh://git@localhost:2222/user/${line}.git
-  git push -u origin main #もちろんmainブランチじゃないとエラー。
+  git push -u origin main # もちろん main ブランチじゃないとエラー。
   git push --all origin
   git push --tags origin
   sleep 2

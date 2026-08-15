@@ -8,7 +8,7 @@ title: Windows_ISO
 
 ---
 
-### MacでWin ISOブータブルメディアを作る手順
+### macOS で Windows ISO ブータブルメディアを作る手順
 
 ```sh
 brew install wimlib
@@ -27,7 +27,7 @@ rsync -avh --progress --exclude=sources/install.wim /Volumes/CCCOMA_X64FRE_JA-JP
 wimlib-imagex split /Volumes/CCCOMA_X64FRE_JA-JP_DV9/sources/install.wim /Volumes/NO\ NAME/sources/install.swm 3800
 
 # /dev/disk4 のマウント解除
-#hdiutil mount ~/Downloads/Win1*.iso
+# hdiutil mount ~/Downloads/Win1*.iso
 diskutil unmountDisk /dev/disk4
 ```
 

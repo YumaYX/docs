@@ -4,7 +4,7 @@ category: linux
 title: Building_PXE_Server
 ---
 
-### **PXE Boot Server Setup**
+## PXE ブートサーバーのセットアップ
 
 This configuration automates the setup of a **PXE boot server** on a Linux system using shell scripting. The setup includes installing and configuring **TFTP**, **DHCP**, **HTTP**, and **firewalld** services, and prepares bootable installation media for automated OS deployment.
 
@@ -12,7 +12,7 @@ After running this configuration, client machines on the same network can boot v
 
 ---
 
-### Environment
+## 環境
 
 - Network
   - 172.17.64.0/24
@@ -25,7 +25,7 @@ After running this configuration, client machines on the same network can boot v
 
 ---
 
-### Commands (Shell)
+## コマンド(Shell)
 
 ```sh
 #!/bin/bash
@@ -153,7 +153,7 @@ systemctl restart httpd dhcpd tftp firewalld
 echo "[✓] PXE boot server setup completed successfully!"
 ```
 
-### How to Run the Script
+## スクリプトの実行方法
 
 1. Save the script as build_pxe.sh.
 

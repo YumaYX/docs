@@ -4,7 +4,7 @@ category: shell
 title: テキスト抽出
 ---
 
-## Top
+## 先頭から
 
 ### 正規表現にて
 
@@ -21,15 +21,15 @@ awk '{print $0; if ($0 ~ /C/)exit}' target.txt
 ```sh
 awk '{if ($0 == "C")exit; print $0}' target.txt
 ```
-awkは、exitの位置で、末行を含むか含まないかを選択可能
+awkは、exitの位置で、該当行を含むか含まないかを選択できる
 
-## Middle
+## 中間(範囲)
 
 ```sh
 awk '/B/,/D/' target.txt
 ```
 
-## Bottom
+## 末尾まで
 
 ```sh
 sed -n '/C/,$p' target.txt

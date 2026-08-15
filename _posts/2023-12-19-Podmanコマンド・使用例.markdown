@@ -22,7 +22,8 @@ podman run -it --rm -v myvolume:/media --name myrl docker.io/rockylinux/rockylin
 # -t:tty
 # --rm:コンテナ終了時にコンテナ自動的に削除
 # --name:コンテナの名前
-# -v:ボリュームマウント -v < <Volume Name>:<マウント先> >
+# -v:ボリュームマウント -v <Volume Name>:<マウント先>
+# オプション例:
 # --net mynetwork
 # --ip=192.168.1.1
 ```
@@ -36,6 +37,8 @@ podman stop <CONTAINER ID| NAME>
 # delete
 podman rm <CONTAINER ID | NAME>
 ```
+
+※ `docker ps` が動くのは、podman-docker により `docker` が podman のエイリアスとして提供されているため
 
 #### Export & Import
 
@@ -75,7 +78,7 @@ podman volume export <VOLUME NAME> --output <EXPORTE NAME>.tar
 podman volume create <VOLUME NAME>
 podman volume import <VOLUME NAME> <EXPORTE NAME>.tar
 
-## del volume
+# 削除
 podman volume prune # unused
 podman volume rm --all
 ```
@@ -148,7 +151,7 @@ podman run \
  docker.io/library/wordpress:latest
 ```
 
-###### Reference
+## 参考リンク
 
 [Podmanで独自コンテナイメージとボリュームを使うpodの作成 - 作業ログ源泉垂れ流し](https://non-filtered-worklog.hateblo.jp/entry/2021/06/15/230119)
 
@@ -161,7 +164,7 @@ dnf -y update
 dnf -y install podman podman-docker
 ```
 
-## Environments
+## 環境
 
 ```
 [root@localhost ~]# cat /etc/redhat-release 

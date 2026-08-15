@@ -31,23 +31,23 @@ end
 EOF
 ```
 
-### network
+### ネットワーク
 
-#### hostname
+#### ホスト名
 
 ```ruby
   config.vm.hostname = "hostname"
 ```
 
-#### bridge
+#### ブリッジ接続
 
 ```ruby
   config.vm.define "machine" do |machine|
-    machine.vm.network "public_network" , bridge: "en0: Wi-Fi"
+    machine.vm.network "public_network", bridge: "en0: Wi-Fi"
   end
 ```
 
-#### host-only network
+#### ホストオンリーネットワーク
 
 ```ruby
   config.vm.define "machine" do |machine|
@@ -55,13 +55,13 @@ EOF
   end
 ```
 
-#### port-forwarding
+#### ポートフォワーディング
 
 ```ruby
     machine.vm.network :forwarded_port, guest:22, host:1234, id:"ssh"
 ```
 
-### tips
+### ヒント
 
 #### Vagrant provision時ansibleの実行
 
@@ -85,7 +85,7 @@ EOF
 - 必要がない限り導入しない
 - 分岐等あるが、コストに見合わない
 
-### commands
+### コマンド
 
 ```sh
 # Vagrantfile作成
@@ -106,7 +106,7 @@ vagrant up --no-provision
 vagrant provision
 ```
 
-## Status取得
+## 状態確認
 ```sh
 vagrant status
 ```
@@ -126,7 +126,7 @@ vagrant suspend
 vagrant halt
 ```
 
-## Status取得(all)
+## 状態確認(全VM)
 ```sh
 vagrant global-status
 ```
@@ -164,11 +164,11 @@ vagrant vbguest
 
 
 
-#### Clean for mac command
+#### Mac環境のクリーンアップ
 
 ```sh
 vagrant global-status
-vagrant global-status —-prune
+vagrant global-status --prune
 
 for f in `vagrant global-status --prune | grep /Users/ | awk '{print $1}'`
 do
@@ -183,7 +183,7 @@ VBoxManage list vms | awk '{print $1}' | xargs -I@ VBoxManage unregistervm @
 rm -rf "${HOME}/VirtualBox VMs"/*
 ```
 
-### Install
+### インストール
 
 ```sh
 brew install vagrant

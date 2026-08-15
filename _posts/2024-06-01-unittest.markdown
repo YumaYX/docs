@@ -4,6 +4,10 @@ category: python
 title: unittest
 ---
 
+## 概要
+
+`src`(実装)と `tests`(テスト)を分けた構成。`python3 -m unittest discover` が `test_*.py` を自動発見して実行する。
+
 ```sh
 mkdir project && cd project
 
@@ -34,3 +38,5 @@ EOFM
 
 make test
 ```
+
+`make test` は makefile に定義したテスト実行ターゲット。

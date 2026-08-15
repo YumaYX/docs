@@ -6,6 +6,8 @@ title: swap
 
 ## swap
 
+swap ファイルを作成して有効化する手順。`fallocate` で 32G のファイルを作成し、`mkswap` で swap 領域に初期化、`chmod 600` で権限を制限、`swapon` で有効化する。
+
 ```sh
 fallocate -l 32G /swapfile
 mkswap /swapfile
@@ -15,6 +17,8 @@ swapon -s
 ```
 
 ## zram
+
+zram は RAM 上に圧縮 swap 領域を作る仕組み。`zram-generator` で設定し、`zram-size` は RAM の半分を上限 4096 MiB として確保、圧縮は zstd を使用する。
 
 ```sh
 dnf install -y zram-generator

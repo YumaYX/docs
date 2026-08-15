@@ -4,10 +4,15 @@ category: commands
 title: snmpwalk
 ---
 
+snmpwalk は SNMP エージェントから OID 配下の情報をツリー状に取得するコマンド。
+
 ```sh
 snmpwalk -v2c -c <コミュニティ名> <ホスト名：ポート> <OID>
 ```
 
-###### Reference
+- `-v2c`: SNMP バージョン 2c を指定
+- `-c <コミュニティ名>`: コミュニティ名を指定
+
+## 参考リンク
 
 [snmpwalkの使い方とは？コマンド使用方法を徹底解説](https://www.manageengine.jp/products/OpManager/how-to-use-snmpwalk.html)

@@ -6,6 +6,12 @@ title: passwd
 
 ## 無期限設定
 
+パスワードを無期限に設定する。
+
+- `passwd -n 0`: 最短有効期間を0日(すぐ変更可能)に
+- `passwd -x 99999`: 最長有効期間をほぼ無期限に
+- `passwd -w -1`: 期限切れ警告をなしに
+
 ```sh
 username='user'
 
@@ -21,7 +27,7 @@ chage -l ${username}
 chage -l ${username}
 ```
 
-オプションはL(エル)の小文字
+`chage -l` の `-l` は小文字のエル(L)である。
 
 ## 引数表 passwd / chage
 

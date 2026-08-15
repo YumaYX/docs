@@ -4,9 +4,11 @@ category: linux
 title: vaio
 ---
 
-雑多
+## 雑多
 
 ## バッテリー残量
+
+`upower -e` でデバイス一覧を取得し、`grep BAT` でバッテリー行を抽出、`upower -i` でその詳細(残量など)を表示する。
 
 ```sh
 upower -i $(upower -e | grep BAT)

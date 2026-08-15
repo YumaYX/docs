@@ -6,7 +6,7 @@ tags:
 category: ruby
 ---
 
-# Active Recordで、データ処理をする。
+# Active Recordでデータ処理をする
 
 Active Recordを使ったサンプル。Railsは使わない。
 
@@ -32,8 +32,8 @@ activerecordとsqlite3が必要
 ```ruby
 require 'active_record'
 
-## テーブルを作成
-class Manufacturer <  ActiveRecord::Base ; end
+## モデルクラスを定義
+class Manufacturer < ActiveRecord::Base; end
 
 ## データベースに接続
 Manufacturer.establish_connection(
@@ -68,7 +68,7 @@ Manufacturer.connection.close
 ```ruby
 require 'active_record'
 
-class Car < ActiveRecord::Base ; end
+class Car < ActiveRecord::Base; end
 Car.establish_connection(
   adapter: 'sqlite3',
   database: 'database.db'
@@ -91,7 +91,7 @@ Car.connection.close
 
 ## データ抽出
 
-**基本ひだり（←）が基準**
+**基本は左(←)のテーブルが基準**
 
 #### left outer join：1対多
 
@@ -136,7 +136,7 @@ Manufacturer.connection.close
 
 ```ruby
 require 'active_record'
-class Manufacturer <  ActiveRecord::Base
+class Manufacturer < ActiveRecord::Base
   has_one :car
   # 単数
 end
@@ -172,7 +172,7 @@ Manufacturer.connection.close
 
 ```ruby
 require 'active_record'
-class Manufacturer <  ActiveRecord::Base
+class Manufacturer < ActiveRecord::Base
   has_one :car, primary_key: :name, foreign_key: :maker
   # manufacturers.name == cars.maker
 end
@@ -203,7 +203,7 @@ Manufacturer.connection.close
 - joinsをそのまま使うと、モデル_idが使用される
 - テーブル名は複数形
 
-## Environment
+## 環境
 
 ```sh
 ~  gem list | grep  -E 'activerecord|sqlite'
@@ -212,7 +212,7 @@ sqlite3 (1.6.3 x86_64-darwin)
 ~  
 ```
 
-# Active Recordで、出力順を指定する。
+## Active Recordで出力順を指定する
 
 ## Order
 
@@ -249,7 +249,7 @@ irb(main):010:0>
 
 [order \| Railsドキュメント](https://railsdoc.com/page/model_order)
 
-## env
+## 環境
 
 ```sh
 [root@adae98cb22b2 /]# rails -v

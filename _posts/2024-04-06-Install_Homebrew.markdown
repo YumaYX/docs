@@ -4,9 +4,9 @@ category: linux
 title: Install_Homebrew
 ---
 
-# Install Homebrew on RHEL
+# RHEL への Homebrew インストール
 
-# as root
+## root ユーザで実行
 
 ```sh
 dnf -y groupinstall 'Development Tools'
@@ -23,7 +23,7 @@ chown -R $user /home/linuxbrew/.linuxbrew
 sudo su - $user
 ```
 
-## as user
+## 一般ユーザで実行
 
 ```sh
 . ~/.bash_profile
@@ -32,7 +32,7 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 brew doctor
 ```
 
-# Install Home brew on Apple Silicon Mac
+# Apple Silicon Mac への Homebrew インストール
 
 ```sh
 xcode-select --install

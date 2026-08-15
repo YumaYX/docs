@@ -4,7 +4,7 @@ category: windows
 title: tips
 ---
 
-### Screenshot スクリーンショット
+### スクリーンショット
 
-- `Windowns` + `Shift` + `s`
+- `Windows` + `Shift` + `s`
 

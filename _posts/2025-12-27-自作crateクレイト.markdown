@@ -6,7 +6,7 @@ title: "自作crateクレイト"
 
 自作のcrateを使用する。
 
-## crate公開 @ GitHub
+## crate を GitHub で公開
 
 ```sh
 cargo new --lib <name>
@@ -18,9 +18,9 @@ cargo new --lib <name>
 
 ---
 
-## 公開したcrateを使用する。
+## 公開した crate を使用する
 
-crateの名前をrapiとする。
+crate の名前を rapi とする。
 
 ```toml
 [dependencies]
@@ -48,6 +48,6 @@ sum: 3
 ~/a  
 ```
 
-##### Reference
+## 参考リンク
 
 [【Rust】Library crateの使い方 #Rust - Qiita](https://qiita.com/nemutas/items/27aed12959fc1035029d)

@@ -4,7 +4,7 @@ category: commands
 title: tee
 ---
 
-sudoを使って、リダイレクト相当をする場合
+sudo では直接 `>` でファイルに書き込めないため、`tee` を sudo で実行して書き込む。
 
 ```sh
 cat << EOF | sudo tee output.txt

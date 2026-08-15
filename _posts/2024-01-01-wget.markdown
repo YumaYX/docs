@@ -4,7 +4,7 @@ category: commands
 title: wget
 ---
 
-## options
+## オプション
 
 - -r
     - 再起ダウンロード
@@ -13,13 +13,13 @@ title: wget
 - -H
     - 他のドメインもクロール
 - -w
-    - NダウンロードごとにN秒待つ
-- -random-wait
+    - ダウンロード間にN秒待つ
+- --random-wait
     - -wで指定した数の0.5〜1.5倍の時間待つ
 - -e robots=off
     - robots.txtの無視
 - -A
-    - 拡張子で指定したファイルのみを取得 jpg,gif,png
+    - 拡張子で指定したファイルのみを取得(カンマ区切りで複数指定可) jpg,gif,png
 - -p
     - HTMLを表示するのに必要な画像・音声やCSSなどもダウンロード
 - --user-agent

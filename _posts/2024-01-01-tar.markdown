@@ -4,7 +4,7 @@ category: commands
 title: tar
 ---
 
-# tar -C option
+# tar -C オプション
 
 `tar` コマンドの `-C` オプションを使用してアーカイブを作成する際の要点をまとめます：
 
@@ -17,7 +17,7 @@ tar -cvf archive.tar -C /path/to/directory/ files
 - `files`: アーカイブに含めるファイルやディレクトリ。
 - アーカイブファイル (`archive.tar`) は現在の作業ディレクトリに作成される。
 
-# extraction
+# 展開(ファイル指定)
 
 展開のファイル指定
 
@@ -34,7 +34,7 @@ tar xvf data.tar.gz raw2
 ## => raw2
 ```
 
-# Compression options
+# 圧縮オプション
 
 | z | gzip |
 | j | bzip2 |
@@ -42,7 +42,7 @@ tar xvf data.tar.gz raw2
 
 ---
 
-ファイルを残さないパターン（ディレクトリは不可）
+## ファイルを残さないパターン(`xz` 単体)
 
 ```
 /tmp/compress  xz a b c; ls -1
@@ -52,7 +52,7 @@ c.xz
 /tmp/compress  
 ```
 
-ファイルを残すパターン
+## ファイルを残すパターン(`tar cJf`)
 
 ```
 /tmp/compress  tar cJf all.tar.xz a b c; ls -1

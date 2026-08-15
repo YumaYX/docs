@@ -10,7 +10,7 @@ bashからsqliteを操作する。
 dnf -y install sqlite
 ```
 
-## csv
+## CSV
 
 ```sh
 cat <<'EOF'> a.csv
@@ -24,7 +24,7 @@ sqlite3 -header b.db "SELECT * FROM mytable"
 sqlite3         b.db "SELECT * FROM mytable"
 ```
 
-## table - myid
+## テーブル - myid
 
 ```sh
 cat <<'EOF'> a.csv
@@ -50,7 +50,7 @@ CREATE TABLE mydata (
 SQL
 ```
 
-## table - mydata
+## テーブル - mydata
 
 ```sh
 cat <<'EOF'> a.csv
@@ -63,10 +63,10 @@ EOF
 cat a.csv | sqlite3 data.db -cmd ".mode csv" -cmd ".import /dev/stdin mydata"
 ```
 
-### outer join
+### 外部結合
 
-`myid`tableの`id`をキーに、`mydata`tableの`key`に照らし合わせる。
-合致する`mydata`の`value`を出力する。
+`myid` テーブルの `id` をキーに、`mydata` テーブルの `key` に照らし合わせる。
+合致する `mydata` の `value` を出力する。
 
 ```sh
 sqlite3 -header data.db "
@@ -85,11 +85,11 @@ sqlite3 data.db "DROP TABLE myid;"
 sqlite3 data.db "DROP TABLE mydata;"
 ```
 
-## Reference
+## 参考リンク
 
 [bash で sqlite3 をいじるためのメモ #Bash - Qiita](https://qiita.com/arc279/items/bba7f6be362e376f06ab)
 
-### tsv
+### TSV
 
 ```sh
 { seq -f 'header%g' 3; seq -f 'content%g' 9; } | paste - - - | tee sample.tsv

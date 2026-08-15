@@ -9,4 +9,5 @@ default:
 	for i in $$(seq 3); do echo $$i; done
 ```
 
-$は$$で書く。
+Makefile では `$` が make 変数の開始記号のため、シェルに渡す `$` は `$$` と書く。
+`$$(seq 3)` はシェルで `$(seq 3)` として実行される。

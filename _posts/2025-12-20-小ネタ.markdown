@@ -4,7 +4,7 @@ category: rust
 title: "小ネタ"
 ---
 
-## file read - 一括
+## ファイル読み込み(一括)
 
 file readを最短で行いたい。
 
@@ -14,8 +14,8 @@ file readを最短で行いたい。
 が必要になる。その他、useも省略して、フルパスで関数を書いた。結局色々書くこととなる。
 
 ```rust
-//use std::fs；
-//use std::path::Path;
+// use std::fs;
+// use std::path::Path;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let rf = std::fs::read_to_string(std::path::Path::new("src/main.rs"))?;
     println!("file: {}", rf);
@@ -23,7 +23,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-## file read - 一行ずつ
+## ファイル読み込み(1行ずつ)
 
 ```rust
 use std::fs::File;
@@ -42,7 +42,7 @@ fn main() -> io::Result<()> {
 }
 ```
 
-- `?`を使ったら、返り型`io::Result<()>`・値(`OK(())`)必要
+- `?`を使ったら、返り型`io::Result<()>`・値(`Ok(())`)必要
 - `expect`で書けば不要になるけど、どちらも失敗した時に止まる。
 
 ### Stringの処理
@@ -66,7 +66,7 @@ s = format!("{} {}", s, "world!");
 println!("{}", s);
 ```
 
-## http通信
+## HTTP 通信
 
 asyncを不使用のパターン:CLIなど使用される場面を扱う。ただStringにするところまで。
 
@@ -111,7 +111,7 @@ fn main() {
 }
 ```
 
-### http + json
+### HTTP + JSON
 
 `.json`がポイント
 
@@ -132,12 +132,12 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 }
 ```
 
-#### valueを返すには？
+#### 値を返すには?
 
 - struct（必要な部分だけ）を作って、`変数.キー`で取り出す
 - `let url = v["url"].as_str().unwrap();`
 
-## 属性（attribute） -　未使用変数の許可
+## 属性 - 未使用変数の許可
 
 ```rust
 #[allow(unused_variables)]

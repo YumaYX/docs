@@ -4,27 +4,27 @@ category: shell
 title: Prompt
 ---
 
-###### bash
+## bash
 
-### simple
+### シンプル
 
 ```sh
 export PS1='\$ '
 ```
 
-### with current directory
+### カレントディレクトリ表示
 
 ```sh
 export PS1='\w\$ '
 ```
 
-### with full path
+### フルパス表示
 
 ```sh
 export PS1='\W\$ '
 ```
 
-### colorful
+### カラー表示
 
 ```sh
 export PS1='\[\e[32m\]\u\[\e[m\]@\[\e[36m\]\h \[\e[33m\]\w\[\e[m\]\$ '

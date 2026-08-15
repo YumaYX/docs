@@ -10,3 +10,8 @@ title: pandoc
 pandoc -f markdown -t html memo.md -o index.html -s --toc
 ```
 
+- `-f markdown` / `-t html`: 入力・出力形式を指定
+- `-o index.html`: 出力ファイルを指定
+- `-s`: 完全な HTML ドキュメントとして出力(ヘッダ・フッタ込み)
+- `--toc`: 目次を自動生成
+

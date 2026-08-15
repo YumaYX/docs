@@ -27,9 +27,13 @@ awk '{if ($0 == "B") exit;print $0;}' sample.txt
 awk '{if ($0 ~ /B/) exit;print $0;}' sample.txt
 ```
 
+終了行に到達した行(B)は出力されない。
+
 ## 列の条件指定
 
 2番目のフィールドが "keyword1" または "keyword2" であり、かつ3番目のフィールドが "target" である行を sample.txt ファイルから抽出し、それを出力
+
+`$2` / `$3` はそれぞれ 2番目 / 3番目のフィールドを指す。
 
 ```sh
 awk '($2 == "keyword1" || $2 == "keyword2") && $3 == "target" {print}' sample.txt
@@ -38,7 +42,7 @@ awk '($2 == "keyword1" || $2 == "keyword2") && $3 == "target" {print}' sample.tx
 
 ## テキストの初回出現
 
-テキストの初回出現を並べる方法
+重複行を除き、各行の初回出現のみを出力する方法
 
 ```
 $ cat text 

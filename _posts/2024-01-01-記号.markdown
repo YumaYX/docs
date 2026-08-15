@@ -10,13 +10,15 @@ $ sh app.sh argv1 argv2
 
 | Option | Desc. | Example |
 | --- | --- | --- |
-| \$\{\$\}    |  PID | n |
+| $$    |  PID | n |
 | ${PPID} |  PPID | n |
 | ${#}    |  Num of Arg | 2 |
 | ${1}    |  ARG 1 | arg1 |
 | ${@}    |  All ARG | argv1 argv2 |
 
-## PID of the most recently executed background command
+## 直前にバックグラウンド実行したコマンドのPID
+
+`${!}` は直前にバックグラウンド起動したジョブのPIDを返す。
 
 ```
 ~  sleep 10 &

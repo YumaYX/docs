@@ -5,17 +5,17 @@ title: "install_docker"
 ---
 
 
-## how to install docker with brew on mac
+## Mac で brew を使って docker をインストール
 
 ```sh
 brew install docker-desktop
 ```
 
-## run almalinux 9
+## AlmaLinux 9 を起動
 
 ```sh
 docker run -ti --platform linux/arm64/v8 -v ./work:/work almalinux:9 /bin/bash
 ```
 
-10はdnf updateでエラーが出て、使えない。
+AlmaLinux 10 は dnf update でエラーが出て、使えない。
 

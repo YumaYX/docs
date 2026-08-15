@@ -4,7 +4,9 @@ category: linux
 title: ISOを焼く
 ---
 
-AlmaLinux 9.5が出たので、ISOを焼く。
+AlmaLinux 9.5 の ISO を USB メモリに書き込む手順。
+
+書き込み先デバイスを誤ると他のディスクを破壊するため、`fdisk -l` で対象を十分確認してから `dd` を実行する。
 
 
 ```sh
@@ -21,7 +23,7 @@ device='/dev/sdb'
 sudo dd if=./${name} of=${device} bs=1048576 status=progress
 ```
 
-## Env.
+## 環境
 
 ```
 AlmaLinux release 9.5 (Teal Serval)

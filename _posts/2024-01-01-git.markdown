@@ -23,7 +23,7 @@ git config --global color.ui true
 
 ## レポジトリクローン
 
-###  クローン
+### クローン
 
 レポジトリのクローン：ソースコードのダウンロード
 
@@ -31,7 +31,7 @@ git config --global color.ui true
 git clone <レポジトリURL>
 ```
 
-### レポジトリクローン
+### フォーク
 
 > 既存のプロジェクトに貢献したいけれども、そのリポジトリにプッシュする権限がないという場合は、プロジェクトを「フォーク」できます。 「フォーク」するとは、GitHub があなた専用にそのプロジェクトのコピーを作るということです。あなた自身の名前空間に置かれるので、そこには自分でプッシュできます。
 
@@ -127,7 +127,7 @@ git push
 ```sh
 git pull
 git push
-# プリリク作成
+# プルリク作成
 ```
 
 ## add, commit取り消し
@@ -180,7 +180,7 @@ git remote add origin https://github.com/user/repo.git
 ```sh
 git remote remove <名前>
 
-#例：
+# 例：
 git remote remove origin
 ```
 
@@ -255,7 +255,7 @@ Switched to a new branch 'dev'
 ~/YS1  
 ```
 
-## new repo commands
+## 新規リポジトリの作成コマンド
 
 ```sh
 reponame=""

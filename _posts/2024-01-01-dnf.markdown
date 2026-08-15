@@ -4,7 +4,9 @@ category: commands
 title: dnf
 ---
 
-## コマンド名から、パッケージを引く方法
+## コマンド名から、パッケージを検索する方法
+
+指定したコマンドを含むパッケージを検索する。
 
 ```sh
 dnf provides <command>
@@ -12,12 +14,16 @@ dnf provides <command>
 
 ## 過去バージョンを表示
 
+利用可能な全バージョンを表示する。
+
 ```sh
 dnf --showduplicates search vagrant
 ```
 
 
-## バージョンアップ除外
+## バージョンアップの除外対象を指定
+
+指定したパッケージを更新対象から除外する。
 
 ```sh
 dnf update --exclude=vagrant*

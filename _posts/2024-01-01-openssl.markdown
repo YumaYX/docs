@@ -20,24 +20,28 @@ chmod 400 private_key
 openssl rsa -in private_key -pubout -out public_key
 ```
 
-### ファイル暗号化
+### 公開鍵で暗号化
 
 ```sh
 openssl rsautl -encrypt -pubin -inkey public_key -in plain.txt -out encrypted
 ```
 
-### 復号
+### 秘密鍵で復号
 
 ```sh
 openssl rsautl -decrypt -inkey private_key -in encrypted -out decrypted.txt
 ```
 
-## 鍵なし
+## パスワード方式(鍵ファイルなし)
+
+パスフレーズで暗号化するため、鍵ペアは不要。
 
 ```sh
 openssl aes-256-cbc -e -in file -out encrypted
 openssl aes-256-cbc -d -in encrypted -out decrypted
 ```
+
+`-pbkdf2 -iter` 付きが安全で、付かない方式は非推奨。
 
 ```sh
 openssl aes-256-cbc -e -pbkdf2 -iter 10 -in makefile  -out encrypted

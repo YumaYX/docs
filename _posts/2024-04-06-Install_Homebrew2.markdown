@@ -12,7 +12,7 @@ title: Install_Homebrew2
 - 更新やパッケージ操作は必ず linuxbrew ユーザーにて行う。
 - 全員が既存パッケージを使えますが、インストールや更新は linuxbrew ユーザーでのみ行うのが安全
   - root書き込みを行うと、新規ファイルの所有者が、rootになる。他ユーザーでも同じ。brewを共有できなくなる。
-  - linuxbrewのフォルダを全ユーザーに共有しておくのが、ベスト（らしい）
+  - linuxbrewのフォルダを全ユーザーに共有しておくのが、ベスト
 
 ## インストール手順
 
@@ -37,7 +37,7 @@ EOF
 chown linuxbrew:linuxbrew /home/linuxbrew/.bashrc
 ```
 
-#### general user profile
+#### 一般ユーザーのプロファイル設定
 
 一般ユーザーのファイルに何書く？
 以下は追加なので、一回だけ打鍵する。

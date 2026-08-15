@@ -11,7 +11,7 @@ sudo yum install gcc zlib-devel bzip2 bzip2-devel readline readline-devel sqlite
 
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 
-if grep "pyenv init -" ~/.bash_profile ] ; then
+if ! grep -q "pyenv init -" ~/.bash_profile; then
   echo "skip."
 else
   echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bash_profile

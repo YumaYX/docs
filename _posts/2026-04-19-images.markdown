@@ -4,13 +4,13 @@ category: images
 title: "images"
 ---
 
-## png to webp
+## PNG から WebP へ
 
 ```sh
 magick wizard.png -quality 50 -define webp:lossless=true wizard.webp
 ```
 
-## mov to gif
+## MOV から GIF へ
 
 ```sh
 ffmpeg -i a.mov -vf "fps=24,scale=360:-1" output.gif

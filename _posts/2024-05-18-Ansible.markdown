@@ -24,7 +24,7 @@ two
 HOST
 ```
 
-- all, sv1, sv2, all, twoを指定できる
+- all, sv1, sv2, twoを指定できる
 - childrenは、グループをネストするために使用
 
 ## Ansibleコンフィグの書き方
@@ -119,9 +119,9 @@ ansible-playbook -i hosts r.yml --limit sv1
 
 - registerがポイント：変数に保存される
 
-### 実行をログ取る
+### 実行結果をログに残す
 
-```yanl
+```yaml
 - name: comm
   shell: "date"
   register: reg_val

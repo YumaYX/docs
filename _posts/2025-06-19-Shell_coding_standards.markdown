@@ -4,7 +4,7 @@ category: shell
 title: Shell_coding_standards
 ---
 
-my bash coding standards
+bash のコーディング規約(自分の流儀)。
 
 ### シバン
 
@@ -20,9 +20,9 @@ my bash coding standards
 
 - snake_caseを使用（例: `user_name`）
 - グローバル変数は 全大文字＋アンダースコア
-  - `readonly `を付ける
+  - `readonly`を付ける
 - 変数展開に`${}`を使う
-- 関数内変数には`local `を付ける
+- 関数内変数には`local`を付ける
 
 #### 引用符
 

@@ -4,22 +4,22 @@ category: rust
 title: インストール
 ---
 
-## Install Rust on RHEL
+## RHEL に Rust をインストール
 
 ```sh
 dnf -y install gcc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
 
-## Install Rust on Mac(Homebrew)
+## Mac(Homebrew) に Rust をインストール
 
 ```sh
 brew install rustup-init
 rustup-init -y --profile default --no-modify-path
-#rustup-init
+# rustup-init
 ```
 
-## PATH
+## PATH設定
 
 ```sh
 source $HOME/.cargo/env
@@ -33,7 +33,7 @@ rustup component add clippy
 
 ---
 
-with docker
+## Docker で使う
 
 ## new
 

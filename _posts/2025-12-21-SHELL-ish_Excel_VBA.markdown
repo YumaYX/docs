@@ -4,7 +4,7 @@ category: excel
 title: "SHELL-ish Excel VBA"
 ---
 
-Excel VBAを扱う。Excel VBAの制限した使い型（方）を説明する。
+Excel VBAを扱う。Excel VBA の限定的な使い方を説明する。
 下に記載しているプログラムは、実行環境が無いため動作確認していない。
 
 ### SHELL-ish Excel VBA
@@ -19,7 +19,7 @@ Excel VBAを扱う。Excel VBAの制限した使い型（方）を説明する�
 
 - シートは、`A列`のみ使用する。他の列は使用しない。
 - アウトプットは、テキストファイル
-  -  テキストファイルの内容は、一度、シートに出力する。その上で、テキストファイルに出力する。
+  - テキストファイルの内容は、一度、シートに出力する。その上で、テキストファイルに出力する。
 
 ### 使い方
 
@@ -42,7 +42,7 @@ Sub proc_xxxx()
   ''' [B. 出力シート準備部分]
   ''' 前回の出力が混じらないように、出力シートを初期化（セル全消去）する。
   Dim output_ws As Worksheet: Set output_ws = Sheets("output")
-  output_ws.Cells.Clear 
+  output_ws.Cells.Clear
 
 
   ''' [C. 処理部分]
@@ -55,7 +55,7 @@ Sub proc_xxxx()
     ''' TODO:
     ''' inputのlineについて、処理を行う。
     ''' output_ws(y, 1).Valueに、処理した内容を入れていく。
-    output_ws.Cells(y, 1).Value = 
+    output_ws.Cells(y, 1).Value =
     ''' output_wsに値を入れたあと、yをインクリメントしていく。
     y = y + 1
   Next i

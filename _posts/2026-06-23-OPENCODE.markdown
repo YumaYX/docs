@@ -6,10 +6,10 @@ title: "OPENCODE"
 
 ## opencode
 
-@ almalinux
+@ AlmaLinux
 
 ```sh
-mkdir -p work;podman run -it --rm -v ./work:/work:Z -w /work almalinux:latest /bin/bash
+mkdir -p work; podman run -it --rm -v ./work:/work:Z -w /work almalinux:latest /bin/bash
 ```
 
 
@@ -41,7 +41,7 @@ opencode
 
 モデルを選択する。
 
-## sample prompt(s)
+## サンプルプロンプト
 
 ```
 install cargo fmt clippy make git by dnf.
@@ -49,7 +49,7 @@ install cargo fmt clippy make git by dnf.
 
 ## for mac
 
-@ apple silicon mac
+@ Apple Silicon Mac
 
 ```sh
 docker run -ti --platform linux/arm64/v8 -v ./work:/work -w /work almalinux:9 /bin/bash

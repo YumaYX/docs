@@ -4,22 +4,22 @@ category: linux
 title: "logrotate"
 ---
 
-## command
+## コマンド
 
-force execution
+強制実行
 
 ```sh
 logrotate -f /etc/logrotate.conf
 ```
 
-debug mode
+デバッグモード
 
 ```sh
 logrotate -d /etc/logrotate.conf
 ```
 
 
-## pattern
+## パターン
 
 - example: `/var/log/messages`
 
@@ -75,7 +75,7 @@ logrotate -f /etc/logrotate2.conf; ls -1 /var/log/archive/messages*
 # => /var/log/archive/messages.1-7が作られる。
 ```
 
-4 回転？
+4 ローテーション(リネームによる回転)
 
 ```sh
 sudo cat > /etc/logrotate2.conf <<'EOF'

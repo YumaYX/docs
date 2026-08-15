@@ -4,9 +4,11 @@ category: commands
 title: date
 ---
 
-# Format
+# フォーマット
 
 ## YYYY-MM-DD
+
+`+%F` は `%Y-%m-%d` の略。
 
 ```sh
 $(date +%F)
@@ -14,19 +16,25 @@ $(date +%F)
 
 ## YYYYMMDD
 
+`%Y`=年, `%m`=月, `%d`=日。
+
 ```sh
 $(date +%Y%m%d)
 ```
 
 ## YYYYMMDDhhmmss
 
+`%H`=時, `%M`=分, `%S`=秒。
+
 ```sh
 $(date +%Y%m%d%H%M%S)
 ```
 
-# Before / After
+# 相対日付
 
 ## Before
+
+`"3 days ago"` で3日前を指定。
 
 ```sh
 date --date "3 days ago" +%F
@@ -34,11 +42,15 @@ date --date "3 days ago" +%F
 
 ## After
 
+`"3 days"` で3日後を指定。
+
 ```sh
 date --date "3 days" +%F
 ```
 
-# For Test
+# テスト用
+
+過去400日分のファイルを、日付をファイル名にしたタイムスタンプ付きで生成する。
 
 ```sh
 for d in $(seq 0 400); do day=$(date --date "$d days ago" +%Y%m%d)0000; touch -t ${day} ${day}; done

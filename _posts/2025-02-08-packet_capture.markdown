@@ -22,8 +22,10 @@ tcpdump -i wlp2s0 -w dump.pcap
 ```sh
 tcpdump -i wlp2s0 -w dump.pcap -Z root -C 1
 # => rotate by 1MB
+# -Z root: 権限低下後の実行ユーザーを指定
+# -C 1: 1MBごとにファイルをローテーション
 
-#chown user. dump.pcap
+# chown user dump.pcap
 ```
 
 ## ファイルサイズ指定分割

@@ -14,7 +14,7 @@ CIDRのリストをルート集約するアルゴリズムを整理する。本�
 
 ## ルート集約の例
 
-ルート集約の例を示す。下の例では、４つのCIDR表記のネットワークアドレス(/32を含む)を1つに集約することができる。
+ルート集約の例を示す。下の例では、4つのCIDR表記のネットワークアドレス(/32を含む)を1つに集約することができる。
 
 ```
 192.168.0.0/24
@@ -190,6 +190,6 @@ insert(path):
 
 本稿では、CIDRのリストをルート集約するアルゴリズムを整理し、紹介した。IPアドレスを2分木を用いて集約できるようになった。
 
-## 参考記事
+## 参考リンク
 
 [AddressSet in ips::addressset - Rust](https://yumayx.github.io/ips/ips/addressset/struct.AddressSet.html#method.normalize)

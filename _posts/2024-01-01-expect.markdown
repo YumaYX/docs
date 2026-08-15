@@ -16,7 +16,7 @@ expect "\\\$"
 ```
 
 - spawn コマンドでプロセス起動
-    - spawnのコマンドは囲わない
+    - spawnの後に書くコマンドは引用符で囲まない
 - expect プロセスに対して待機
 - send expectがマッチする時入力
 - interact 制御をユーザーへ渡す
@@ -40,6 +40,7 @@ expect {
     exp_continue
   }
   "ew password:" {
+    # "New password:" の部分一致。 "Current password:" と誤マッチしないための書き方
     send "NEW PASSWORD\n"
     exp_continue 
   }
@@ -68,7 +69,8 @@ dnf -y install expect
 
 ## おまけ
 
-一般ユーザーで、好きなだけパスワードを変更するシェル
+一般ユーザーで、好きなだけパスワードを変更するシェル。
+パスワードを指定回数連続で変更し、毎回ランダム生成した新パスワードを表示する。
 
 ```sh
 #!/usr/bin/env bash

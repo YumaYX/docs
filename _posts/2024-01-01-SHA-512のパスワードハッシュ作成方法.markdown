@@ -4,13 +4,23 @@ category: shell
 title: SHA-512のパスワードハッシュ作成方法
 ---
 
+# Pythonで作成
+
 ```sh
-## linux
 python3 -c 'import crypt; print(crypt.crypt("mypassword", crypt.METHOD_SHA512))'
 ```
+
+ハッシュ生成時にランダムなソルトが付与されるため、実行ごとに結果が異なる。
+
+# opensslで作成
 
 ```sh
 openssl passwd -6 -salt $(openssl rand -base64 6) password
 ```
+
+- `-6`: SHA-512 を指定
+- `-salt $(openssl rand -base64 6)`: ランダムなソルトを生成
+
+> **Note:** Python 3.13 で `crypt` モジュールが削除されたため、新環境では `openssl passwd -6` を推奨。
 
 [LinuxでSHA-512のパスワードハッシュ作成方法まとめ #Python - Qiita](https://qiita.com/yumenomatayume/items/2c77ec52e7b2257f6800)

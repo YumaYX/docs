@@ -11,15 +11,15 @@ Ollamaインストールと簡単な使用例
   - モデルをpullしておけば、apiから呼び出せる。
 - ハードと用途を考えてモデルを選ぶ。
 - streamが初期設定となっている。`stream`を`false`にすると、使いやすいだろう。
-- postで、bodyにjsonをつけて送る。　
+- postで、bodyにjsonをつけて送る。
 
-### test 
+### テスト 
 
 - host: `localhost`
 - port: `11434`
 - model: `gemma3`
 
-#### chat
+#### チャット
 
 `/api/chat`
 
@@ -35,7 +35,7 @@ curl http://localhost:11434/api/chat \
   }' | jq
 ```
 
-##### chat with history
+##### 履歴付きチャット
 
 `/api/chat`
 
@@ -55,7 +55,7 @@ curl http://localhost:11434/api/chat \
 ```
 
 
-#### prompt
+#### プロンプト(テキスト生成)
 
 `/api/generate`
 
@@ -69,23 +69,23 @@ curl http://localhost:11434/api/generate \
   }' | jq
 ```
 
-##### Extract and Print Response Text from Pipe with Ruby One-liner
+##### Ruby ワンライナーでレスポンスを抽出して表示
 
 ```sh
 | ruby -r json -e 'puts JSON.parse(STDIN.read)["response"]'
 ```
 
-#### ollama interface
+#### ollama コマンド
 
 ```sh
 ollama run gemma3 'hallo'
 ```
 
-### install & run server
+### インストールとサーバー起動
 
 `gemma3`を使用する例を記載する。
 
-#### mac
+#### macOS
 
 ```sh
 brew install ollama
@@ -96,7 +96,7 @@ ollama serve
 ollama run gemma3
 ```
 
-#### linux
+#### Linux
 
 ```sh
 # https://ollama.com
@@ -104,7 +104,7 @@ curl -fsSL https://ollama.com/install.sh | sh
 ollama run gemma3
 ```
 
-### program with ruby
+### Ruby での利用
 
 ```ruby
 require 'net/http'
@@ -140,7 +140,7 @@ puts "Status: #{response.code}"
 puts "Body: #{response.body}"
 ```
 
-#### Commands
+#### コマンド
 
 ##### コードブロックからの抽出
 
@@ -150,7 +150,7 @@ puts "Body: #{response.body}"
 sed -n '/^```/,/^```/ {/^```/d; p}'
 ```
 
-###### Reference
+## 参考リンク
 
 - [Ollama](https://ollama.com)
 - [Ollamaを使ってオープンソースLLMをローカルホストしてみよう \| 豆蔵デベロッパーサイト](https://developer.mamezou-tech.com/blogs/2025/02/20/ollama_local_llm/)

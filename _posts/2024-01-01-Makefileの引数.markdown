@@ -6,10 +6,15 @@ title: Makefileの引数
 
 # Makefileで引数をとる方法
 
+`make <ターゲット> <変数>=<値>` の形式で、ターゲットの外から変数を渡せる。
+渡した値は `$(変数名)` で展開される。
+
 ```makefile
 all:
 	echo $(argv)
 ```
+
+`argv=Hello` を渡すと、`$(argv)` に `Hello` が入る。
 
 # 実行結果
 

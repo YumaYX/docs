@@ -6,7 +6,7 @@ title: Build_Kernel
 
 カーネルのビルド、インストールをしてみる。
 
-## Ref.
+## 参考リンク
 
 - [Linuxカーネルビルド環境をCentOS-7からAlmaLinux8に移行したのでビルド手順の差異を調べてみる #Linux - Qiita](https://qiita.com/furandon_pig/items/b197571ee91a6dd573e5)
 - [The Linux Kernel Archives](https://cdn.kernel.org/)
@@ -28,7 +28,7 @@ cd /usr/src/linux-6.7.6
 #make defconfig
 
 cp -v /boot/config... .config
-
+# config... は既存カーネルのコンフィグファイル名の例。実際は /boot/config-$(uname -r) 等を指定する
 sed -i 's@^CONFIG_SYSTEM_TRUSTED_KEYS="certs/rhel.pem"@CONFIG_SYSTEM_TRUSTED_KEYS=""@g' .config
 sed -i 's@^CONFIG_DEBUG_INFO_BTF=y@CONFIG_DEBUG_INFO_BTF=n@g' .config
 ```
@@ -77,7 +77,7 @@ grub2-mkconfig -o /boot/efi/EFI/almalinux/grub.cfg
 grubby --add-kernel=/boot/vmlinuz-6.7.x86_64 --title 'AlmaLinux 9(6.7.6.x86_64)';echo ${?}
 # 追加したエントリを起動時に自動選択設定
 grub2-set-default 1
-# 0:一行目、1:２ぎょうめ、つまり、一個しかない場合は、1を選択
+# 0:1行目、1:2行目。エントリが1個しかない場合は1を選択
 
 #または、boot時に
 grubby --default-kernel
@@ -109,7 +109,7 @@ sed -i 's/^options/options $kernelopts $tuned_params/g' /boot/loader/entries/5de
 [root@localhost ~]# 
 ```
 
-## Env.
+## 環境
 
 ```
 AlmaLinux release 9.3 (Shamrock Pampas Cat)

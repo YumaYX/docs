@@ -4,7 +4,7 @@ category: editor
 title: Visual_Studio_Code
 ---
 
-## Commentout
+## コメントアウト
 
 1. **Single-line comments:**
    - Place the cursor on the line you want to comment out.
@@ -28,7 +28,7 @@ title: Visual_Studio_Code
    =end
    ```
 
-## HTML auto indent
+## HTML自動インデント
 
 ```
 Mac: Shift + Option + F

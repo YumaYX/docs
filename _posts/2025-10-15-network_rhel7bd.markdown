@@ -8,6 +8,8 @@ title: network_rhel7bd
 
 参考として。
 
+RHEL 系 7 で固定 IP を設定する手順。`ifcfg-eth2` に IP アドレス等を記載し、`ifdown`/`ifup` や `network` 再起動で反映する。`echo ${?}` で各コマンドの終了ステータスを確認している。
+
 ```sh
 sudo su -
 

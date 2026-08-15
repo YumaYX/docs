@@ -4,10 +4,10 @@ category: commands
 title: iconv
 ---
 
-## SJIS　-> UTF-8
+## SJIS -> UTF-8
 
 ```sh
 iconv -f sjis -t utf8 sjis_file | sed 's/\r//g'
 ```
 
-sedをパイプで繋いでいるのは、CRLFの場合が、多いと考えられるため。
+`sed 's/\r//g'` は CRLF を LF に変換するため。Windows 由来のファイルは CRLF の場合が多い。

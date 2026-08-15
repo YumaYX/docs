@@ -6,12 +6,14 @@ title: diskutil
 
 ## @macOS
 
+macOS で ISO をUSBメモリに書き込む手順。
+
 ```sh
 iso='/path/to/iso'
 disk='/dev/diskX'
 
-diskutil list
-diskutil eraseDisk MS-DOS UNTITLED ${disk}
-diskutil unmountDisk ${disk}
-sudo dd if=${iso} of=${disk} status=progress
+diskutil list                       # 対象ディスクの確認
+diskutil eraseDisk MS-DOS UNTITLED ${disk}   # FAT(MS-DOS)で初期化
+diskutil unmountDisk ${disk}        # 書き込み前にアンマウント
+sudo dd if=${iso} of=${disk} status=progress # ISOを書き込み
 ```

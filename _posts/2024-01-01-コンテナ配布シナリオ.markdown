@@ -6,7 +6,7 @@ title: コンテナ配布シナリオ
 
 閉域環境でのコンテナ配布シナリオを考える。
 
-## 何ができるか？
+## 何ができるか
 
 - 実行環境を含む、アプリケーションを配布することができる
 - 環境構築なしで、アプリケーションを実行することができる（受信者）
@@ -66,7 +66,7 @@ mknod -m 666 zero c 1 5
 tar -C ${contdir} -c . | ${ctrt} import - ${imagename}
 cid=$(${ctrt} run -d --privileged ${imagename} /sbin/init)
 
-# dbus.service、systemd-journald.service以外全て落とす
+# dbus.service、systemd-journald.service以外すべて停止する
 cat << 'SYSCOM' | xargs -I@ ${ctrt} exec -it $cid /bin/bash -c @
 systemctl stop systemd-logind.service
 systemctl disable systemd-logind.service
@@ -132,7 +132,7 @@ ${ctrt} stop $cid
 mount -o loop *.iso /media # ISOファイルの場合
 mount /dev/dvd /media # DVDマウントの場合
 
-# マウントのマウントを避けるためコピーする
+# マウントの重複を避けるためコピーする
 cp -pr /media/* /media2
 
 cid=$(${ctrt} run -d -v /media2:/media:Z ${imagename})
@@ -201,7 +201,7 @@ ${ctrtcmd} run --rm ${reponame} /bin/bash -c 'ruby -v'
 ${ctrtcmd} run -it --rm ${reponame} /bin/bash
 ```
 
-## Environment
+## 環境
 
 ```
 [root@localhost ~]# cat /etc/redhat-release 
@@ -209,6 +209,6 @@ AlmaLinux release 9.3 (Shamrock Pampas Cat)
 [root@localhost ~]# 
 ```
 
-## Reference
+## 参考リンク
 
 [Docker向けのコンテナをゼロから作ってみよう  \|  さくらのナレッジ](https://knowledge.sakura.ad.jp/2226/)

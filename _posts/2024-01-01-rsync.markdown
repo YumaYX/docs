@@ -4,7 +4,7 @@ category: commands
 title: rsync
 ---
 
-## rsync
+## 基本形
 
 ```sh
 rsync -auvzP src(file/dir) dst(dir)
@@ -16,8 +16,8 @@ rsync -auvzP src(file/dir) dst(dir)
 | -u | skip files that are newer on the receiver |
 | -v | increase verbosity |
 | -z | compress |
-| -P | keep partially transferred files |
+| -P | keep partially transferred files(`--partial --progress` の略) |
 | --delete | delete extraneous files from dest dirs |
 | -r | recurse into directories |
 | --progress | show progress during transfer |
-| --bwlimit=RATE | BYTE: limit socket I/O bandwidth(KBps). The RATE value can be suffixed with a string to indicate  a  size  multiplier,  and  may be a fractional value(e.g. --bwlimit=1.5m). |
+| --bwlimit=RATE | 転送速度を制限(例: --bwlimit=1.5m で1.5MB/s) |

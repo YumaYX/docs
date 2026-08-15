@@ -4,7 +4,7 @@ category: ruby
 title: Ruby_REPL_Server
 ---
 
-ソケット(`ポート5000`)経由で`python`から、`ruby`のメソッドを使用する方法。
+ソケット(`ポート5002`)経由で`python`から、`ruby`のメソッドを使用する方法。
 
 ### server.rb
 
@@ -117,9 +117,11 @@ print(call_ruby("MathOps::Advanced", "pow", 2, 5)) # => 32
 print(call_ruby("StringOps", "concat", "ab", "cd"))# => "abcd"
 ```
 
-## kill processes
+## プロセスの停止
+
+`lsof -i :5002` で該当ポートを使用中のプロセスを確認し、`kill <n>` で停止する。
 
 ```sh
-lsof -i :5000
+lsof -i :5002
 kill <n>
 ```

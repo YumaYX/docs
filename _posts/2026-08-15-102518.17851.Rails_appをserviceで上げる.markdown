@@ -4,15 +4,15 @@ category: ruby
 title: "Rails appをsystemd serviceで起動する"
 ---
 
-**⚠️ Note:** Do not use this in production.
+**⚠️ 注意:** 本番環境では使用しないこと。
 
-## Parameters
+## パラメータ
 
 - App directory: `/work/lib/w`
 - rbenv user: `user`
 - Port: `1234`
 
-## Prepare the Rails app
+## Rails アプリの準備
 
 ```sh
 # as a regular user
@@ -21,7 +21,7 @@ bundle install
 bundle exec rails db:migrate
 ```
 
-## Create the systemd service
+## systemd サービスの作成
 
 ```sh
 # as root
@@ -43,7 +43,7 @@ WantedBy=multi-user.target
 EOF
 ```
 
-## Open the port
+## ポートの開放
 
 ```sh
 firewall-cmd --permanent --zone=public --add-port=1234/tcp
@@ -51,7 +51,7 @@ firewall-cmd --reload
 firewall-cmd --list-all
 ```
 
-## Enable and start the service
+## サービスの有効化と起動
 
 ```sh
 sudo systemctl daemon-reload
@@ -59,9 +59,9 @@ sudo systemctl enable w.service
 sudo systemctl start w.service
 ```
 
-## Check the service
+## サービスの確認
 
-Check the service status:
+サービスの状態を確認する:
 
 ```sh
 sudo systemctl status w.service
@@ -73,7 +73,7 @@ Follow the service logs:
 sudo journalctl -u w.service -f
 ```
 
-## Environment
+## 環境
 
 ```
 $ cat /etc/redhat-release

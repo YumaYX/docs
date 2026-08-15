@@ -4,11 +4,11 @@ category: rust
 title: "bin sample"
 ---
 
-rubygemsのbinと同じようなことをやりたい。
+rubygems の bin と同じようなことをやりたい。
 - libを持ちつつ、
 - binを作りたい。
 
-## dir structure
+## ディレクトリ構成
 
 ```
 $ ls -R
@@ -35,7 +35,7 @@ fn main() {
 $
 ```
 
-## result
+## 実行結果
 
 ```
 $ cargo run --bin hello -q

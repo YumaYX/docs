@@ -39,7 +39,7 @@ bundle install
 bundle exec rails new --minimal .
 ```
 
-##### Reference
+##### 参考リンク
 
 - [rails new \| Railsドキュメント](https://railsdoc.com/page/rails_new)
 - [いい感じにrails newする　rails newのオプション #Ruby - Qiita](https://qiita.com/morioka1206/items/d9297cc5d5085422acac)
@@ -82,7 +82,7 @@ add_index :pages, :url, unique: true
 bundle exec rails db:migrate
 ```
 
-##### Reference
+##### 参考リンク
 
 <https://qiita.com/devactken/items/df5422d33768a05969eb>
 
@@ -133,7 +133,7 @@ Page.find_each do |page|
 end
 ```
 
-### Reference
+### 参考リンク
 
 [Active Record クエリインターフェイス - Railsガイド](https://railsguides.jp/active_record_querying.html)
 
@@ -183,7 +183,7 @@ bundle exec rake data:update_titles
 ### lib/*.rbを使う場合
 
 ```sh
-cat <<'EOF'>lib/method.rb
+cat <<'EOF' > lib/method.rb
 module Y123
   def self.hello
     v = "hello"
@@ -250,7 +250,7 @@ mkdir -p lib/page_tools
 ファイル：`lib/page_tools/metadata.rb`を作る。
 
 ```ruby
-cat<<'EOF'>lib/page_tools/metadata.rb
+cat <<'EOF' > lib/page_tools/metadata.rb
 require_relative '../../config/environment'
 require "ferrum"
 require "nokogiri"
@@ -348,7 +348,7 @@ app/views/pages/show.html.erb
 
 タスクに登録したり、`bundle exec rails console`で、Rubyでできることは、なんでもできる。
 
-# Environments
+## 環境
 
 ```
 $ ruby -v

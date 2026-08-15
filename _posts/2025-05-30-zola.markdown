@@ -4,13 +4,13 @@ category: rust
 title: Zola
 ---
 
-# init
+# 初期化
 
 ```sh
 docker run -it -v $PWD:/app:z --workdir /app ghcr.io/getzola/zola:v0.20.0 init .
 ```
 
-# for build & serve
+# ビルドと配信
 
 ```sh
 cat <<'EOF' > Makefile
@@ -27,7 +27,7 @@ build:
 EOF
 ```
 
-# make contents
+# コンテンツ作成
 
 {% raw %}
 ```sh
@@ -138,7 +138,7 @@ EOF
 ```
 {% endraw %}
 
-# serve
+# 実行
 
 ```sh
 make
@@ -165,13 +165,13 @@ make
 └── themes
 ```
 
-# +Dir
+## サブディレクトリで公開
 
 GitHub Actionsでレポジトリごとに公開したい場合などに有効。
 
 1. `config.toml`に`base_url = ""`を設定する。
 1. ローカルで動作試験する場合は、`zola serve --base-url localhost/x/`などを入れる。
 
-##### Reference
+## 参考リンク
 
 [Zola](https://www.getzola.org)

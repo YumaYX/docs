@@ -4,9 +4,11 @@ category: commands
 title: patch
 ---
 
-## patch command
+## patchコマンド
 
-### example
+### 例
+
+`diff` で差分パッチを生成し、`patch` でオリジナルファイルに適用する。
 
 ```sh
 cat <<'EOF1'> original
@@ -27,7 +29,7 @@ patch original < diffpattern
 cat original
 ```
 
-#### result
+#### 実行結果
 
 ```sh
 $ cat original

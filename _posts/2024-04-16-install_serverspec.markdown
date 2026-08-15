@@ -6,7 +6,7 @@ title: install_serverspec
 
 install serverspec gem
 
-# for Ruby 2.5.5
+## Ruby 2.5.5 用の Gem リスト
 
 ```sh
 cat <<GEMLIST255 > gemlist
@@ -27,9 +27,9 @@ serverspec 2.42.3
 GEMLIST255
 ```
 
-# Command
+# コマンド
 
-## curl
+## curl でダウンロード
 
 ```sh
 cat gemlist | while read name ver

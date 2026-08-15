@@ -70,3 +70,89 @@ AlmaLinux release 10.2 (Lavender Lion)
 $
 ```
 
+
+
+
+
+
+---
+layout: post
+category: ruby
+title: "Rails appをsystemd serviceで起動する"
+---
+
+> **⚠️ Note:** Do not use this in production.
+
+## Parameters
+
+- App directory: `/work/lib/w`
+- rbenv user: `user`
+- Port: `1234`
+
+## Prepare the Rails app
+
+```sh
+# as a regular user
+cd /work/lib && ys-gclone w && cd w
+bundle install
+bundle exec rails db:migrate
+```
+
+## Create the systemd service
+
+```sh
+# as root
+cat <<'EOF' > /etc/systemd/system/w.service
+[Unit]
+Description=Rails Development Server
+After=network.target
+
+[Service]
+Type=simple
+User=user
+WorkingDirectory=/work/lib/w
+ExecStart=/bin/bash -lc 'eval "$(rbenv init - bash)" && bundle exec rails s -b 0.0.0.0 -p 1234'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+```
+
+## Open the port
+
+firewall-cmd --permanent --zone=public --add-port=1234/tcp
+firewall-cmd --reload
+firewall-cmd --list-all
+```
+
+## Enable and start the service
+
+```sh
+sudo systemctl daemon-reload
+sudo systemctl enable w.service
+sudo systemctl start w.service
+```
+
+## Check the service
+
+Check the service status:
+
+```sh
+sudo systemctl status w.service
+```
+
+Follow the service logs:
+
+```sh
+sudo journalctl -u w.service -f
+```
+
+## Environment
+
+```
+$ cat /etc/redhat-release
+AlmaLinux release 10.2 (Lavender Lion)
+$
+```

@@ -1,0 +1,12 @@
+---
+layout: post
+category: commands
+title: xargs
+---
+
+## interval
+
+```sh
+printf '%s\n' a b c  | xargs -n1 sh -c 'echo ${1}; sleep 5' _
+```
+

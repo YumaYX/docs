@@ -4,12 +4,12 @@ category: ruby
 title: "Rails appをserviceで上げる"
 ---
 
-note: don't use production env.
+Note: Do not use this in production.
 
 ## parameters
 
 - app dir: `/work/lib/w`
-- user: `user`
+- rbenv user: `user`
 - port: `1234`
 
 ## prepare app dir

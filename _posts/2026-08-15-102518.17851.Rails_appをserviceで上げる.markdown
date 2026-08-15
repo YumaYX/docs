@@ -4,6 +4,8 @@ category: ruby
 title: "Rails appをserviceで上げる"
 ---
 
+note: don't use production env.
+
 ## parameters
 
 - app dir: `/work/lib/w`

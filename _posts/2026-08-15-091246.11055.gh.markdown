@@ -40,3 +40,28 @@ note: `ys-gclone` = `git clone git@github.com:YumaYX/`
 - [コマンドでGitHubリポジトリ一覧を取得する #Git - Qiita](https://qiita.com/inayuky/items/a127e99d81a9fe3fdea7)
 - [GitHub CLI（gh）を使ってみよう #開発環境 - Qiita](https://qiita.com/Yuya146552/items/3fc87f9eecc86c605373)
 
+
+## delete github action history
+
+### install gh with brew
+
+```sh
+brew install gh
+
+gh auth login
+```
+
+### del GitHub action history
+
+repoの指定は、cloneしたディレクトリでやればいいらしい。
+
+```sh
+wname="Deploy Docs to GitHub Pages"
+
+for id in $(gh run list --workflow "${wname}" --json databaseId --jq '.[].databaseId' --limit 100); do
+  echo $id
+  gh run delete $id
+  sleep 3
+done
+```
+

@@ -4,7 +4,7 @@ category: commands
 title: "gh"
 ---
 
-## install
+## install gh with dnf @ red hat dist.
 
 ```sh
 sudo dnf install 'dnf-command(config-manager)'
@@ -23,6 +23,8 @@ gh auth login
 ```sh
 gh repo list --json name --jq '.[].name'
 ```
+
+### clone repositories
 
 ```sh
 gh repo list --json name --jq '.[].name' | while read line

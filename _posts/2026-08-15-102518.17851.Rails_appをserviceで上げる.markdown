@@ -1,0 +1,52 @@
+---
+layout: post
+category: ruby
+title: "Rails appをserviceで上げる"
+---
+
+- app dir: `/work/lib/w`
+- user: `user`
+- port: `1234`
+
+```sh
+# as general user
+cd /work/lib && ys-gclone w && cd w
+bundle install
+bundle exec rails db:migrate
+```
+
+```sh
+# as root
+cat <<'EOF' > /etc/systemd/system/w.service
+[Unit]
+Description=Rails Development Server
+After=network.target
+
+[Service]
+Type=simple
+User=user
+WorkingDirectory=/work/lib/w
+ExecStart=/bin/bash -lc 'eval "$(rbenv init - bash)" && bundle exec rails s -b 0.0.0.0 -p 1234'
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+firewall-cmd --permanent --zone=public --add-port=1234/tcp
+firewall-cmd --reload
+firewall-cmd --list-all
+```
+
+```sh
+sudo systemctl daemon-reload
+sudo systemctl enable w.service
+sudo systemctl start w.service
+```
+
+```sh
+sudo systemctl status w.service
+sudo journalctl -u w.service -f
+```
+

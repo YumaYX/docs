@@ -35,7 +35,8 @@ done
 
 note: `ys-gclone` = `git clone git@github.com:YumaYX/`
 
-
 ## Reference
 
-<https://qiita.com/Yuya146552/items/3fc87f9eecc86c605373>
+- [コマンドでGitHubリポジトリ一覧を取得する #Git - Qiita](https://qiita.com/inayuky/items/a127e99d81a9fe3fdea7)
+- [GitHub CLI（gh）を使ってみよう #開発環境 - Qiita](https://qiita.com/Yuya146552/items/3fc87f9eecc86c605373)
+

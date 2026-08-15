@@ -4,6 +4,8 @@ category: ruby
 title: "Rails appをserviceで上げる"
 ---
 
+## parameters
+
 - app dir: `/work/lib/w`
 - user: `user`
 - port: `1234`

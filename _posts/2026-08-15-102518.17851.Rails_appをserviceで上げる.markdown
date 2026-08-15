@@ -8,12 +8,16 @@ title: "Rails appをserviceで上げる"
 - user: `user`
 - port: `1234`
 
+## prepare app dir
+
 ```sh
 # as general user
 cd /work/lib && ys-gclone w && cd w
 bundle install
 bundle exec rails db:migrate
 ```
+
+## prepare service unit file
 
 ```sh
 # as root
@@ -39,14 +43,26 @@ firewall-cmd --reload
 firewall-cmd --list-all
 ```
 
+## サービス設定
+
 ```sh
 sudo systemctl daemon-reload
 sudo systemctl enable w.service
 sudo systemctl start w.service
 ```
 
+## 確認
+
 ```sh
 sudo systemctl status w.service
 sudo journalctl -u w.service -f
+```
+
+## Environment
+
+```
+$ cat /etc/redhat-release
+AlmaLinux release 10.2 (Lavender Lion)
+$
 ```
 

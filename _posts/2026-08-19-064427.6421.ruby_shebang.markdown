@@ -1,0 +1,40 @@
+---
+layout: post
+category: ruby
+title: "ruby shebang"
+---
+
+rbenvでも`env`使える。
+
+```sh
+#!/usr/bin/env ruby
+```
+
+envはbsdで動かないらしいが、bsd使うか？たまに使うか。
+
+---
+
+# おまけ - cron
+
+- PATH指定なしでsystem ruby
+- `#!/home/user/.rbenv/shims/ruby`でrbenvが動く
+- 直接実行
+
+```
+*/5 * * * * export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; cd /path/to/app && bundle exec ruby script/foo.rb >> /tmp/foo.log 2>&1
+* * * * * export PATH="$HOME/.rbenv/bin:$PATH"; eval "$(rbenv init -)"; ruby -v
+```
+
+- シェルを挟む場合
+
+```sh
+#!/bin/bash
+
+export PATH="$HOME/.rbenv/bin:$PATH"
+eval "$(rbenv init -)"
+
+cd /path/to/app || exit 1
+
+bundle exec ruby script/foo.rb
+```
+

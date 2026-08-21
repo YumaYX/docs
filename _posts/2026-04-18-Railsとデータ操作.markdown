@@ -84,7 +84,7 @@ bundle exec rails db:migrate
 
 ##### 参考リンク
 
-<https://qiita.com/devactken/items/df5422d33768a05969eb>
+[Rails scaffoldとは何か? #初心者 - Qiita](https://qiita.com/devactken/items/df5422d33768a05969eb)
 
 # データ取り込み
 

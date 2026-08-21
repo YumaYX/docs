@@ -65,7 +65,7 @@ lms get gemma --gguf
 
 wgetで、GGUFをダウンロード、`hf`コマンドでダウンロードを試みたが、`lms get`が一番シンプルで易しかった。
 
-https://huggingface.co/docs/hub/lmstudio
+[GGUF usage with LM Studio · Hugging Face](https://huggingface.co/docs/hub/lmstudio)
 
 - [Hugging Face – The AI community building the future.](https://huggingface.co/)
 

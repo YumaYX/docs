@@ -4,7 +4,7 @@ category: ruby
 title: "ruby shebang"
 ---
 
-システムならRubyなら
+システムRubyなら
 
 ```sh
 #!/usr/bin/env ruby

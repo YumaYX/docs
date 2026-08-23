@@ -1,0 +1,79 @@
+---
+layout: post
+category: uncategorized
+title: "VBA関数依存調査"
+---
+
+```sh
+fns=$(grep -hoE '^[[:space:]]*(Public[[:space:]]+|Private[[:space:]]+)?(Function|Sub)[[:space:]]+[[:alnum:]_]+' vba/*.bas |
+      awk '{print $NF}' |
+      sort -u)
+
+for fn in $fns; do
+    grep -nE "\b${fn}[[:space:]]*\(" vba/*.bas |
+    grep -vE "^[^:]+:[0-9]+:[[:space:]]*(Public[[:space:]]+|Private[[:space:]]+)?(Function|Sub)[[:space:]]+${fn}\b" |
+    sed "s|$| [呼び出し: ${fn}]|"
+done
+```
+
+簡単にいうと、**VBA（Visual Basic for Applications）の各 `Function` / `Sub` を見つけて、「それがどこで呼ばれているか」を一覧表示する処理**です。
+
+流れはこの5段階です。
+
+1. **関数・Subの定義を探す**
+
+   ```text
+   Public Function Foo()
+   Private Sub Bar()
+   ```
+
+   ↓
+   `Foo`, `Bar` を取得
+
+2. **重複を削除**
+
+   ```text
+   Foo
+   Bar
+   Foo
+   ```
+
+   ↓
+
+   ```text
+   Bar
+   Foo
+   ```
+
+3. **関数ごとに検索**
+
+   ```text
+   Foo(
+   ```
+
+   をVBAファイル全体から探す。
+
+4. **自分自身の定義行を除外**
+
+   ```text
+   Public Function Foo()
+   ```
+
+   は「呼び出し」ではないので除外。
+
+5. **呼び出し箇所に目印を付ける**
+
+   ```text
+   Module1.bas:25: Debug.Print Foo() [呼び出し: Foo]
+   ```
+
+つまり最終的には、
+
+```text
+Foo はここで呼ばれている
+Bar はここで呼ばれている
+Baz はどこからも呼ばれていない
+```
+
+という情報を調べるためのスクリプトです。
+

@@ -1,6 +1,11 @@
 ---
 layout: post
-category: uncategorized
-title: "untitled"
+category: mac
+title: "標準出力にもパイプにも渡す"
 ---
+
+```sh
+date | tee /dev/tty | say
+```
+
 

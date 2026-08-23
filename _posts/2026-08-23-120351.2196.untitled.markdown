@@ -9,3 +9,8 @@ date | tee /dev/tty | say
 ```
 
 Linuxでも同じだけど、Macで使うから、こちらのカテゴリー。
+
+
+```sh
+alias now='date | awk "{print \$1\$2\$3}" | tee /dev/tty | say -r 60'
+```

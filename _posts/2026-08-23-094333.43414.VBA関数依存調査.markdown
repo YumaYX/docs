@@ -1,8 +1,12 @@
 ---
 layout: post
-category: uncategorized
+category: excel
 title: "VBA関数依存調査"
 ---
+
+
+- この方法は、関数呼び出しに`()`を使っている前提
+- `call Method`を取りたい場合は`\b`で挟むなど工夫が必要
 
 ```sh
 fns=$(grep -hoE '^[[:space:]]*(Public[[:space:]]+|Private[[:space:]]+)?(Function|Sub)[[:space:]]+[[:alnum:]_]+' vba/*.bas |

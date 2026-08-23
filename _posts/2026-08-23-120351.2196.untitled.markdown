@@ -8,4 +8,4 @@ title: "標準出力にもパイプにも渡す"
 date | tee /dev/tty | say
 ```
 
-
+Linuxでも同じだけど、Macで使うから、こちらのカテゴリー。

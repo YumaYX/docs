@@ -1,6 +1,6 @@
 ---
 layout: post
-category: images
+category: shell
 title: "images"
 ---
 

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: perl
+category: shell
 title: "ファイル行末の改行削除"
 ---
 

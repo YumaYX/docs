@@ -29,7 +29,7 @@ links:
   {% for category in sorted_categories %}
     <li>
       <a href="{{ site.baseurl }}/{{ category[0] | slugify }}">
-        {{ category[0] | upcase }}
+        {{ category[0] | upcase }}（{{ category[1].size }}）
       </a>
     </li>
   {% endfor %}

@@ -1,6 +1,6 @@
 ---
 layout: post
-category: gitlab
+category: shell
 title: gitlab-cli
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: post
-category: ansible
-title: "ansible"
+category: linux
+title: "Ansible"
 ---
 
 - [Ansible Modules](https://docs.ansible.com/ansible/latest/collections/index_module.html#ansible-builtin)

@@ -29,6 +29,7 @@ exclude:
   - mod.sh
   - ~4001
   - app.sh
+  - classify.sh
 #   - .sass-cache/
 #   - gemfiles/
 #   - node_modules/

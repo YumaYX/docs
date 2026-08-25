@@ -1,4 +1,4 @@
-grep '^catego' _posts/* | awk '{print $2}' | sort | uniq | while read -r line
+grep -ri '^categor' _posts/* | awk '{print $2}' | sort | uniq | while read -r line
 do
   category=$(printf '%s' "$line" | tr '[:upper:]' '[:lower:]')
   echo ${category}

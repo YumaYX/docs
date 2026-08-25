@@ -1,6 +1,13 @@
 ---
 layout: post
 category: uncategorized
-title: "untitled"
+title: "自動化を考える"
 ---
 
+
+
+- 全部やらないと意味がない。
+- 意味がないわけではない。
+- 問題に当たったら早めに、早い段階で自動化すべき。
+
+ツールは、典型的パターンに当てはめる

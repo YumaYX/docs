@@ -13,6 +13,9 @@ links:
     url: https://github.com/YumaYX/YS1XL/
   - name: lllmd
     url: /lllmd/
+playground:
+  - name: Time
+    url: /docs/time.html
 ---
 
 {% assign sorted_categories = site.categories | sort %}
@@ -38,6 +41,7 @@ links:
 </div>
 
 <div class="one-half column">
+
 <h2>LINKS</h2>
 <ul>
 <li><a href="https://github.com/YumaYX?tab=repositories">GITHUB REPOSITORIES</a></li>
@@ -47,6 +51,14 @@ links:
 {% endfor %}
 
 </ul>
+
+<h2>PLAYGROUND</h2>
+<ul>
+{% for item in page.playground %}
+<li><a href="{{ item.url }}">{{ item.name }}</a></li>
+{% endfor %}
+</ul>
+
 </div>
 
 </div>

@@ -4,6 +4,8 @@ category: linux
 title: reset-root-password
 ---
 
+内容は[リンク先のコンテンツミラー](https://docs.redhat.com/ja/documentation/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/resetting-the-forgotten-root-password-on-boot_changing-and-resetting-the-root-password-from-the-command-line)である。
+
 ```
 11.6.3. 起動時の root パスワードのリセット
 
@@ -70,8 +72,3 @@ root 以外のユーザーとしてログインできない場合や、wheel 管
 
     SELinux の再ラベルプロセスが終了するまで待機します。大規模なディスクの再ラベルには時間がかかる可能性があることに注意してください。プロセスが完了すると、システムが自動的に再起動します。 
 ```
-
-## 参考リンク
-
-- [Ref.](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/changing-and-resetting-the-root-password-from-the-command-line_managing-users-and-groups)
-- [Ref.](https://docs.redhat.com/ja/documentation/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/resetting-the-forgotten-root-password-on-boot_changing-and-resetting-the-root-password-from-the-command-line)

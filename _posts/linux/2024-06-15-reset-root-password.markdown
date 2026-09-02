@@ -73,4 +73,5 @@ root 以外のユーザーとしてログインできない場合や、wheel 管
 
 ## 参考リンク
 
-[ref.](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/changing-and-resetting-the-root-password-from-the-command-line_managing-users-and-groups)
+- [ref.](https://access.redhat.com/documentation/ja-jp/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/changing-and-resetting-the-root-password-from-the-command-line_managing-users-and-groups)
+- [ref](https://docs.redhat.com/ja/documentation/red_hat_enterprise_linux/8/html/configuring_basic_system_settings/resetting-the-forgotten-root-password-on-boot_changing-and-resetting-the-root-password-from-the-command-line)

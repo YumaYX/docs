@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>7-Segment Digital Clock</title>
+
+  <!-- DSEG7 Classic: 7セグメント風フォント -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/dseg@0.46.0/css/dseg.css"
+  >
+
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --glow: rgba(255, 255, 255, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--fg);
+    }
+
+    .clock {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+
+    /* 西暦・月・日・曜日 */
+    .date {
+      display: flex;
+      align-items: baseline;
+      gap: 0.35em;
+      margin-bottom: 0.25em;
+      color: var(--fg);
+      white-space: nowrap;
+      text-shadow: 0 0 8px var(--glow);
+    }
+
+    .date-number {
+      font-family: "DSEG7-Classic", monospace;
+      font-weight: bold;
+      font-size: clamp(24px, 4.2vw, 68px);
+      letter-spacing: 0.02em;
+    }
+
+    .weekday {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(18px, 3vw, 48px);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+    }
+
+    /* 時・分 */
+    .time {
+      display: flex;
+      align-items: flex-end;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .main-time {
+      font-family: "DSEG7-Classic", monospace;
+      font-weight: bold;
+      font-size: clamp(80px, 18vw, 300px);
+      letter-spacing: 0.015em;
+      color: var(--fg);
+      text-shadow: 0 0 10px var(--glow);
+    }
+
+    /* 秒は小さく表示 */
+    .seconds {
+      margin-left: 0.10em;
+      margin-bottom: 0.12em;
+      font-family: "DSEG7-Classic", monospace;
+      font-weight: bold;
+      font-size: clamp(38px, 7vw, 120px);
+      letter-spacing: 0.01em;
+      color: var(--fg);
+      text-shadow: 0 0 8px var(--glow);
+    }
+
+    @media (max-width: 600px) {
+      .date-number {
+        font-size: 5.5vw;
+      }
+
+      .weekday {
+        font-size: 4.5vw;
+      }
+
+      .main-time {
+        font-size: 24vw;
+      }
+
+      .seconds {
+        font-size: 10vw;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="clock" aria-label="西暦・曜日付きデジタル時計">
+
+    <div class="date">
+      <span id="date" class="date-number">2026/08/29</span>
+      <span id="weekday" class="weekday">SAT</span>
+    </div>
+
+    <div class="time">
+      <span id="mainTime" class="main-time">00:00</span>
+      <span id="seconds" class="seconds">00</span>
+    </div>
+
+  </main>
+
+  <script>
+    const weekdays = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
+
+    function updateClock() {
+      const now = new Date();
+
+      const year = now.getFullYear();
+      const month = String(now.getMonth() + 1).padStart(2, "0");
+      const day = String(now.getDate()).padStart(2, "0");
+
+      const hours = now.getHours();
+      const minutes = String(now.getMinutes()).padStart(2, "0");
+      const seconds = String(now.getSeconds()).padStart(2, "0");
+
+      document.getElementById("date").textContent =
+        `${year}-${month}-${day}`;
+
+      document.getElementById("weekday").textContent =
+        weekdays[now.getDay()];
+
+      document.getElementById("mainTime").textContent =
+        `${String(hours).padStart(2, "\u00A0")}:${minutes}`;
+
+      document.getElementById("seconds").textContent =
+        seconds;
+    }
+
+    updateClock();
+
+    setTimeout(function tick() {
+      updateClock();
+      setInterval(updateClock, 1000);
+    }, 1000 - new Date().getMilliseconds());
+  </script>
+</body>
+</html>

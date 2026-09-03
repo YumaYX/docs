@@ -14,8 +14,8 @@ links:
   - name: lllmd
     url: /lllmd/
 playground:
-  - name: Time
-    url: /docs/time.html
+  - name: Date
+    url: /docs/date.html
 ---
 
 {% assign sorted_categories = site.categories | sort %}

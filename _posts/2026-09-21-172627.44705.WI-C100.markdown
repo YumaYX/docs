@@ -1,0 +1,17 @@
+---
+layout: post
+category: notes
+title: "SONY WI-C100"
+---
+
+## 電源を入れる
+
+ランプ（青）が点滅するまで、約2秒間ボタンを押す。
+
+## 接続する
+
+- 端末側で接続する。接続できない場合、他の機器で取られていいる。
+- 5秒間電源ボタンを長押しして、再登録すれば確実。
+
+<https://helpguide.sony.net/mdr/wic100/v1/ja/index.html>
+

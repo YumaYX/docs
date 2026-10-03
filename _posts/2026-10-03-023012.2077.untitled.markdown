@@ -1,5 +1,15 @@
 ---
 layout: post
-category: uncategorized
-title: "untitled"
+category: notes
+title: "GW-BX5600-1A1JF"
 ---
+
+## 強制受信
+
+［RCVD］が点滅するまで`2秒以上`、`Dボタン`(みぎ下)を押し続けます。
+
+> 自動で標準電波を受信する 午前12時（深夜12時）から午前5時の間に標準電波を受信して、自動で時刻や日付を合わせます。1日1回受信に成功すれば、その日は自動受信をしません。
+
+> スマートフォンと接続してご利用の場合で、前日に一度もスマートフォンと接続して時刻合わせが行われなかったときは、標準電波を自動で受信して時計の時刻を合わせます。
+
+<https://support.casio.jp/wat/manual/3578_ja/NHCXSYuobsxnqk.html>

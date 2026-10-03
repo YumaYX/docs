@@ -1,7 +1,7 @@
 ---
 layout: post
 category: notes
-title: "GW-BX5600-1A1JF"
+title: "CASIO GW-BX5600-1A1JF"
 ---
 
 ## 強制受信

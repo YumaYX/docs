@@ -1,5 +1,23 @@
 ---
 layout: post
-category: uncategorized
-title: "untitled"
+category: programming
+title: "引数のリレー"
 ---
+
+引数のリレーの例を見る。
+
+```ruby
+def read_sales(file_path)
+  # 長い処理
+end
+
+def make_report(customer_id, file_path)
+  sales = read_sales(file_path)
+  # 集計
+end
+
+make_report(1001, "sales.csv")
+```
+
+`file_path`が`make_report`→`read_sales`と渡されている。
+責務の移譲のため、そこまで変じゃないが、さらに複雑や渡すだけになる場合は、デザインを変える。

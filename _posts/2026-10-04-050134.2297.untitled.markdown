@@ -1,5 +1,7 @@
 ---
 layout: post
 category: uncategorized
-title: "untitled"
+title: "生成AIの使い方 - 202610"
 ---
+
+2026年10月時点の生成AIの使い方を整理する。

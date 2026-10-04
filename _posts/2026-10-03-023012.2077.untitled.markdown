@@ -12,4 +12,5 @@ title: "CASIO GW-BX5600-1A1JF"
 
 > スマートフォンと接続してご利用の場合で、前日に一度もスマートフォンと接続して時刻合わせが行われなかったときは、標準電波を自動で受信して時計の時刻を合わせます。
 
-<https://support.casio.jp/wat/manual/3578_ja/NHCXSYuobsxnqk.html>
+[時刻を合わせる モジュール番号 3578 - Support - CASIO](https://support.casio.jp/wat/manual/3578_ja/NHCXSYuobsxnqk.html)
+

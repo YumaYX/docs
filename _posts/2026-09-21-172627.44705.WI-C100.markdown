@@ -13,5 +13,6 @@ title: "SONY WI-C100"
 - 端末側で接続する。接続できない場合、他の機器で取られている。
 - 5秒間電源ボタンを長押しして、再登録すれば確実。
 
-<https://helpguide.sony.net/mdr/wic100/v1/ja/index.html>
+
+[WI-C100 \| ヘルプガイド \| トップページ](https://helpguide.sony.net/mdr/wic100/v1/ja/index.html)
 

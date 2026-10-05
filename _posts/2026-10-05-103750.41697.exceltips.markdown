@@ -1,0 +1,11 @@
+---
+layout: post
+category: excel
+title: "exceltips"
+---
+
+## ブックのパス取得方法
+
+「ファイル」→「情報」→ パスのコピー
+
+

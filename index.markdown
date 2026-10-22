@@ -60,9 +60,11 @@ playground:
 </ul>
 
 <h2>LASTEST</h2>
+<ul>
 {% for post in site.posts limit:3 %}
-- {{ post.date | date: "%Y/%m/%d" }} - [{{ post.title }}]({{ post.url | relative_url }})
+<li>{{ post.date | date: "%Y/%m/%d" }} - [{{ post.title }}]({{ post.url | relative_url }})</li>
 {% endfor %}
+</ul>
 
 
 

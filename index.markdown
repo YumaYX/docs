@@ -59,6 +59,13 @@ playground:
 {% endfor %}
 </ul>
 
+<h2>LASTEST</h2>
+{% for post in site.posts limit:3 %}
+- {{ post.date | date: "%Y/%m/%d" }} - [{{ post.title }}]({{ post.url | relative_url }})
+{% endfor %}
+
+
+
 </div>
 
 </div>

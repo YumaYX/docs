@@ -62,8 +62,7 @@ playground:
 <h2>LASTEST</h2>
 <ul>
 {% for post in site.posts limit:3 %}
-<li>{{ post.date | date: "%Y/%m/%d" }} - [{{ post.title }}]({{ post.url | relative_url }})</li>
-{% endfor %}
+<li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%Y/%m/%d" }} - {{ post.title }}</a></li>{% endfor %}
 </ul>
 
 

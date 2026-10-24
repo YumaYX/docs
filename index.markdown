@@ -59,12 +59,18 @@ playground:
 {% endfor %}
 </ul>
 
+
+
 <h2>LATEST ARTICLES</h2>
 <ul>
-{% for post in site.posts limit:3 %}
-<li><a href="{{ post.url | relative_url }}">{{ post.date | date: "%Y/%m/%d" }} - {{ post.title }}</a></li>{% endfor %}
+  {% for post in site.posts limit:3 %}
+  <li>
+    <a href="{{ post.url | relative_url }}">
+      {{ forloop.index | prepend: '0' | slice: -2, 2 }} / {{ post.title }}
+    </a>
+  </li>
+  {% endfor %}
 </ul>
-
 
 
 </div>

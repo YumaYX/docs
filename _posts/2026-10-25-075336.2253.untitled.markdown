@@ -1,5 +1,7 @@
 ---
 layout: post
-category: uncategorized
-title: "untitled"
+category: llm
+title: "GitHub MCPサーバー"
 ---
+
+OpenCodeでGitHub MCPサーバーを使おうとしたが、ocではremoteしか使えない、httpが使えないためか、ocからアクセスをauthできなくて使用できなかった。

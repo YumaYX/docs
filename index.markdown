@@ -1,7 +1,6 @@
 ---
 layout: default
-links:
-  - name: YS0
+links: - name: YS0
     url: https://github.com/YumaYX/YS0
   - name: YS1
     url: https://yumayx.github.io/YS1/
@@ -63,13 +62,9 @@ playground:
 
 <h2>LATEST ARTICLES</h2>
 <ul>
-  {% for post in site.posts limit:3 %}
-  <li>
-    <a href="{{ post.url | relative_url }}">
-      #{{ forloop.index | prepend: '0' | slice: -2, 2 }} {{ post.title }}
-    </a>
-  </li>
-  {% endfor %}
+{% for post in site.posts limit:3 %}
+<li><a href="{{ post.url | relative_url }}">#{{ forloop.index | prepend: '0' | slice: -2, 2 }} {{ post.title }}</a></li>
+{% endfor %}
 </ul>
 
 

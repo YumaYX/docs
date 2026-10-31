@@ -1,6 +1,7 @@
 ---
 layout: default
-links: - name: YS0
+links:
+  - name: YS0
     url: https://github.com/YumaYX/YS0
   - name: YS1
     url: https://yumayx.github.io/YS1/

@@ -21,56 +21,49 @@ playground:
 {% assign sorted_categories = site.categories | sort %}
 
 <section>
+  <div class="row">
+    <div class="one-half column">
+      <h2>INDEX</h2>
+      <ul>
+        {% for category in sorted_categories %}
+          <li>
+            <a href="{{ site.baseurl }}/{{ category[0] | slugify }}">
+              {{ category[0] | upcase }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      <ul>
+        <li><a href="/docs/all/">All Posts</a></li>
+      </ul>
+    </div>
 
+    <div class="one-half column">
+      <h2>LINKS</h2>
+      <ul>
+        <li><a href="https://github.com/YumaYX?tab=repositories">GITHUB REPOSITORIES</a></li>
+        {% for item in page.links %}
+          <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+        {% endfor %}
+      </ul>
 
-<div class="row">
+      <h2>PLAYGROUND</h2>
+      <ul>
+        {% for item in page.playground %}
+          <li><a href="{{ item.url }}">{{ item.name }}</a></li>
+        {% endfor %}
+      </ul>
 
-
-<div class="one-half column">
-<h2>INDEX</h2>
-<ul>
-  {% for category in sorted_categories %}
-    <li>
-      <a href="{{ site.baseurl }}/{{ category[0] | slugify }}">
-        {{ category[0] | upcase }}
-      </a>
-    </li>
-  {% endfor %}
-</ul>
-<ul><li><a href="/docs/all/">All Posts</a></li></ul>
-</div>
-
-<div class="one-half column">
-
-<h2>LINKS</h2>
-<ul>
-<li><a href="https://github.com/YumaYX?tab=repositories">GITHUB REPOSITORIES</a></li>
-
-{% for item in page.links %}
-<li><a href="{{ item.url }}">{{ item.name }}</a></li>
-{% endfor %}
-
-</ul>
-
-<h2>PLAYGROUND</h2>
-<ul>
-{% for item in page.playground %}
-<li><a href="{{ item.url }}">{{ item.name }}</a></li>
-{% endfor %}
-</ul>
-
-
-
-<h2>LATEST ARTICLES</h2>
-<ul>
-{% for post in site.posts limit:3 %}
-<li><a href="{{ post.url | relative_url }}">#{{ forloop.index | prepend: '0' | slice: -2, 2 }} {{ post.title }}</a></li>
-{% endfor %}
-</ul>
-
-
-</div>
-
-</div>
-
+      <h2>LATEST ARTICLES</h2>
+      <ul>
+        {% for post in site.posts limit:3 %}
+          <li>
+            <a href="{{ post.url | relative_url }}">
+              #{{ forloop.index | prepend: '0' | slice: -2, 2 }} {{ post.title }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
 </section>

@@ -56,7 +56,7 @@ playground:
 
       <h2>LATEST ARTICLES</h2>
       <ul>
-        {% for post in site.posts limit:3 %}
+        {% for post in site.posts limit:5 %}
           <li>
             <a href="{{ post.url | relative_url }}">
               #{{ forloop.index | prepend: '0' | slice: -2, 2 }} {{ post.title }}

@@ -1,7 +1,7 @@
 ---
 layout: post
 category: excel
-title: "exceltips"
+title: "Excel tips"
 ---
 
 ## ブックのパス取得方法

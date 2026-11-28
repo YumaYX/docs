@@ -70,7 +70,7 @@ title: "Live Migration"
 
 ### Vagrantマシン
 
-`/var/lib/libvirt/images/<path>`
+使用したVagrantfileである。マイグレーションにて、`/var/lib/libvirt/images/<path>`が膨れるので、40GBとしている。
 
 ```ruby
 cat << 'EOF' > Vagrantfile

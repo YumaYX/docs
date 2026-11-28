@@ -12,11 +12,12 @@ title: "Live Migration"
   - 仮想マシン:AlmaLinux release 10 (`M2`)
     - 仮想マシン:AlmaLinux release 9.8 (`V1`)
 
-### 成果物
 
-- ライブマイグレーションは、ホスト間`M1` -> `M2` および `M2` -> `M1`にて
-- `V1`をライブマイグレーションする。
-- ユーザーは`root`を使用する。
+- sshdの設定で、`PermitRootLogin`はyes許可をしている。
+- libvirt Disk pool: `default`
+- libvirt Network pool: `vagrant0`
+  - 172.17.64.0/24
+  - Vagrantにて自動作成
 
 ネットワークは、以下を使用した。
 
@@ -24,11 +25,12 @@ title: "Live Migration"
 - 192.168.122.0/24 - (V1:M1側)
 - 192.168.122.0/24 - (V1:M2側、ネットワークアドレスは同じだが、M1側とは切り離されている)
 
-- sshdの設定で、`PermitRootLogin`はyes許可をしている。
-- libvirt Disk pool: `default`
-- libvirt Network pool: `vagrant0`
-  - 172.17.64.0/24
-  - Vagrantにて自動作成
+
+### 成果物
+
+- ライブマイグレーションは、ホスト間`M1` -> `M2` および `M2` -> `M1`にて
+- `V1`をライブマイグレーションする。
+- ユーザーは`root`を使用する。
 
 #### 論理表現
 

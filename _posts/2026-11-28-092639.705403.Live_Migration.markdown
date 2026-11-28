@@ -1,0 +1,202 @@
+---
+layout: post
+category: virtualmachine
+title: "Live Migration"
+---
+
+突然、ライブマイグレーションに掻き立てられたので、ライブマイグレーションをやってみる。
+
+## 環境
+
+- 物理マシン:AlmaLinux release 10.3 (`M1`)
+  - 仮想マシン:AlmaLinux release 10 (`M2`)
+    - 仮想マシン:AlmaLinux release 9.8 (`V1`)
+
+### 成果物
+
+- ライブマイグレーションは、ホスト間`M1` -> `M2` および `M2` -> `M1`にて
+- `V1`をライブマイグレーションする。
+- ユーザーは`root`を使用する。
+
+ネットワークは、以下を使用した。
+
+- 172.17.64.0/24 (M1, M2)
+- 192.168.122.0/24 - (V1:M1側)
+- 192.168.122.0/24 - (V1:M2側、ネットワークアドレスは同じだが、M1側とは切り離されている)
+
+- sshdの設定で、`PermitRootLogin`はyes許可をしている。
+- libvirt Disk pool: `default`
+- libvirt Network pool: `vagrant0`
+  - 172.17.64.0/24
+  - Vagrantにて自動作成
+
+#### 論理表現
+
+```
+                  ライブマイグレーション構成
+
+       物理マシン                         仮想マシン
+  +----------------------+       +----------------------+
+  |                      |       |                      |
+  |  M1                  |       |  M2                  |
+  |  AlmaLinux 10.3      |       |  AlmaLinux 10        |
+  |                      |       |                      |
+  |                      |       |  +----------------+  |
+  |                      |       |  |                |  |
+  |                      |       |  | V1             |  |
+  |                      |       |  | AlmaLinux 9.8  |  |
+  |                      |       |  |                |  |
+  |                      |       |  +----------------+  |
+  |                      |       |                      |
+  +----------------------+       +----------------------+
+             |                              |
+             |                              |
+             |<============================>|
+             |                              |
+             |     ライブマイグレーション       |
+             |                              |
+             |       M1  <---->  M2         |
+             |                              |
+             |       V1 を移行               |
+             |                              |
+             +------------------------------+
+```
+
+## KVM仮想環境の準備
+
+[KVM+Vagrant](https://yumayx.github.io/YS910/%E4%BB%AE%E6%83%B3%E5%8C%96/2024/01/01/06-03-KVM+Vagrant.html)に従って、仮想環境基盤を作る。
+
+### Vagrantマシン
+
+`/var/lib/libvirt/images/<path>`
+
+```ruby
+cat << 'EOF' > Vagrantfile
+# @M1
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure('2') do |config|
+  config.vm.box = 'almalinux/10'
+
+  config.vm.provider 'libvirt' do |vb|
+    vb.video_type = "virtio"
+    vb.memory = 2048
+    vb.cpus = 4
+    vb.machine_virtual_size = 40
+  end
+
+  config.vm.define "machine" do |machine|
+    machine.vm.network :private_network, ip:"172.17.64.100"
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    ip a | grep 172
+    echo "hello"
+  SHELL
+end
+EOF
+```
+
+### ネットワーク設定
+
+```sh
+# @M1, M2
+echo '172.17.64.1   y  y.localdomain'  >> /etc/hosts
+echo '172.17.64.100 y2 y2.localdomain' >> /etc/hosts
+```
+
+```sh
+# @M2
+hostnamectl set-hostname --static y2.localdomain
+
+dnf -y install qemu-kvm libvirt virt-install libvirt-devel
+systemctl enable --now libvirtd
+dnf -y update
+
+virsh pool-define-as default dir --target /var/lib/libvirt/images
+virsh pool-start default
+virsh pool-list --all
+
+reboot
+```
+
+## Virtual Machineの用意
+
+[KVM+Kickstart](https://yumayx.github.io/YS910/%E4%BB%AE%E6%83%B3%E5%8C%96/2024/01/01/06-02-KVM+Kickstart.html)に従って、仮想マシンを作る。
+
+## 事前確認
+
+```sh
+virsh pool-list --all
+virsh net-list --all
+virsh list --all
+```
+
+## ライブマイグレーション(`M1` → M2)
+
+M1で動作するV1を、V1のディスク含めて、M2にマイグレーションする。
+
+```sh
+@ M1
+virsh migrate --live --persistent --undefinesource --copy-storage-all guest1-rhel9 qemu+ssh://y2.localdomain/system
+```
+
+- コマンド末尾`/system`は、システムの領域(poolなど)を使用する。`/session`もあり、
+- qemu+sshはsshで認証して接続する。ディスク移動などは、ポート49152〜49215/tcpを使用する。
+
+
+マシンの位置、状態確認をする。
+
+```sh
+virsh list --all
+```
+
+### 追加：ファイアウォール設定
+
+今回libvirt(ネットワークインターフェース含め)を使用しているため、ポート設定の適用ゾーンは間違いないようにする。
+
+```sh
+# @M1
+firewall-cmd --permanent --zone=libvirt --add-port=49152-49215/tcp
+firewall-cmd --reload
+firewall-cmd --zone=libvirt --list-all
+```
+
+M2は、ファイアウォールが動作していなかったので、ポート設定は不要となった。
+
+
+※検証中の初回のマイグレーションで、libvirtdあたりのサービスが落ちた。必要に応じて、リスタートを行う。
+
+```sh
+systemctl restart libvirtd
+systemctl restart virtqemud
+#systemctl restart virtstoraged
+```
+
+## ライブマイグレーション(`M2` → M1)
+
+元の状態にマイグレーションする。
+
+```sh
+virsh migrate --live --persistent --undefinesource --copy-storage-all guest1-rhel9 qemu+ssh://y.localdomain/system
+```
+
+マシンの位置、状態確認をする。
+
+```sh
+virsh list --all
+```
+
+## まとめ
+
+Red Hat系のディストリビューションにて、KVM/Libvirtの仮想マシンのライブマイグレーションを行った。
+
+### Future Work
+
+- rootにて、ssh/virshコマンドを使用して、仮想マシンの操作を行った。一般ユーザーでも仮想マシンを移動できるような考慮・設計をして、仮想環境を構築したい。
+- マイグレーション元/先のネットワークが完全に分離する環境であった。そのため、マイグレーション対象のサーバーは、ライブマイグレーションではあるものの、サーバーとして外からのリクエストに対して、サーブできていない。マイグレーション元/先の仮想マシンのネットワークを、物理ネットワークや共有されたネットワークにすることにより、サーバーを公開できるような構成にする必要がある。
+
+
+検証日:Sat Nov 28 JST 2026
+

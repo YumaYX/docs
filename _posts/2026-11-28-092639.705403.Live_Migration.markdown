@@ -6,6 +6,8 @@ title: "Live Migration"
 
 突然、ライブマイグレーションに掻き立てられたので、ライブマイグレーションをやってみる。
 
+KVM/Libvirt環境にて、物理マシン（AlmaLinux 10.3）と仮想マシン（AlmaLinux 10）間で、仮想マシン（AlmaLinux 9.8）のライブマイグレーションを検証する。SSH経由で仮想ディスクを含めた移行を行い、双方向の移行を確認する。
+
 ## 環境
 
 - 物理マシン:AlmaLinux release 10.3 (`M1`)

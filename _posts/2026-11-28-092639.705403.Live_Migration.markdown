@@ -144,8 +144,8 @@ M1で動作するV1を、V1のディスク含めて、M2にマイグレーショ
 virsh migrate --live --persistent --undefinesource --copy-storage-all guest1-rhel9 qemu+ssh://y2.localdomain/system
 ```
 
-- コマンド末尾`/system`は、システムの領域(poolなど)を使用する。`/session`もあり、
-- qemu+sshはsshで認証して接続する。ディスク移動などは、ポート49152〜49215/tcpを使用する。
+- コマンド末尾`/system`は、システムの領域(poolなど)を使用する。`/session`もあり、ユーザーのディレクトリなどを使用するという違いがある。
+- qemu+sshはsshで認証して接続する。ディスク移動などは、ポート`49152`〜`49215`/tcpを使用する。
 
 
 マシンの位置、状態確認をする。

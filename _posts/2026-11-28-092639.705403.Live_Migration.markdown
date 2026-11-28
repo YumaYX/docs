@@ -135,7 +135,7 @@ virsh net-list --all
 virsh list --all
 ```
 
-## ライブマイグレーション(`M1` → M2)
+## ライブマイグレーション(`M1` → M2):行き
 
 M1で動作するV1を、V1のディスク含めて、M2にマイグレーションする。
 
@@ -176,7 +176,7 @@ systemctl restart virtqemud
 #systemctl restart virtstoraged
 ```
 
-## ライブマイグレーション(`M2` → M1)
+## ライブマイグレーション(`M2` → M1):帰り
 
 元の状態にマイグレーションする。
 
